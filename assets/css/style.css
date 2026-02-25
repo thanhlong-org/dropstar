@@ -124,8 +124,7 @@ section .container {
 
 /* header */
 header {
-  background: url(/assets/img/bg-header-img.png) no-repeat center
-    center;
+  background: url('../img/bg-header-img.png') no-repeat center center;
 }
 
 .header {
@@ -261,7 +260,7 @@ header {
   left: -14%;
   width: 128%;
   height: 100%;
-  background: url('/assets/img/concept.png') no-repeat center center;
+  background: url('../img/concept.png') no-repeat center center;
   background-size: 102% auto;
   opacity: 0.32;
   transform: translate3d(0, 0, 0);
@@ -412,7 +411,7 @@ header {
   overflow: hidden;
   padding: 65px 0 30px;
   background-color: #fff;
-  background: url("/assets/img/bg-company-img.png") no-repeat center center;
+  background: url("../img/bg-company-img.png") no-repeat center center;
   background-size: cover;
 }
 
@@ -441,7 +440,7 @@ header {
   width: 125%;
   height: 100%;
   left: -8%;
-  background: url('/assets/img/company.png') no-repeat center center;
+  background: url('../img/company.png') no-repeat center center;
   background-size: 100% auto;
   transform: translate3d(0, 0, 0);
   will-change: transform;
@@ -467,13 +466,13 @@ header {
 }
 
 .company .bg--01 {
-  --bg-image: url("/assets/img/company-img01.png");
+  --bg-image: url("../img/company-img01.png");
 }
 .company .bg--02 {
-  --bg-image: url("/assets/img/company-img02.png");
+  --bg-image: url("../img/company-img02.png");
 }
 .company .bg--03 {
-  --bg-image: url("/assets/img/company-img03.png");
+  --bg-image: url("../img/company-img03.png");
 }
 
 .company-body-list-item {
@@ -638,22 +637,22 @@ header {
 }
 
 .business .bg--01 {
-  --bg-image: url("/assets/img/business-img01.png");
+  --bg-image: url("../img/business-img01.png");
 }
 .business .bg--02 {
-  --bg-image: url("/assets/img/business-img02.png");
+  --bg-image: url("../img/business-img02.png");
 }
 .business .bg--03 {
-  --bg-image: url("/assets/img/business-img03.png");
+  --bg-image: url("../img/business-img03.png");
 }
 .business .bg--04 {
-  --bg-image: url("/assets/img/business-img04.png");
+  --bg-image: url("../img/business-img04.png");
 }
 .business .bg--05 {
-  --bg-image: url("/assets/img/business-img05.png");
+  --bg-image: url("../img/business-img05.png");
 }
 .business .bg--06 {
-  --bg-image: url("/assets/img/business-img06.png");
+  --bg-image: url("../img/business-img06.png");
 }
 
 .business-body-list-item {

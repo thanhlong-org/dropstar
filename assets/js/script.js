@@ -30,7 +30,14 @@ function initBusinessCarousel() {
   const positions = ['active', '1', '2', '3', '4', '5'];
   const activeScale = 1.1;
   const inactiveScale = 0.94;
-  const shiftDuration = 0.9;
+  const shiftDuration = 1;
+  const scaleDelay = 1;
+  const prevIncomingScaleDelay = 1;
+  const prevIncomingScaleDuration = 0;
+  const defaultUpwardGapFactor = 0;
+  const nextOutgoingUpwardGapFactor = 1.2;
+  const defaultSidePushFactor = 0;
+  const nextOutgoingSidePushFactor = 2.2;
 
   let orderedItems = Array.from(container.querySelectorAll('.business-body-list-item'));
   let coordinateSlots = [];
@@ -191,16 +198,20 @@ function initBusinessCarousel() {
     });
   }
 
-  function animateCircularShift(typographyTargets) {
+  function animateCircularShift(typographyTargets, direction = 'next') {
     if (typeof gsap === 'undefined') {
       syncToCoordinates();
       animateActiveContent();
       return;
     }
 
+    const transitionDuration = direction === 'prev'
+      ? Math.max(shiftDuration, prevIncomingScaleDelay + prevIncomingScaleDuration)
+      : shiftDuration;
+
     const timeline = gsap.timeline({
       defaults: {
-        duration: shiftDuration,
+        duration: transitionDuration,
         ease: 'power2.inOut'
       },
       onComplete: () => {
@@ -236,21 +247,114 @@ function initBusinessCarousel() {
       y: 8
     });
 
+    const outgoingActive = direction === 'next'
+      ? orderedItems[orderedItems.length - 1]
+      : orderedItems[1];
+
+    const arcItems = new Set([incomingActive, outgoingActive]);
+
+    function addParabolaMotion(item, target, arcStrength = 120) {
+      const startX = Number(gsap.getProperty(item, 'x')) || 0;
+      const startY = Number(gsap.getProperty(item, 'y')) || 0;
+
+      const midX = (startX + target.x) / 2;
+      const isIncoming = item === incomingActive;
+      const isNextOutgoing = direction === 'next' && !isIncoming;
+      const horizontalGap = Math.abs(target.x - startX);
+      const sidePushFactor = isNextOutgoing
+        ? nextOutgoingSidePushFactor
+        : defaultSidePushFactor;
+      const sidePush = horizontalGap * sidePushFactor;
+      const controlX = Math.max(startX, target.x) + sidePush;
+      const upwardTargetGap = Math.max(0, startY - target.y);
+      const upwardGapFactor = isNextOutgoing
+        ? nextOutgoingUpwardGapFactor
+        : defaultUpwardGapFactor;
+      const extraDrop = upwardTargetGap * upwardGapFactor;
+      const controlY = Math.max(startY, target.y) + Math.abs(arcStrength) + extraDrop;
+      console.log('Arc control point:', {
+        direction,
+        role: isIncoming ? 'incoming' : 'outgoing',
+        startY,
+        targetY: target.y,
+        startX,
+        targetX: target.x,
+        midX,
+        controlX,
+        controlY,
+        sidePushFactor,
+        upwardGapFactor
+      });
+
+      const progress = { t: 0 };
+
+      timeline.to(
+        progress,
+        {
+          t: 1,
+          onUpdate: () => {
+            const t = progress.t;
+            const oneMinusT = 1 - t;
+
+            const nextX =
+              oneMinusT * oneMinusT * startX +
+              2 * oneMinusT * t * controlX +
+              t * t * target.x;
+
+            const nextY =
+              oneMinusT * oneMinusT * startY +
+              2 * oneMinusT * t * controlY +
+              t * t * target.y;
+
+            gsap.set(item, {
+              x: nextX,
+              y: nextY
+            });
+          }
+        },
+        0
+      );
+    }
+
     orderedItems.forEach((item, index) => {
       const target = getTargetCoordinates(item, index);
       const slot = coordinateSlots[index];
 
+      if (arcItems.has(item)) {
+        addParabolaMotion(item, target, index === 0 ? 1000 : 115);
+      } else {
+        timeline.to(
+          item,
+          {
+            x: target.x,
+            y: target.y
+          },
+          0
+        );
+      }
+
       timeline.to(
         item,
         {
-          x: target.x,
-          y: target.y,
           width: slot ? slot.width : item.offsetWidth,
           height: slot ? slot.height : item.offsetHeight,
-          scale: index === 0 ? activeScale : inactiveScale,
           filter: index === 0 ? 'brightness(1.12)' : 'brightness(1)'
         },
         0
+      );
+
+      timeline.to(
+        item,
+        {
+          scale: index === 0 ? activeScale : inactiveScale,
+          duration:
+            direction === 'prev' && item === incomingActive
+              ? prevIncomingScaleDuration
+              : Math.max(0.2, transitionDuration - scaleDelay)
+        },
+        direction === 'prev' && item === incomingActive
+          ? prevIncomingScaleDelay
+          : scaleDelay
       );
 
       const numNode = item.querySelector('.business-body-list-item__num');
@@ -285,7 +389,7 @@ function initBusinessCarousel() {
         duration: 0.28,
         ease: 'power2.out'
       },
-      shiftDuration * 0.72
+      transitionDuration * 0.72
     );
   }
 
@@ -315,7 +419,7 @@ function initBusinessCarousel() {
     }
 
     applyDataOrder();
-    animateCircularShift(typographyTargets);
+    animateCircularShift(typographyTargets, direction);
   }
 
   applyDataOrder();
@@ -353,47 +457,84 @@ function animateCloudBackground() {
     return;
   }
 
-  const cloudMotionConfig = {
-    duration: 10,
-    repeat: -1,
-    yoyo: true,
-    ease: 'sine.inOut'
-  };
-
-  const cloudLayers = [
+  const loopPairs = [
     {
-      node: document.querySelector('.concept-cloud--1'),
-      from: { xPercent: -2, yPercent: 0 },
-      to: { xPercent: 10, yPercent: -2 }
+      primary: document.querySelector('.concept-cloud--1'),
+      duplicate: document.querySelector('.concept-cloud--2'),
+      duration: 250,
+      y: 0,
+      directionX: 1
     },
     {
-      node: document.querySelector('.concept-cloud--2'),
-      from: { xPercent: 2, yPercent: 0 },
-      to: { xPercent: -9, yPercent: 1.8 }
-    },
-    {
-      node: document.querySelector('.company-cloud--1'),
-      from: { xPercent: 7, yPercent: -7, y: -50 },
-      to: { xPercent: -7, yPercent: 7, y: -50 }
-    },
-    {
-      node: document.querySelector('.company-cloud--2'),
-      from: { xPercent: 10, yPercent: -10, y: -50 },
-      to: { xPercent: -6, yPercent: 6, y: -50 }
+      primary: document.querySelector('.company-cloud--1'),
+      duplicate: document.querySelector('.company-cloud--2'),
+      duration: 250,
+      y: 0,
+      directionX: -1
     }
   ];
 
-  cloudLayers.forEach((layer) => {
-    if (!layer.node) {
+  const setupCloudLoop = ({ primary, duplicate, duration, y, directionX = 1 }) => {
+    if (!primary || !duplicate) {
       return;
     }
 
-    gsap.set(layer.node, layer.from);
-    gsap.to(layer.node, {
-      ...layer.to,
-      ...cloudMotionConfig
-    });
-  });
+    const primaryStyle = window.getComputedStyle(primary);
+
+    duplicate.style.top = primaryStyle.top;
+    duplicate.style.opacity = primaryStyle.opacity;
+    duplicate.style.filter = primaryStyle.filter;
+    duplicate.style.backgroundPosition = primaryStyle.backgroundPosition;
+    duplicate.style.backgroundSize = primaryStyle.backgroundSize;
+
+    let loopTween;
+
+    const refresh = () => {
+      if (loopTween) {
+        loopTween.kill();
+      }
+
+      const travelDistance = primary.offsetWidth;
+
+      if (!travelDistance) {
+        return;
+      }
+
+      const shiftX = travelDistance * (directionX >= 0 ? 1 : -1);
+      const shiftY = primary.offsetHeight;
+      const wrapX = gsap.utils.wrap(-Math.abs(shiftX), Math.abs(shiftX));
+      const minY = y - Math.abs(shiftY);
+      const maxY = y + Math.abs(shiftY);
+      const wrapY = gsap.utils.wrap(minY, maxY);
+
+      gsap.set([primary, duplicate], {
+        xPercent: 0,
+        x: (index) => index * -shiftX,
+        y: (index) => y + index * -shiftY
+      });
+
+      loopTween = gsap.to([primary, duplicate], {
+        x: `+=${shiftX}`,
+        y: shiftY ? `+=${shiftY}` : undefined,
+        duration,
+        repeat: -1,
+        ease: 'none',
+        modifiers: {
+          x: gsap.utils.unitize((value) => {
+            return wrapX(parseFloat(value));
+          }),
+          y: gsap.utils.unitize((value) => {
+            return wrapY(parseFloat(value));
+          })
+        }
+      });
+    };
+
+    refresh();
+    window.addEventListener('resize', refresh);
+  };
+
+  loopPairs.forEach(setupCloudLoop);
 }
 
 function animateScrollSections(businessController) {
@@ -403,7 +544,7 @@ function animateScrollSections(businessController) {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.to('.concept-cloud--1', {
+  gsap.to('.concept-cloud--1, .concept-cloud--2', {
     yPercent: -14,
     ease: 'none',
     scrollTrigger: {
@@ -414,32 +555,9 @@ function animateScrollSections(businessController) {
     }
   });
 
-  gsap.to('.concept-cloud--2', {
-    yPercent: 14,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.concept',
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: true
-    }
-  });
-
-  gsap.to('.company-cloud--1', {
+  gsap.to('.company-cloud--1, .company-cloud--2', {
     xPercent: -8,
     yPercent: -10,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.company',
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: true
-    }
-  });
-
-  gsap.to('.company-cloud--2', {
-    xPercent: -10,
-    yPercent: 12,
     ease: 'none',
     scrollTrigger: {
       trigger: '.company',
@@ -574,9 +692,77 @@ function addMicroInteractions() {
   });
 }
 
+function initPageTopAnimation() {
+  if (typeof gsap === 'undefined') {
+    return;
+  }
+
+  const scrollEl = document.querySelector('.scroll');
+  if (!scrollEl) {
+    return;
+  }
+
+  gsap.to(scrollEl, {
+    y: -4,
+    duration: 2.2,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true
+  });
+
+  scrollEl.addEventListener('mouseenter', () => {
+    gsap.to(scrollEl, {
+      scale: 1.05,
+      duration: 0.35,
+      ease: 'power2.out'
+    });
+  });
+
+  scrollEl.addEventListener('mouseleave', () => {
+    gsap.to(scrollEl, {
+      scale: 1,
+      duration: 0.35,
+      ease: 'power2.out'
+    });
+  });
+}
+
+function initMoonAnimation() {
+  if (typeof gsap === 'undefined') {
+    return;
+  }
+
+  const moonEl = document.querySelector('.moon');
+  if (!moonEl) {
+    return;
+  }
+
+  const orbitState = { angle: 0 };
+  const orbitRadiusX = 30;
+  const orbitRadiusY = 20;
+  const orbitDuration = 22;
+
+  gsap.to(orbitState, {
+    angle: Math.PI * 2,
+    duration: orbitDuration,
+    ease: 'none',
+    repeat: -1,
+    onUpdate: () => {
+      const angle = orbitState.angle;
+
+      gsap.set(moonEl, {
+        x: Math.cos(angle) * orbitRadiusX,
+        y: Math.sin(angle) * orbitRadiusY
+      });
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const businessController = initBusinessCarousel();
   animateCloudBackground();
   animateScrollSections(businessController);
   addMicroInteractions();
+  initPageTopAnimation();
+  initMoonAnimation();
 });

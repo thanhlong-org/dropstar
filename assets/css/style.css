@@ -5,8 +5,16 @@ html {
 
 body {
   font-family: "Noto Serif JP", "Benne", serif;
-  background-color: #444444;
+  background-color: #fff;
   margin: 0 auto;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1180px;
+}
+
+header .container {
   max-width: 1360px;
 }
 
@@ -130,7 +138,7 @@ footer .container {
 
 /* header */
 header {
-  background: url('../img/bg-header-img.png') no-repeat center center;
+  background: url('../img/bg-header-img.png') repeat center center;
 }
 
 .header-wrapper {
@@ -172,7 +180,7 @@ header {
 
 /* banner */
 .banner-body {
-  background-color: #fff;
+  background-color: transparent;
 }
 
 .banner-body-img {
@@ -209,19 +217,24 @@ header {
 }
 
 @media (min-width: 768px) {
-  .banner-body-img {
-    height: auto;
-    overflow: unset;
+  .banner {
+    position: relative;
+    background: url('../img/bg-banner-img.png') no-repeat center center;
+    background-size: cover;
+    min-height: 706px;
   }
 
-  .banner-body-img img {
-    width: 100%;
-    height: auto;
-    max-width: 1360px;
+  .banner-body {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  .banner-body-img {
+    display: none;
   }
 
   .banner-body-content {
-    margin-top: -200px;
     display: flex;
     flex-direction: column;
   }
@@ -823,7 +836,7 @@ header {
   background-color: #1a232c;
   color: #fff;
   padding: 39px 0 30px;
-  background: url('../img/bg-footer-img.png') no-repeat center center;
+  background: url('../img/bg-footer-img.png') repeat center center;
 }
 
 .footer__logo {

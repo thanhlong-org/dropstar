@@ -272,19 +272,6 @@ function initBusinessCarousel() {
         : defaultUpwardGapFactor;
       const extraDrop = upwardTargetGap * upwardGapFactor;
       const controlY = Math.max(startY, target.y) + Math.abs(arcStrength) + extraDrop;
-      console.log('Arc control point:', {
-        direction,
-        role: isIncoming ? 'incoming' : 'outgoing',
-        startY,
-        targetY: target.y,
-        startX,
-        targetX: target.x,
-        midX,
-        controlX,
-        controlY,
-        sidePushFactor,
-        upwardGapFactor
-      });
 
       const progress = { t: 0 };
 
@@ -758,8 +745,122 @@ function initMoonAnimation() {
   });
 }
 
+function initMobileMenu() {
+  if (typeof gsap === 'undefined') {
+    return;
+  }
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuFooter = document.getElementById('menu-footer');
+
+  if (!menuToggle || !mobileMenu || !menuFooter) {
+    return;
+  }
+
+  const menuLinks = gsap.utils.toArray('.menu-link');
+  let openMenuTimeline = null;
+  let isMenuOpen = false;
+
+  gsap.set(mobileMenu, { autoAlpha: 0, pointerEvents: 'none' });
+
+  const toggleMenu = (forceState) => {
+    isMenuOpen = typeof forceState === 'boolean' ? forceState : !isMenuOpen;
+
+    if (isMenuOpen) {
+      menuToggle.classList.add('is-active');
+
+      gsap.killTweensOf([mobileMenu, ...menuLinks, menuFooter]);
+      gsap.set(mobileMenu, { autoAlpha: 0, pointerEvents: 'auto' });
+      gsap.set(menuLinks, { y: 20, opacity: 0 });
+      gsap.set(menuFooter, { y: 20, opacity: 0 });
+
+      openMenuTimeline = gsap.timeline();
+      openMenuTimeline.to(mobileMenu, {
+        autoAlpha: 1,
+        duration: 0.35,
+        ease: 'power2.out'
+      });
+      openMenuTimeline.to(menuLinks, {
+        y: 0,
+        opacity: 1,
+        duration: 0.4,
+        stagger: 0.08,
+        ease: 'power2.out'
+      }, '-=0.15');
+      openMenuTimeline.to(menuFooter, {
+        y: 0,
+        opacity: 1,
+        duration: 0.35,
+        ease: 'power2.out'
+      }, '-=0.18');
+
+      document.body.style.overflow = 'hidden';
+    } else {
+      menuToggle.classList.remove('is-active');
+
+      if (openMenuTimeline) {
+        openMenuTimeline.kill();
+      }
+
+      gsap.killTweensOf([mobileMenu, ...menuLinks, menuFooter]);
+      gsap.to(mobileMenu, {
+        autoAlpha: 0,
+        pointerEvents: 'none',
+        duration: 0.3,
+        ease: 'power2.in',
+        onComplete: () => {
+          gsap.set([menuLinks, menuFooter], { clearProps: 'transform,opacity' });
+        }
+      });
+
+      document.body.style.overflow = '';
+    }
+  };
+
+  menuToggle.addEventListener('click', () => {
+    toggleMenu();
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    const targetId = anchor.getAttribute('href');
+    if (!targetId || targetId === '#') {
+      return;
+    }
+
+    const targetElement = document.querySelector(targetId);
+    if (!targetElement) {
+      return;
+    }
+
+    anchor.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      if (isMenuOpen) {
+        toggleMenu(false);
+      }
+
+      const headerOffset = 80;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isMenuOpen) {
+      toggleMenu(false);
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const businessController = initBusinessCarousel();
+  initMobileMenu();
   animateCloudBackground();
   animateScrollSections(businessController);
   addMicroInteractions();

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Field Section</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Benne&family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Noto Serif JP", serif;
+      background-color: #000510;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ==============================
+       SHARED: circle styles
+    ============================== */
+    .bf-bg--01 { --bg-image: url("assets/img/business-img01.png"); }
+    .bf-bg--02 { --bg-image: url("assets/img/business-img02.png"); }
+    .bf-bg--03 { --bg-image: url("assets/img/business-img03.png"); }
+    .bf-bg--04 { --bg-image: url("assets/img/business-img04.png"); }
+    .bf-bg--05 { --bg-image: url("assets/img/business-img05.png"); }
+    .bf-bg--06 { --bg-image: url("assets/img/business-img06.png"); }
+
+    .bf-circle {
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      text-align: center;
+      color: #fff;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image:
+        linear-gradient(180deg, rgba(7, 36, 49, 0.78) 0%, rgba(22, 111, 151, 0.78) 100%),
+        var(--bg-image, none);
+      box-shadow: 0px 4px 20px 2px rgba(13, 72, 138, 0.9);
+    }
+
+    .bf-circle__label {
+      font-size: 10px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.08em;
+    }
+
+    .bf-circle__num {
+      font-family: "Benne", serif;
+      font-size: 44px;
+      line-height: 1;
+      color: #AFA9A9;
+    }
+
+    .bf-circle__ttl {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: #e8e8e8;
+      max-width: 88%;
+    }
+
+    .bf-circle__btn {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 7px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 50px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 11px;
+      background: rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: background 0.25s;
+      white-space: nowrap;
+    }
+
+    .bf-circle__btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* ==============================
+       SECTION wrapper
+    ============================== */
+    .bf-section {
+      position: relative;
+      padding: 60px 0 40px;
+      border-radius: 40px 40px 0 0;
+      overflow: hidden;
+    }
+
+    /* ==============================
+       PC VERSION
+    ============================== */
+    .bf-pc {
+      display: none;
+    }
+
+    .bf-hex-wrap {
+      position: relative;
+      width: 960px;
+      height: 860px;
+      margin: 0 auto;
+    }
+
+    .bf-pc .bf-circle {
+      position: absolute;
+      width: 228px;
+      height: 228px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .bf-pc .bf-circle:hover {
+      transform: scale(1.04);
+      box-shadow: 0px 6px 30px 4px rgba(13, 72, 138, 1);
+    }
+
+    /* Hexagonal positions (R=315px, center at 480,430) */
+    .bf-circle--01 { left: 366px; top:   2px; }
+    .bf-circle--02 { left: 638px; top: 158px; }
+    .bf-circle--03 { left: 638px; top: 472px; }
+    .bf-circle--04 { left: 366px; top: 630px; }
+    .bf-circle--05 { left:  94px; top: 472px; }
+    .bf-circle--06 { left:  94px; top: 158px; }
+
+    /* Center text block */
+    .bf-center {
+      position: absolute;
+      left: 50%;
+      top: 46%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .bf-center__top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 6px;
+      line-height: 1;
+    }
+
+    .bf-center__en {
+      font-family: "Benne", serif;
+      font-size: 34px;
+      font-weight: 400;
+      color: #fff;
+      text-align: right;
+      line-height: 1.25;
+    }
+
+    .bf-center__num {
+      font-family: "Benne", serif;
+      font-size: 108px;
+      font-weight: 400;
+      color: rgba(190, 190, 190, 0.45);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+    }
+
+    .bf-center__sub {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 2.1;
+      letter-spacing: 0.04em;
+    }
+
+    /* ==============================
+       MOBILE VERSION
+    ============================== */
+    .bf-sp {
+      display: block;
+    }
+
+    .bf-sp-layout {
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 4px;
+      min-height: 280px;
+    }
+
+    /* Left: title block */
+    .bf-sp-left {
+      flex: 0 0 36%;
+      padding-right: 4px;
+    }
+
+    .bf-sp-left__en {
+      font-family: "Benne", serif;
+      font-size: 27px;
+      font-weight: 400;
+      line-height: 1.2;
+      color: #fff;
+    }
+
+    .bf-sp-left__num {
+      display: block;
+      font-family: "Benne", serif;
+      font-size: 88px;
+      font-weight: 400;
+      color: rgba(180, 180, 180, 0.45);
+      line-height: 1;
+      margin: 2px 0 8px;
+    }
+
+    .bf-sp-left__sub {
+      font-size: 11px;
+      font-weight: 300;
+      line-height: 2;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* Right: slider */
+    .bf-sp-right {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 214px;
+    }
+
+    .bf-sp-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 22px;
+      height: 28px;
+      background: linear-gradient(180deg, #3897C2 0%, #647982 100%);
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.35);
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .bf-sp-arrow:active { opacity: 0.7; }
+
+    .bf-sp-arrow--prev {
+      left: 0;
+      clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
+    }
+
+    .bf-sp-arrow--next {
+      right: 0;
+      clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    }
+
+    .bf-sp-circle {
+      width: 210px;
+      height: 210px;
+      transition: opacity 0.3s ease;
+    }
+
+    .bf-sp-circle .bf-circle__num {
+      font-size: 48px;
+    }
+
+    .bf-sp-circle .bf-circle__ttl {
+      font-size: 14px;
+    }
+
+    .bf-sp-circle.fade {
+      opacity: 0;
+    }
+
+    /* Bottom dot navigation */
+    .bf-sp-dots {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 20px;
+      padding: 10px 16px;
+    }
+
+    .bf-sp-dot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.45);
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: 40px;
+      transition: all 0.25s;
+      font-family: "Noto Serif JP", serif;
+      font-size: 11px;
+      line-height: 1;
+    }
+
+    .bf-sp-dot.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .bf-star-icon {
+      font-size: 15px;
+      display: block;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.4);
+      transition: color 0.25s;
+    }
+
+    .bf-sp-dot.active .bf-star-icon {
+      color: #7bbdd6;
+    }
+
+    /* ==============================
+       BREAKPOINT: PC shown ≥768px
+    ============================== */
+    @media (min-width: 768px) {
+      .bf-pc { display: block; }
+      .bf-sp { display: none; }
+
+      .bf-section {
+        padding: 120px 0 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section class="bf-section" id="business-field">
+
+  <!-- ============================================================
+       PC VERSION — hexagonal layout
+  ============================================================ -->
+  <div class="bf-pc">
+    <div class="bf-hex-wrap">
+
+      <!-- Center text -->
+      <div class="bf-center">
+        <div class="bf-center__top">
+          <p class="bf-center__en">BUSINESS<br>FIELD</p>
+          <span class="bf-center__num">06</span>
+        </div>
+        <p class="bf-center__sub">高い専門性を持った<br>dropSTARSの6つの領域</p>
+      </div>
+
+      <!-- 01 top center -->
+      <div class="bf-circle bf-circle--01 bf-bg--01">
+        <p class="bf-circle__label">business field</p>
+        <span class="bf-circle__num">01</span>
+        <h3 class="bf-circle__ttl">業務改善 / 効率化支援</h3>
+        <a href="#" class="bf-circle__btn">詳細を見る→</a>
+      </div>
+
+      <!-- 02 top right -->
+      <div class="bf-circle bf-circle--02 bf-bg--02">
+        <p class="bf-circle__label">business field</p>
+        <span class="bf-circle__num">02</span>
+        <h3 class="bf-circle__ttl">資金調達 / 資金繰計画支援</h3>
+        <a href="#" class="bf-circle__btn">詳細を見る→</a>
+      </div>
+
+      <!-- 03 bottom right -->
+      <div class="bf-circle bf-circle--03 bf-bg--03">
+        <p class="bf-circle__label">business field</p>
+        <span class="bf-circle__num">03</span>
+        <h3 class="bf-circle__ttl">国内・海外不動産購入支援</h3>
+        <a href="#" class="bf-circle__btn">詳細を見る→</a>
+      </div>
+
+      <!-- 04 bottom center -->
+      <div class="bf-circle bf-circle--04 bf-bg--04">
+        <p class="bf-circle__label">business field</p>
+        <span class="bf-circle__num">04</span>
+        <h3 class="bf-circle__ttl">コスト削減支援</h3>
+        <a href="#" class="bf-circle__btn">詳細を見る→</a>
+      </div>
+
+      <!-- 05 bottom left -->
+      <div class="bf-circle bf-circle--05 bf-bg--05">
+        <p class="bf-circle__label">business field</p>
+        <span class="bf-circle__num">05</span>
+        <h3 class="bf-circle__ttl">生命・損害保険の最適化</h3>
+        <a href="#" class="bf-circle__btn">詳細を見る→</a>
+      </div>
+
+      <!-- 06 top left -->
+      <div class="bf-circle bf-circle--06 bf-bg--06">
+        <p class="bf-circle__label">business field</p>
+        <span class="bf-circle__num">06</span>
+        <h3 class="bf-circle__ttl">投資 / 資産運用支援</h3>
+        <a href="#" class="bf-circle__btn">詳細を見る→</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MOBILE VERSION — slider
+  ============================================================ -->
+  <div class="bf-sp">
+
+    <!-- Top row: left title + right circle -->
+    <div class="bf-sp-layout">
+      <div class="bf-sp-left">
+        <p class="bf-sp-left__en">BUSINESS<br>FIELD</p>
+        <span class="bf-sp-left__num">06</span>
+        <p class="bf-sp-left__sub">高い専門線を持った<br>dropSTARS<br>6つの領域</p>
+      </div>
+
+      <div class="bf-sp-right">
+        <button class="bf-sp-arrow bf-sp-arrow--prev" id="bf-prev" aria-label="前へ"></button>
+        <div class="bf-circle bf-sp-circle bf-bg--01" id="bf-main-circle">
+          <p class="bf-circle__label">business field</p>
+          <span class="bf-circle__num" id="bf-num">01</span>
+          <h3 class="bf-circle__ttl" id="bf-ttl">業務改善 /<br>効率化支援</h3>
+          <a href="#" class="bf-circle__btn">詳細を見る →</a>
+        </div>
+        <button class="bf-sp-arrow bf-sp-arrow--next" id="bf-next" aria-label="次へ"></button>
+      </div>
+    </div>
+
+    <!-- Bottom nav -->
+    <div class="bf-sp-dots" id="bf-dots">
+      <button class="bf-sp-dot active" data-index="0">
+        <span class="bf-star-icon">✦</span><span>01</span>
+      </button>
+      <button class="bf-sp-dot" data-index="1">
+        <span class="bf-star-icon">✦</span><span>02</span>
+      </button>
+      <button class="bf-sp-dot" data-index="2">
+        <span class="bf-star-icon">✦</span><span>03</span>
+      </button>
+      <button class="bf-sp-dot" data-index="3">
+        <span class="bf-star-icon">✦</span><span>04</span>
+      </button>
+      <button class="bf-sp-dot" data-index="4">
+        <span class="bf-star-icon">✦</span><span>05</span>
+      </button>
+      <button class="bf-sp-dot" data-index="5">
+        <span class="bf-star-icon">✦</span><span>06</span>
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+  const BF_ITEMS = [
+    { num: '01', ttl: '業務改善 /<br>効率化支援',       bg: 'bf-bg--01' },
+    { num: '02', ttl: '資金調達 /<br>資金繰計画支援',   bg: 'bf-bg--02' },
+    { num: '03', ttl: '国内・海外<br>不動産購入支援',    bg: 'bf-bg--03' },
+    { num: '04', ttl: 'コスト削減支援',                  bg: 'bf-bg--04' },
+    { num: '05', ttl: '生命・損害<br>保険の最適化',      bg: 'bf-bg--05' },
+    { num: '06', ttl: '投資 /<br>資産運用支援',          bg: 'bf-bg--06' },
+  ];
+
+  let bfIdx = 0;
+  const circle  = document.getElementById('bf-main-circle');
+  const numEl   = document.getElementById('bf-num');
+  const ttlEl   = document.getElementById('bf-ttl');
+  const dots    = document.querySelectorAll('.bf-sp-dot');
+
+  function bfGoTo(next) {
+    const prev = BF_ITEMS[bfIdx];
+    circle.classList.add('fade');
+
+    setTimeout(() => {
+      circle.classList.remove(prev.bg);
+      bfIdx = ((next % BF_ITEMS.length) + BF_ITEMS.length) % BF_ITEMS.length;
+      const item = BF_ITEMS[bfIdx];
+      numEl.textContent  = item.num;
+      ttlEl.innerHTML    = item.ttl;
+      circle.classList.add(item.bg);
+      dots.forEach((d, i) => d.classList.toggle('active', i === bfIdx));
+      circle.classList.remove('fade');
+    }, 220);
+  }
+
+  document.getElementById('bf-prev').addEventListener('click', () => bfGoTo(bfIdx - 1));
+  document.getElementById('bf-next').addEventListener('click', () => bfGoTo(bfIdx + 1));
+  dots.forEach(d => d.addEventListener('click', () => bfGoTo(+d.dataset.index)));
+</script>
+
+</body>
+</html>

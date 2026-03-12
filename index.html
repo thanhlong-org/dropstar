@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="./" />
     <title>Dropstar Home Page</title>
 
     <!-- google font -->
@@ -13,101 +14,13 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <main class="main" id="top">
       <div id="canvas-container"></div>
-      <header class="header">
-        <div class="container">
-          <div class="header-wrapper">
-            <img
-              src="assets/img/logo-img.png"
-              alt="Dropstar Logo"
-              class="logo"
-            />
-            <nav class="nav u-pc">
-              <ul>
-                <li><a href="/">drop STARSとは</a></li>
-                <li><a href="#">企業情報</a></li>
-                <li><a href="#">業務分野</a></li>
-                <li><a href="#">お問い合わせ</a></li>
-              </ul>
-            </nav>
-            <button id="menu-toggle" class="menu-toggle">
-              <div class="menu-toggle-group">
-                <div class="line line-1"></div>
-                <div class="line line-2"></div>
-                <div class="line line-3"></div>
-              </div>
-            </button>
-          </div>
-        </div>
-      </header>
-      <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="mobile-menu u-sp">
-        <div class="mobile-menu-wrap">
-            <!-- Animated Nebula Glows -->
-            <div class="glow-orb glow-orb--blue"></div>
-            <div class="glow-orb glow-orb--purple"></div>
-
-            <nav class="mobile-menu-nav">
-              <ul class="mobile-menu-list" id="menu-links-container">
-                <li>
-                  <a href="#about" class="menu-link">
-                    <div class="menu-item-icon menu-item-icon-1">
-                      <div class="menu-item-icon-group">
-                        <div class="menu-item-icon-group-round">
-                          <div></div>
-                          <div class="orbit-dot"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 class="menu-item__ttl">drop STARSとは</h3>
-                      <p class="menu-item__sub">Về chúng tôi</p>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="#company" class="menu-link">
-                      <div class="menu-item-icon menu-item-icon-2">
-                        <div class="menu-item-icon-group">
-                          <div class="menu-item-icon-group-round animate-star"></div>
-                        </div>
-                      </div>
-                      <div>
-                          <h3 class="menu-item__ttl">企業情報</h3>
-                          <p class="menu-item__sub">Thông tin công ty</p>
-                      </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="#services" class="menu-link">
-                      <div class="menu-item-icon menu-item-icon-3">
-                          <div class="menu-item-icon-group">
-                            <div class="menu-item-icon-group-round animate-diamond"></div>
-                          </div>
-                      </div>
-                      <div>
-                          <h3 class="menu-item__ttl">業務分野</h3>
-                          <p class="menu-item__sub">Lĩnh vực kinh doanh</p>
-                      </div>
-                  </a>
-                </li>
-              </ul>
-
-              <div class="menu-footer" id="menu-footer">
-                  <button class="menu-cta-btn">
-                      お問い合わせ
-                  </button>
-                  <button class="menu-secondary-btn">
-                      Contact
-                  </button>
-              </div>
-            </nav>
-        </div>
-    </div>
+      <div data-include="common/header.html"></div>
       <div class="banner">
         <div class="banner-body">
           <div class="banner-body-img">
@@ -258,59 +171,14 @@
           </div>
         </div>
       </section>
-      <footer class="footer">
-        <div class="container">
-          <div class="footer-wrapper">
-            <div class="footer__logo">
-              <img src="assets/img/logo-img.png" alt="Dropstar Logo" width="187" height="47">
-            </div>
-            <p class="footer__address">〒470-0161<br>愛知県愛知郡東郷町春木台２丁目１４番地１３</p>
-            <div class="footer-body">
-              <div class="footer-body-content">
-                <h3 class="footer-body-content__ttl">TOP</h3>
-              </div>
-              <div class="footer-body-content">
-                <h3 class="footer-body-content__ttl">企業情報</h3>
-                <ul class="footer-body-content-list">
-                  <li><a href="/">drop STARSとは</a></li>
-                  <li><a href="#">会社概要/アクセス</a></li>
-                  <li><a href="#">代表メッセージ</a></li>
-                </ul>
-              </div>
-              <div class="footer-body-content">
-                <h3 class="footer-body-content__ttl">業務分野</h3>
-                <ul class="footer-body-content-list">
-                  <li><a href="/">業務改善/効率化支援</a></li>
-                  <li><a href="#">資金調達資金繰計画支援</a></li>
-                  <li><a href="#">国内・海外不動産購入支援</a></li>
-                  <li><a href="#">コスト削減支援</a></li>
-                  <li><a href="#">生命・損害保険の最適化</a></li>
-                  <li><a href="#">投資/資産運用支援</a></li>
-                </ul>
-              </div>
-            </div>
-            <a href="#" class="moon">
-              <p class="moon__txt">お問い合わせ<br><span>はこちら</span></p>
-            </a>
-            <a href="#top" class="scroll">
-              <div class="scroll__img">
-                <img src="assets/img/scroll-icon.png" alt="" width="62" height="62">
-              </div>
-              <p class="scroll__name">PAGE TOP</p>
-            </a>
-          </div>
-          <div class="footer-copyright">
-            <p>プライバシーポリシー</p>
-            <p>dropSTARS ️All Rights Reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <div data-include="common/footer.html"></div>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
+    <script src="assets/js/include.js" defer></script>
     <script src="assets/js/background.js" defer></script>
     <script src="assets/js/script.js" defer></script>
   </body>

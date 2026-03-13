@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business Field | drop STARS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Benne&family=Noto+Serif+JP:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Noto Serif JP", serif;
+      background: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ═══════════════════════════════
+       PC LAYOUT  (≥ 900px)
+    ═══════════════════════════════ */
+    .pc-wrap {
+      display: none;
+    }
+    @media (min-width: 900px) {
+      .pc-wrap {
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+        max-width: 1360px;
+        margin: 0 auto;
+        padding: 60px 60px 60px 80px;
+        gap: 50px;
+        background: #050e1a url('assets/img/bg-header-img.png') center/cover no-repeat;
+        border-top-right-radius: 48px;
+        overflow: hidden;
+      }
+    }
+
+    /* Left panel */
+    .pc-left {
+      flex-shrink: 0;
+      width: 310px;
+      position: relative;
+    }
+    .pc-field-en {
+      font-family: "Benne", serif;
+      font-size: 52px;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: .02em;
+    }
+    .pc-big-num {
+      font-family: "Noto Serif JP", serif;
+      font-size: 150px;
+      font-weight: 600;
+      color: rgba(174,168,168,.22);
+      line-height: .9;
+      margin-top: -10px;
+      letter-spacing: -.02em;
+      user-select: none;
+    }
+    .pc-desc {
+      font-family: "Noto Serif JP", serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.9;
+      margin-top: 10px;
+    }
+
+    /* Right grid */
+    .pc-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    /* Circle card */
+    .biz-card {
+      position: relative;
+      border-radius: 50%;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .biz-card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 40px rgba(13,100,200,.5);
+    }
+    /* Photo bg */
+    .biz-card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+    }
+    /* Blue overlay */
+    .biz-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13,60,120,.68);
+    }
+    /* Content */
+    .biz-card-body {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 18px;
+      text-align: center;
+      gap: 6px;
+    }
+    .biz-card-field {
+      font-family: "Benne", serif;
+      font-size: 15px;
+      color: #fff;
+      letter-spacing: .04em;
+    }
+    .biz-card-num {
+      font-family: "Noto Serif JP", serif;
+      font-size: 62px;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1;
+    }
+    .biz-card-title {
+      font-family: "Noto Serif JP", serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(230,230,230,1);
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+    .biz-card-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 50px;
+      padding: 9px 22px;
+      font-family: "Noto Serif JP", serif;
+      font-size: 14px;
+      color: #fff;
+      background: transparent;
+      transition: background .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .biz-card-btn:hover {
+      background: rgba(255,255,255,.15);
+    }
+    .biz-card-btn-arr {
+      display: inline-block;
+      width: 14px;
+      height: 1px;
+      background: #fff;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .biz-card-btn-arr::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      top: -4px;
+      width: 8px; height: 8px;
+      border-right: 1.5px solid #fff;
+      border-top: 1.5px solid #fff;
+      transform: rotate(45deg);
+    }
+
+    /* ═══════════════════════════════
+       SP LAYOUT  (< 900px)  — mirrors about.html exactly
+    ═══════════════════════════════ */
+    .sp-wrap {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 40px 0 0;
+      background: #050e1a url('assets/img/bg-header-img.png') center/cover no-repeat;
+      border-top-right-radius: 40px;
+      overflow: hidden;
+    }
+    @media (min-width: 900px) { .sp-wrap { display: none; } }
+
+    /* shared circle styles (mirrors common.css .bf-circle) */
+    .bf-bg--01 { --bg-image: url('assets/img/business-img01.png'); }
+    .bf-bg--02 { --bg-image: url('assets/img/business-img02.png'); }
+    .bf-bg--03 { --bg-image: url('assets/img/business-img03.png'); }
+    .bf-bg--04 { --bg-image: url('assets/img/business-img04.png'); }
+    .bf-bg--05 { --bg-image: url('assets/img/business-img05.png'); }
+    .bf-bg--06 { --bg-image: url('assets/img/business-img06.png'); }
+
+    .bf-circle {
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      text-align: center;
+      color: #fff;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: linear-gradient(rgba(13,72,138,.8)), var(--bg-image);
+      border: 1px solid #0d488a;
+      box-shadow: 0 4px 12px 0 rgba(13,72,138,1);
+    }
+    .bf-circle__label { font-size: 18px; color: #fff; margin: 37px 0 5px; }
+    .bf-circle__num   { font-size: 50px; line-height: 1; color: #fff; margin-bottom: 15px; }
+    .bf-circle__ttl   { font-size: 22px; font-weight: 600; line-height: 1; color: #D9D9D9; letter-spacing: -1px; max-width: 90%; margin-bottom: 25px; }
+    .bf-circle__btn {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      padding: 11px 20px;
+      background: transparent;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      border: 1px solid #fff;
+      min-width: 130px;
+      width: 130px;
+      transition: background .2s;
+    }
+    .bf-circle__btn::before {
+      content: '';
+      position: absolute;
+      width: 15px; height: 1px;
+      background: #fff;
+      top: 50%; right: 10px;
+      transform: translateY(-50%);
+    }
+    .bf-circle__btn::after {
+      content: '';
+      position: absolute;
+      width: 8px; height: 1px;
+      background: #fff;
+      top: calc(50% - 3px); right: 10px;
+      transform: rotate(35deg) translateY(-50%);
+    }
+    .bf-circle__btn:hover { background: rgba(0,0,0,.2); }
+
+    /* SP layout */
+    .bf-sp-layout {
+      display: flex;
+      align-items: center;
+      min-height: 280px;
+      padding: 0 0 0 20px;
+    }
+    .bf-sp-left {
+      text-align: center;
+      max-width: 115px;
+      flex-shrink: 0;
+    }
+    .bf-sp-left__en  { font-family: "Benne", serif; font-size: 26px; line-height: 1; color: #fff; }
+    .bf-sp-left__num { display: block; font-size: 80px; font-weight: 600; color: #AFA9A9; line-height: 1; margin: 2px 0 8px; }
+    .bf-sp-left__sub { font-size: 10px; line-height: 1; color: #fff; }
+
+    .bf-sp-right {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 214px;
+    }
+    .bf-sp-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 20px; height: 30px;
+      background: linear-gradient(270deg, rgba(56,151,194,.5) -7.74%, rgba(255,255,255,.5) 107.73%);
+      box-shadow: 0 4px 4px rgba(0,0,0,.25);
+      border: none;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .bf-sp-arrow:active { opacity: .7; }
+    .bf-sp-arrow--prev { left: 5px;  clip-path: polygon(100% 0%, 0% 50%, 100% 100%); }
+    .bf-sp-arrow--next { right: 5px; clip-path: polygon(0% 0%, 100% 50%, 0% 100%); }
+
+    .bf-sp-circle {
+      width: 230px; height: 230px;
+      transition: opacity .3s ease;
+    }
+    .bf-sp-circle.fade { opacity: 0; }
+    .bf-sp-circle .bf-circle__num  { font-size: 40px; font-weight: bold; margin-bottom: 5px; }
+    .bf-sp-circle .bf-circle__ttl  { font-size: 16px; }
+    .bf-sp-circle .bf-circle__btn  { min-width: 110px; width: 110px; }
+
+    /* nav dots */
+    .bf-sp-dots {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 16px 0 24px;
+    }
+    .bf-sp-dot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 50px; height: 50px;
+      gap: 3px;
+      background: none;
+      border: none;
+      padding: 0 3px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all .25s;
+      font-size: 11px;
+      line-height: 1;
+    }
+    .bf-sp-dot span {
+      font-family: "Noto Serif JP", serif;
+      font-size: 19px;
+      font-weight: bold;
+      color: #fff;
+      line-height: 1;
+    }
+    .bf-sp-dot.active { background: #D9D9D980; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════
+     PC  (≥ 900px)
+════════════════════════════ -->
+<div class="pc-wrap">
+
+  <!-- Left label -->
+  <div class="pc-left">
+    <div class="pc-field-en">BUSINESS<br>FIELD</div>
+    <div class="pc-big-num">06</div>
+    <div class="pc-desc">高い専門性を持った<br>drop STARSの6つの領域</div>
+  </div>
+
+  <!-- 3×2 grid -->
+  <div class="pc-grid">
+
+    <div class="biz-card">
+      <div class="biz-card-bg" style="background-image:url('assets/img/business-img01.png')"></div>
+      <div class="biz-card-overlay"></div>
+      <div class="biz-card-body">
+        <span class="biz-card-field">business field</span>
+        <span class="biz-card-num">01</span>
+        <span class="biz-card-title">業務改善 / 効率化支援</span>
+        <a href="#" class="biz-card-btn">詳細を見る<span class="biz-card-btn-arr"></span></a>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-card-bg" style="background-image:url('assets/img/business-img02.png')"></div>
+      <div class="biz-card-overlay"></div>
+      <div class="biz-card-body">
+        <span class="biz-card-field">business field</span>
+        <span class="biz-card-num">02</span>
+        <span class="biz-card-title">資金調達 / 資金繰計画支援</span>
+        <a href="#" class="biz-card-btn">詳細を見る<span class="biz-card-btn-arr"></span></a>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-card-bg" style="background-image:url('assets/img/business-img03.png')"></div>
+      <div class="biz-card-overlay"></div>
+      <div class="biz-card-body">
+        <span class="biz-card-field">business field</span>
+        <span class="biz-card-num">03</span>
+        <span class="biz-card-title">国内・海外不動産購入支援</span>
+        <a href="#" class="biz-card-btn">詳細を見る<span class="biz-card-btn-arr"></span></a>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-card-bg" style="background-image:url('assets/img/business-img04.png')"></div>
+      <div class="biz-card-overlay"></div>
+      <div class="biz-card-body">
+        <span class="biz-card-field">business field</span>
+        <span class="biz-card-num">04</span>
+        <span class="biz-card-title">コスト削減支援</span>
+        <a href="#" class="biz-card-btn">詳細を見る<span class="biz-card-btn-arr"></span></a>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-card-bg" style="background-image:url('assets/img/business-img05.png')"></div>
+      <div class="biz-card-overlay"></div>
+      <div class="biz-card-body">
+        <span class="biz-card-field">business field</span>
+        <span class="biz-card-num">05</span>
+        <span class="biz-card-title">生命・損害保険の最適化</span>
+        <a href="#" class="biz-card-btn">詳細を見る<span class="biz-card-btn-arr"></span></a>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <div class="biz-card-bg" style="background-image:url('assets/img/business-img06.png')"></div>
+      <div class="biz-card-overlay"></div>
+      <div class="biz-card-body">
+        <span class="biz-card-field">business field</span>
+        <span class="biz-card-num">06</span>
+        <span class="biz-card-title">投資 / 資産運用支援</span>
+        <a href="#" class="biz-card-btn">詳細を見る<span class="biz-card-btn-arr"></span></a>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /pc-wrap -->
+
+
+<!-- ════════════════════════════
+     SP  (< 900px)
+════════════════════════════ -->
+<div class="sp-wrap">
+
+  <!-- Top row: left title + right circle (mirrors about.html .bf-sp) -->
+  <div class="bf-sp-layout">
+    <div class="bf-sp-left">
+      <p class="bf-sp-left__en">BUSINESS<br>FIELD</p>
+      <span class="bf-sp-left__num">06</span>
+      <p class="bf-sp-left__sub">高い専門線を持った<br>dropSTARS<br>6つの領域</p>
+    </div>
+
+    <div class="bf-sp-right">
+      <button class="bf-sp-arrow bf-sp-arrow--prev" id="bf-prev" aria-label="前へ"></button>
+      <div class="bf-circle bf-sp-circle bf-bg--01" id="bf-main-circle">
+        <p class="bf-circle__label">business field</p>
+        <span class="bf-circle__num" id="bf-num">01</span>
+        <h3 class="bf-circle__ttl" id="bf-ttl">業務改善 / 効率化支援</h3>
+        <a href="#" class="bf-circle__btn">詳細を見る</a>
+      </div>
+      <button class="bf-sp-arrow bf-sp-arrow--next" id="bf-next" aria-label="次へ"></button>
+    </div>
+  </div>
+
+  <!-- Bottom nav dots (mirrors about.html .bf-sp-dots) -->
+  <div class="bf-sp-dots" id="bf-dots">
+    <button class="bf-sp-dot active" data-index="0">
+      <img src="assets/img/star-icon02.png" alt="" width="20" height="21">
+      <span>01</span>
+    </button>
+    <button class="bf-sp-dot" data-index="1">
+      <img src="assets/img/star-icon02.png" alt="" width="20" height="21">
+      <span>02</span>
+    </button>
+    <button class="bf-sp-dot" data-index="2">
+      <img src="assets/img/star-icon02.png" alt="" width="20" height="21">
+      <span>03</span>
+    </button>
+    <button class="bf-sp-dot" data-index="3">
+      <img src="assets/img/star-icon02.png" alt="" width="20" height="21">
+      <span>04</span>
+    </button>
+    <button class="bf-sp-dot" data-index="4">
+      <img src="assets/img/star-icon02.png" alt="" width="20" height="21">
+      <span>05</span>
+    </button>
+    <button class="bf-sp-dot" data-index="5">
+      <img src="assets/img/star-icon02.png" alt="" width="20" height="21">
+      <span>06</span>
+    </button>
+  </div>
+
+</div><!-- /sp-wrap -->
+
+<script>
+  // SP carousel — mirrors about.html logic exactly
+  const BF_ITEMS = [
+    { num: '01', ttl: '業務改善 / 効率化支援',       bg: 'bf-bg--01' },
+    { num: '02', ttl: '資金調達 / 資金繰計画支援',   bg: 'bf-bg--02' },
+    { num: '03', ttl: '国内・海外不動産購入支援',     bg: 'bf-bg--03' },
+    { num: '04', ttl: 'コスト削減支援',               bg: 'bf-bg--04' },
+    { num: '05', ttl: '生命・損害保険の最適化',       bg: 'bf-bg--05' },
+    { num: '06', ttl: '投資 / 資産運用支援',          bg: 'bf-bg--06' },
+  ];
+
+  let bfIdx = 0;
+  const circle = document.getElementById('bf-main-circle');
+  const numEl  = document.getElementById('bf-num');
+  const ttlEl  = document.getElementById('bf-ttl');
+  const dots   = document.querySelectorAll('.bf-sp-dot');
+
+  function bfGoTo(next) {
+    const prev = BF_ITEMS[bfIdx];
+    circle.classList.add('fade');
+    setTimeout(() => {
+      circle.classList.remove(prev.bg);
+      bfIdx = ((next % BF_ITEMS.length) + BF_ITEMS.length) % BF_ITEMS.length;
+      const item = BF_ITEMS[bfIdx];
+      numEl.textContent = item.num;
+      ttlEl.innerHTML   = item.ttl;
+      circle.classList.add(item.bg);
+      dots.forEach((d, i) => d.classList.toggle('active', i === bfIdx));
+      circle.classList.remove('fade');
+    }, 220);
+  }
+
+  document.getElementById('bf-prev').addEventListener('click', () => bfGoTo(bfIdx - 1));
+  document.getElementById('bf-next').addEventListener('click', () => bfGoTo(bfIdx + 1));
+  dots.forEach(d => d.addEventListener('click', () => bfGoTo(+d.dataset.index)));
+
+  // Swipe
+  let startX = 0;
+  circle && circle.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  circle && circle.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) bfGoTo(dx < 0 ? bfIdx + 1 : bfIdx - 1);
+  });
+</script>
+</body>
+</html>

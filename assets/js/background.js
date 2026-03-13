@@ -57,7 +57,7 @@ const fragmentShader = `
     }
 `;
 
-// --- 3. TẠO 20,000 VÌ SAO DÀY ĐẶC ---
+// --- 3. TẠO 10,000 VÌ SAO DÀY ĐẶC ---
 function createCircleTexture() {
     const canvas = document.createElement('canvas');
     canvas.width = 64; canvas.height = 64;
@@ -70,7 +70,7 @@ function createCircleTexture() {
 }
 
 const starsGeometry = new THREE.BufferGeometry();
-const starsCount = 20000;
+const starsCount = 10000;
 const posArray = new Float32Array(starsCount * 3);
 for(let i=0; i<starsCount*3; i++) posArray[i] = (Math.random()-0.5)*130;
 starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));

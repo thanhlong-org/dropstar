@@ -1,0 +1,548 @@
+/* banner */
+.banner {
+  padding: 56px 36px 36px;
+}
+
+.banner .section-header {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.section__desc::before,
+.section__desc::after {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 768px) {
+  .banner {
+    padding: 64px 30px;
+  }
+}
+
+/* END: banner */
+
+/* concept */
+.concept {
+  z-index: 1;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 56px 0 30px;
+  background-color: #fff;
+}
+
+.concept-clouds {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.concept-cloud {
+  position: absolute;
+  left: -14%;
+  width: 128%;
+  height: 100%;
+  background: url('../img/concept.png') no-repeat center center;
+  background-size: 102% auto;
+  opacity: 0.32;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.concept-cloud--1 {
+  top: -10%;
+  background-position: 46% 42%;
+  filter: saturate(1.16) contrast(1.1) hue-rotate(6deg);
+}
+
+.concept-cloud--2 {
+  top: 6%;
+  opacity: 0.24;
+  background-position: 54% 58%;
+  filter: saturate(1.18) contrast(1.12) hue-rotate(12deg);
+}
+
+.concept .container {
+  position: relative;
+  z-index: 1;
+}
+
+.concept-body {
+  margin: 30px 0;
+}
+
+.concept-body-group {
+  position: relative;
+  margin: 0 auto;
+  max-width: 350px;
+}
+
+.concept-body-group img {
+  width: 100%;
+  height: auto;
+}
+
+.concept-body-group-img--first {
+  max-width: 184px;
+}
+
+.concept-body-group-img--second {
+  position: absolute;
+  top: 50px;
+  left: 35%;
+  max-width: 213px;
+}
+
+.concept-body-content {
+  margin-top: 108px;
+}
+
+.concept-body-content__ttl {
+  max-width: 350px;
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 36px;
+  letter-spacing: -4%;
+  color: #166f97;
+  margin: 0 auto 30px;
+}
+
+.concept-body-content__ttl span {
+  display: block;
+  text-indent: 20%;
+}
+
+.concept-body-content__txt {
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+  letter-spacing: 0%;
+}
+
+.concept-body-content__txt + .concept-body-content__txt {
+  margin-top: 20px;
+}
+
+.concept-btn {
+  text-align: center;
+}
+
+.concept-btn .section__btn {
+  text-align: left;
+}
+
+@media (min-width: 1024px) {
+  .concept {
+    padding: 300px 0 100px;
+  }
+
+  .concept-cloud {
+    opacity: 0.36;
+  }
+
+  .concept-cloud--2 {
+    opacity: 0.28;
+  }
+
+  .concept-body {
+    display: flex;
+    margin: 90px 0 150px;
+  }
+
+  .concept-body-group {
+    flex: 1;
+    max-width: unset;
+  }
+
+  .concept-body-group-img--first {
+    max-width: 290px;
+  }
+
+  .concept-body-group-img--second {
+    top: 200px;
+    max-width: 281px;
+  }
+
+  .concept-body-group img {
+    width: auto;
+  }
+
+  .concept-body-content {
+    flex: 1;
+    margin-top: 0;
+  }
+
+  .concept-body-content__ttl {
+    font-size: 33px;
+    line-height: 50px;
+    max-width: unset;
+  }
+
+  .concept-body-content__txt {
+    font-size: 18px;
+    line-height: 40px;
+    text-align: left;
+  }
+
+  .concept-body-content__txt + .concept-body-content__txt {
+    margin-top: 50px;
+  }
+
+  .concept-btn {
+    text-align: right;
+  }
+}
+
+/* END: concept */
+
+/* flow */
+.flow-section {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.flow-section .section-header {
+        z-index: 2;
+  position: relative;
+}
+
+.flow-section .section__desc {
+    gap: 12px;
+}
+
+.flow-section .section__desc::before,
+.flow-section .section__desc::after {
+    background-color: rgba(13, 72, 138, 0.2);
+}
+
+.flow-section .section__btn {
+  color: #fff;
+}
+
+.flow-section .section__btn::before,
+.flow-section .section__btn::after {
+    background-color: #fff;
+}
+
+/* Image + arrows */
+.flow-card-img-wrap {
+    position: relative;
+}
+
+.flow-card-img {
+    width: 100%;
+    max-width: 250px;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+}
+
+.flow-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 50px;
+    background: linear-gradient(90deg, rgba(56, 151, 194, 0.5) -7.74%, rgba(255, 255, 255, 0.5) 107.73%);
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.2s;
+}
+
+.flow-arrow:active {
+    opacity: 0.55;
+}
+
+.flow-arrow--prev {
+    left: -30px;
+    clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
+}
+
+.flow-arrow--next {
+    right: -30px;
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+}
+
+.flow-card-desc {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.flow-card-desc p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 2.2;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.flow-cta {
+    display: block;
+    width: fit-content;
+    margin: 28px auto 0;
+    padding: 14px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 300;
+    background: rgba(0, 0, 0, 0.15);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    transition: background 0.25s;
+}
+
+.flow-cta:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==============================
+MOBILE BOTTOM NAV
+============================== */
+.flow-section .container {
+  padding: 68px 20px 30px;
+  background-color: #fff;
+}
+
+.flow-section .section__desc {
+  gap: 0;
+}
+
+.flow-sp-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 16px 8px 20px;
+    background: #fff;
+}
+
+.flow-sp-dot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    transition: all 0.25s;
+    font-family: "Noto Serif JP", serif;
+}
+
+.flow-dot-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #104259;
+    padding: 5px;
+    transition: all 0.25s;
+}
+
+.flow-dot-circle img {
+    width: 20px;
+    height: auto;
+}
+
+.flow-sp-dot.active .flow-dot-circle {
+    background-color: rgba(13, 72, 138, 0.3);
+}
+
+.flow-dot-num {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.flow-sp-dot.active .flow-dot-num {
+    color: rgba(40, 60, 110, 0.85);
+}
+
+/* hide PC on mobile */
+.flow-pc {
+    display: none;
+}
+
+.flow-sp-wrap {
+    display: block;
+}
+
+@media (min-width: 1024px) {
+    .flow-section .container {
+    padding-top: 100px;
+    }
+
+    .flow-sp-wrap {
+        display: none;
+    }
+
+    .flow-pc {
+        display: block;
+    }
+
+    .flow-cta  {
+      padding: 14px 48px;
+    }
+
+    .flow-pc-layout {
+        display: flex;
+        align-items: stretch; /* Đảm bảo cả 2 cột dài bằng nhau */
+        margin: 80px auto 100px;
+        max-width: 1230px;
+    }
+
+    /* Sidebar */
+    .flow-pc-sidebar {
+        flex-shrink: 0;
+        padding: 0 24px;
+        border-left: 1px solid #000;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+        z-index: 2; /* Để sidebar nằm trên cái bóng của thẻ bên cạnh */
+    }
+
+    .flow-pc-nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+    }
+
+    .flow-pc-nav-item:not(.active) {
+        opacity: 0.7;
+    }
+
+    .flow-pc-nav-item:not(.active):hover {
+        opacity: 0.9;
+    }
+
+    .flow-pc-nav-icon {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #104259;
+        flex-shrink: 0;
+        transition: all 0.25s;
+        gap: 2px;
+        padding: 5px;
+    }
+
+    .flow-pc-nav-item.active .flow-pc-nav-icon {
+        background-color: rgba(13, 72, 138, 0.3);
+    }
+
+    .flow-pc-nav-num {
+        font-size: 30px;
+        font-weight: 600;
+        color: #104259;
+    }
+
+    .flow-pc-nav-item-text {
+      font-size: 20px;
+      font-weight: 200;
+      letter-spacing: 20%;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    /* PC Card - Đục lỗ */
+    .flow-pc-card {
+        flex: 1;
+        /* Bỏ màu nền ở đây */
+        background: transparent;
+        border-radius: 200px 0 0 0; /* Lỗ có góc bo rất cong */
+
+        /* Bóng trắng khổng lồ */
+        box-shadow: 0 0 0 9999px #fff;
+        overflow: hidden;
+        color: #fff;
+        min-height: 380px;
+        transition: opacity 0.25s;
+        position: relative;
+        z-index: 1;
+    }
+
+    .flow-pc-card-inner {
+        padding: 40px 60px 50px 90px;
+        transition: opacity 0.35s ease, transform 0.35s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    .flow-pc-card-head {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        margin-bottom: 50px;
+    }
+
+    .flow-pc-card-head__icon {
+        display: flex;
+        align-items: center;
+        color: #a8c8e8;
+    }
+
+    .flow-pc-card-head__num {
+        font-size: 49px;
+        font-weight: 600;
+        color: #fff;
+        margin-right: 50px;
+    }
+
+    .flow-pc-card-head__ttl {
+        font-size: 28px;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .flow-pc-card-body {
+        display: flex;
+        gap: 23px;
+        align-items: flex-end;
+    }
+
+    .flow-pc-card-img {
+        flex-shrink: 0;
+        object-fit: cover;
+        border-radius: 4px;
+        display: block;
+    }
+
+    .flow-pc-card-text {
+        flex: 1;
+    }
+
+    .flow-pc-card-text p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #fff;
+        text-align: center;
+    }
+
+    .flow-pc-cta {
+        display: block;
+        width: fit-content;
+        margin: 32px auto 0;
+        padding: 14px 44px;
+        border: 1px solid #fff;
+        border-radius: 50px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .flow-pc-cta:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}

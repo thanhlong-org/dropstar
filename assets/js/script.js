@@ -19,6 +19,63 @@ function initBusinessCarousel() {
   setItemsIndex('.company-body-list-item', '--company-index');
 }
 
+function initBusinessFieldMobileCarousel() {
+  const circle = document.getElementById('bf-main-circle');
+  const prevButton = document.getElementById('bf-prev');
+  const nextButton = document.getElementById('bf-next');
+  const numberElement = document.getElementById('bf-num');
+  const titleElement = document.getElementById('bf-ttl');
+  const dots = document.querySelectorAll('.bf-sp-dot');
+
+  if (!circle || !prevButton || !nextButton || !numberElement || !titleElement || !dots.length) {
+    return;
+  }
+
+  const businessFieldItems = [
+    { num: '01', ttl: '業務改善 / 効率化支援', bg: 'bf-bg--01' },
+    { num: '02', ttl: '資金調達 /資金繰計画支援', bg: 'bf-bg--02' },
+    { num: '03', ttl: '国内・海外 不動産購入支援', bg: 'bf-bg--03' },
+    { num: '04', ttl: 'コスト削減支援', bg: 'bf-bg--04' },
+    { num: '05', ttl: '生命・損害 保険の最適化', bg: 'bf-bg--05' },
+    { num: '06', ttl: '投資 / 資産運用支援', bg: 'bf-bg--06' }
+  ];
+
+  let currentIndex = 0;
+
+  const goToBusinessField = (nextIndex) => {
+    const previousItem = businessFieldItems[currentIndex];
+    circle.classList.add('fade');
+
+    window.setTimeout(() => {
+      circle.classList.remove(previousItem.bg);
+      currentIndex = ((nextIndex % businessFieldItems.length) + businessFieldItems.length) % businessFieldItems.length;
+
+      const nextItem = businessFieldItems[currentIndex];
+      numberElement.textContent = nextItem.num;
+      titleElement.textContent = nextItem.ttl;
+      circle.classList.add(nextItem.bg);
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+      circle.classList.remove('fade');
+    }, 220);
+  };
+
+  prevButton.addEventListener('click', () => {
+    goToBusinessField(currentIndex - 1);
+  });
+
+  nextButton.addEventListener('click', () => {
+    goToBusinessField(currentIndex + 1);
+  });
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      goToBusinessField(Number(dot.dataset.index));
+    });
+  });
+}
+
 function animateCloudBackground() {
   if (typeof gsap === 'undefined') {
     return;
@@ -556,6 +613,7 @@ function initPageScripts() {
   window.__dropstarScriptsInitialized = true;
 
   const businessController = initBusinessCarousel();
+  initBusinessFieldMobileCarousel();
   initMobileMenu();
   animateCloudBackground();
   animateScrollSections(businessController);

@@ -152,14 +152,16 @@
               </div>
 
               <div class="bf-sp-right">
-                <button class="bf-sp-arrow bf-sp-arrow--prev" id="bf-prev" aria-label="前へ"></button>
-                <div class="bf-circle bf-sp-circle bf-bg--01" id="bf-main-circle">
-                  <p class="bf-circle__label">business field</p>
-                  <span class="bf-circle__num" id="bf-num">01</span>
-                  <h3 class="bf-circle__ttl" id="bf-ttl">業務改善 / 効率化支援</h3>
-                  <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                <div>
+                  <button class="bf-sp-arrow bf-sp-arrow--prev" id="bf-prev" aria-label="前へ"></button>
+                  <div class="bf-circle bf-sp-circle bf-bg--01" id="bf-main-circle">
+                    <p class="bf-circle__label">business field</p>
+                    <span class="bf-circle__num" id="bf-num">01</span>
+                    <h3 class="bf-circle__ttl" id="bf-ttl">業務改善 / 効率化支援</h3>
+                    <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                  </div>
+                  <button class="bf-sp-arrow bf-sp-arrow--next" id="bf-next" aria-label="次へ"></button>
                 </div>
-                <button class="bf-sp-arrow bf-sp-arrow--next" id="bf-next" aria-label="次へ"></button>
               </div>
             </div>
 
@@ -204,41 +206,5 @@
     <script src="assets/js/include.js" defer></script>
     <script src="assets/js/background.js" defer></script>
     <script src="assets/js/script.js" defer></script>
-    <script>
-      const BF_ITEMS = [
-        { num: '01', ttl: '業務改善 / 効率化支援',       bg: 'bf-bg--01' },
-        { num: '02', ttl: '資金調達 /資金繰計画支援',   bg: 'bf-bg--02' },
-        { num: '03', ttl: '国内・海外 不動産購入支援',    bg: 'bf-bg--03' },
-        { num: '04', ttl: 'コスト削減支援',                  bg: 'bf-bg--04' },
-        { num: '05', ttl: '生命・損害 保険の最適化',      bg: 'bf-bg--05' },
-        { num: '06', ttl: '投資 / 資産運用支援',          bg: 'bf-bg--06' },
-      ];
-
-      let bfIdx = 0;
-      const circle  = document.getElementById('bf-main-circle');
-      const numEl   = document.getElementById('bf-num');
-      const ttlEl   = document.getElementById('bf-ttl');
-      const dots    = document.querySelectorAll('.bf-sp-dot');
-
-      function bfGoTo(next) {
-        const prev = BF_ITEMS[bfIdx];
-        circle.classList.add('fade');
-
-        setTimeout(() => {
-          circle.classList.remove(prev.bg);
-          bfIdx = ((next % BF_ITEMS.length) + BF_ITEMS.length) % BF_ITEMS.length;
-          const item = BF_ITEMS[bfIdx];
-          numEl.textContent  = item.num;
-          ttlEl.innerHTML    = item.ttl;
-          circle.classList.add(item.bg);
-          dots.forEach((d, i) => d.classList.toggle('active', i === bfIdx));
-          circle.classList.remove('fade');
-        }, 220);
-      }
-
-      document.getElementById('bf-prev').addEventListener('click', () => bfGoTo(bfIdx - 1));
-      document.getElementById('bf-next').addEventListener('click', () => bfGoTo(bfIdx + 1));
-      dots.forEach(d => d.addEventListener('click', () => bfGoTo(+d.dataset.index)));
-    </script>
   </body>
 </html>

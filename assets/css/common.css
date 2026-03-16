@@ -81,7 +81,6 @@ footer .container {
   gap: 12px;
   font-weight: 200;
   font-size: 12px;
-  letter-spacing: 30%;
   white-space: nowrap;
 }
 
@@ -1103,11 +1102,14 @@ footer .container {
 /* Right: slider */
 .bf-sp-right {
   flex: 1;
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 214px;
+}
+
+.bf-sp-right div {
+  position: relative;
 }
 
 .bf-sp-arrow {
@@ -1198,10 +1200,14 @@ footer .container {
   background: #D9D9D980;
 }
 
-/* ==============================
-    BREAKPOINT: PC shown ≥768px
-============================== */
 @media (min-width: 768px) {
+  .bf-sp-left {
+    flex: 1;
+    max-width: unset;
+  }
+}
+
+@media (min-width: 1024px) {
   .bf-pc { display: block; }
   .bf-sp { display: none; }
 
@@ -1242,7 +1248,13 @@ footer .container {
 }
 
 .line-2 {
-  text-indent: 40px;
+  text-indent: 100px;
+  animation-delay: 0.8s;
+  margin-right: 20px;
+}
+
+.line-3 {
+  text-indent: 140px;
   animation-delay: 0.8s;
   margin-right: 20px;
 }
@@ -1309,7 +1321,8 @@ footer .container {
     font-size: 40px;
   }
 
-  .line-2 {
+  .line-2,
+  .line-3 {
     margin-right: 30px;
   }
 

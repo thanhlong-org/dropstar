@@ -62,13 +62,14 @@
               <p class="concept-body-content__txt">中小企業の経営は、日々が決断の連続です。<br class="u-pc">しかし、目の前の事象に追われるあまり、「本来解くべき本質的な課題」が霧の中に隠れてしまうことも少なくありません。</p>
               <p class="concept-body-content__txt">私たちdrop STARSは、単に手法を提示するだけの存在ではありません。<br class="u-pc">経営・事業・組織・財務というあらゆる角度から「現在値」を<br class="u-pc">徹底的に可視化し、部分最適ではない、<br class="u-pc">経営全体を貫く本質的な解決策を導き出します。</p>
               <p class="concept-body-content__txt">「今、どこに立っているのか」を共に確認し、<br class="u-pc">そこから描く未来への一歩を、私たちは決して独りにしません。<br class="u-pc">実行の苦しみも、変化の喜びも分かち合いながら、<br class="u-pc">貴社の未来を共に創り上げていく。それが私たちの使命です。</p>
+              <p class="concept-body-content__name">榊原孝幸</p>
             </div>
           </div>
           <div class="vertical">
             <!-- Vertical Text Content -->
             <div class="vertical-text-wrapper">
-                <p class="text-line line-1">寄り添い、見極め</p>
-                <p class="text-line line-2">ともに拓く、経営の道</p>
+              <p class="text-line line-1">経営の霧を晴らし</p>
+              <p class="text-line line-2">まだ見ぬ未来へ</p>
             </div>
 
             <!-- Next Indicator -->
@@ -154,14 +155,16 @@
               </div>
 
               <div class="bf-sp-right">
-                <button class="bf-sp-arrow bf-sp-arrow--prev" id="bf-prev" aria-label="前へ"></button>
-                <div class="bf-circle bf-sp-circle bf-bg--01" id="bf-main-circle">
-                  <p class="bf-circle__label">business field</p>
-                  <span class="bf-circle__num" id="bf-num">01</span>
-                  <h3 class="bf-circle__ttl" id="bf-ttl">業務改善 / 効率化支援</h3>
-                  <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                <div>
+                  <button class="bf-sp-arrow bf-sp-arrow--prev" id="bf-prev" aria-label="前へ"></button>
+                  <div class="bf-circle bf-sp-circle bf-bg--01" id="bf-main-circle">
+                    <p class="bf-circle__label">business field</p>
+                    <span class="bf-circle__num" id="bf-num">01</span>
+                    <h3 class="bf-circle__ttl" id="bf-ttl">業務改善 / 効率化支援</h3>
+                    <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                  </div>
+                  <button class="bf-sp-arrow bf-sp-arrow--next" id="bf-next" aria-label="次へ"></button>
                 </div>
-                <button class="bf-sp-arrow bf-sp-arrow--next" id="bf-next" aria-label="次へ"></button>
               </div>
             </div>
 
@@ -206,41 +209,5 @@
     <script src="assets/js/include.js" defer></script>
     <script src="assets/js/background.js" defer></script>
     <script src="assets/js/script.js" defer></script>
-    <script>
-      const BF_ITEMS = [
-        { num: '01', ttl: '業務改善 / 効率化支援',       bg: 'bf-bg--01' },
-        { num: '02', ttl: '資金調達 /資金繰計画支援',   bg: 'bf-bg--02' },
-        { num: '03', ttl: '国内・海外 不動産購入支援',    bg: 'bf-bg--03' },
-        { num: '04', ttl: 'コスト削減支援',                  bg: 'bf-bg--04' },
-        { num: '05', ttl: '生命・損害 保険の最適化',      bg: 'bf-bg--05' },
-        { num: '06', ttl: '投資 / 資産運用支援',          bg: 'bf-bg--06' },
-      ];
-
-      let bfIdx = 0;
-      const circle  = document.getElementById('bf-main-circle');
-      const numEl   = document.getElementById('bf-num');
-      const ttlEl   = document.getElementById('bf-ttl');
-      const dots    = document.querySelectorAll('.bf-sp-dot');
-
-      function bfGoTo(next) {
-        const prev = BF_ITEMS[bfIdx];
-        circle.classList.add('fade');
-
-        setTimeout(() => {
-          circle.classList.remove(prev.bg);
-          bfIdx = ((next % BF_ITEMS.length) + BF_ITEMS.length) % BF_ITEMS.length;
-          const item = BF_ITEMS[bfIdx];
-          numEl.textContent  = item.num;
-          ttlEl.innerHTML    = item.ttl;
-          circle.classList.add(item.bg);
-          dots.forEach((d, i) => d.classList.toggle('active', i === bfIdx));
-          circle.classList.remove('fade');
-        }, 220);
-      }
-
-      document.getElementById('bf-prev').addEventListener('click', () => bfGoTo(bfIdx - 1));
-      document.getElementById('bf-next').addEventListener('click', () => bfGoTo(bfIdx + 1));
-      dots.forEach(d => d.addEventListener('click', () => bfGoTo(+d.dataset.index)));
-    </script>
   </body>
 </html>

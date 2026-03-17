@@ -27,7 +27,7 @@ function initBusinessFieldMobileCarousel() {
   const titleElement = document.getElementById('bf-ttl');
   const dots = document.querySelectorAll('.bf-sp-dot');
 
-  if (!circle || !prevButton || !nextButton || !numberElement || !titleElement || !dots.length) {
+  if (!circle || !prevButton || !nextButton || !numberElement || !titleElement) {
     return;
   }
 
@@ -54,9 +54,11 @@ function initBusinessFieldMobileCarousel() {
       numberElement.textContent = nextItem.num;
       titleElement.textContent = nextItem.ttl;
       circle.classList.add(nextItem.bg);
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
-      });
+      if (dots.length) {
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentIndex);
+        });
+      }
       circle.classList.remove('fade');
     }, 220);
   };
@@ -69,11 +71,13 @@ function initBusinessFieldMobileCarousel() {
     goToBusinessField(currentIndex + 1);
   });
 
-  dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      goToBusinessField(Number(dot.dataset.index));
+  if (dots.length) {
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        goToBusinessField(Number(dot.dataset.index));
+      });
     });
-  });
+  }
 }
 
 function animateCloudBackground() {
@@ -605,6 +609,163 @@ const initCosmicSlider = () => {
   });
 };
 
+function initFlowSectionCarousel() {
+  const flowData = [
+    {
+      num: '01',
+      title: 'お問い合わせ',
+      img: 'business-field/img/img-03.png',
+      desc: 'まずはお気軽にご相談ください\n現状の課題やお悩みをヒアリングし、\n最適な支援方法を検討します。'
+    },
+    {
+      num: '02',
+      title: 'お打ち合わせ',
+      img: 'business-field/img/img-03.png',
+      desc: '詳しいヒアリングを行い、\n課題の本質を丁寧に整理します。\n何でもお話しください。'
+    },
+    {
+      num: '03',
+      title: '経営課題診断',
+      img: 'business-field/img/img-03.png',
+      desc: '現状を分析し、優先すべき課題を\n明確にします。的確な診断で\n本質に迫ります。'
+    },
+    {
+      num: '04',
+      title: 'ご提案/お見積り',
+      img: 'business-field/img/img-03.png',
+      desc: '課題解決のための最適なプランを\nご提案いたします。貴社に合わせた\nオーダーメイドの支援策です。'
+    },
+    {
+      num: '05',
+      title: 'ご支援開始',
+      img: 'business-field/img/img-03.png',
+      desc: '提案したプランの実行を\n伴走支援します。\n現場に寄り添い、共に進めます。'
+    }
+  ];
+
+  const spCard = document.getElementById('flow-sp-card');
+  const spInner = spCard?.querySelector('.flow-card-inner');
+  const spNum = document.getElementById('sp-num');
+  const spTtl = document.getElementById('sp-ttl');
+  const spImg = document.getElementById('sp-img');
+  const spDesc = document.getElementById('sp-desc');
+  const spPrev = document.getElementById('sp-prev');
+  const spNext = document.getElementById('sp-next');
+  const spDots = document.querySelectorAll('#sp-nav .flow-sp-dot');
+
+  const pcCard = document.getElementById('flow-pc-card');
+  const pcInner = pcCard?.querySelector('.flow-pc-card-inner');
+  const pcNum = document.getElementById('pc-num');
+  const pcTtl = document.getElementById('pc-ttl');
+  const pcImg = document.getElementById('pc-img');
+  const pcText = document.getElementById('pc-text');
+  const pcNavItems = document.querySelectorAll('#pc-sidebar .flow-pc-nav-item');
+
+  const hasSpFlow = spInner && spNum && spTtl && spImg && spDesc && spPrev && spNext && spDots.length;
+  const hasPcFlow = pcInner && pcNum && pcTtl && pcImg && pcText && pcNavItems.length;
+
+  if (!hasSpFlow && !hasPcFlow) {
+    return;
+  }
+
+  let spIndex = 0;
+  let pcIndex = 0;
+
+  const updateSpFlow = (nextIndex) => {
+    if (!hasSpFlow) {
+      return;
+    }
+
+    spInner.style.opacity = '0';
+    spInner.style.transform = 'translateY(-12px)';
+
+    window.setTimeout(() => {
+      spIndex = ((nextIndex % flowData.length) + flowData.length) % flowData.length;
+      const item = flowData[spIndex];
+
+      spNum.textContent = item.num;
+      spTtl.textContent = item.title;
+      spImg.src = item.img;
+      spImg.alt = item.title;
+      spDesc.innerHTML = item.desc.split('\n').map((line) => `<p>${line}</p>`).join('');
+
+      spDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === spIndex);
+      });
+
+      spInner.style.transition = 'none';
+      spInner.style.transform = 'translateY(16px)';
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          spInner.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          spInner.style.opacity = '1';
+          spInner.style.transform = 'translateY(0)';
+        });
+      });
+    }, 280);
+  };
+
+  const updatePcFlow = (nextIndex) => {
+    if (!hasPcFlow) {
+      return;
+    }
+
+    pcInner.style.opacity = '0';
+    pcInner.style.transform = 'translateY(-10px)';
+
+    window.setTimeout(() => {
+      pcIndex = ((nextIndex % flowData.length) + flowData.length) % flowData.length;
+      const item = flowData[pcIndex];
+
+      pcNum.textContent = item.num;
+      pcTtl.textContent = item.title;
+      pcImg.src = item.img;
+      pcImg.alt = item.title;
+      pcText.innerHTML = `<p>${item.desc.replace(/\n/g, '<br>')}</p><a href="#" class="flow-pc-cta section__btn">今すぐ相談する</a>`;
+
+      pcNavItems.forEach((node, index) => {
+        node.classList.toggle('active', index === pcIndex);
+      });
+
+      pcInner.style.transition = 'none';
+      pcInner.style.transform = 'translateY(14px)';
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          pcInner.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          pcInner.style.opacity = '1';
+          pcInner.style.transform = 'translateY(0)';
+        });
+      });
+    }, 260);
+  };
+
+  if (hasSpFlow) {
+    spPrev.addEventListener('click', () => {
+      updateSpFlow(spIndex - 1);
+    });
+
+    spNext.addEventListener('click', () => {
+      updateSpFlow(spIndex + 1);
+    });
+
+    spDots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        updateSpFlow(Number(dot.dataset.index));
+      });
+    });
+  }
+
+  if (hasPcFlow) {
+    pcNavItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        updatePcFlow(Number(item.dataset.index));
+      });
+    });
+  }
+}
+
 function initPageScripts() {
   if (window.__dropstarScriptsInitialized) {
     return;
@@ -614,6 +775,7 @@ function initPageScripts() {
 
   const businessController = initBusinessCarousel();
   initBusinessFieldMobileCarousel();
+  initFlowSectionCarousel();
   initMobileMenu();
   animateCloudBackground();
   animateScrollSections(businessController);

@@ -147,6 +147,7 @@
   .concept-body {
     display: flex;
     margin: 90px 0 150px;
+    gap: 60px;
   }
 
   .concept-body-group {

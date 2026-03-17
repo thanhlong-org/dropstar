@@ -126,6 +126,17 @@
   text-align: left;
 }
 
+@media (min-width: 768px) {
+  .concept-body-group {
+    text-align: center;
+  }
+
+  .concept-body-group img {
+    width: auto;
+  }
+}
+
+
 @media (min-width: 1024px) {
   .concept {
     padding: 300px 0 100px;
@@ -142,6 +153,7 @@
   .concept-body {
     display: flex;
     margin: 90px 0 150px;
+    gap: 60px;
   }
 
   .concept-body-group {

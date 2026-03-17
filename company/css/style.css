@@ -238,11 +238,11 @@
 }
 
 /* Responsive cho Mobile */
-@media (max-width: 900px) {
+@media (max-width: 767px) {
     .company-item {
         flex-direction: column;
         align-items: flex-start;
-        padding: 40px 30px; 
+        padding: 40px 30px;
     }
 
     .company-label {
@@ -270,11 +270,6 @@
 
     .access-right {
         width: 100%;
-    }
-
-    .message-circle {
-        width: 320px;
-        height: 320px;
     }
 }
 

@@ -1,5 +1,6 @@
 /* banner */
 .banner {
+  position: relative;
   z-index: 1;
   background-color: #fff;
 }
@@ -43,7 +44,6 @@
 
 @media (min-width: 768px) {
   .banner {
-    position: relative;
     background: url('../img/bg-banner-img.png') no-repeat center center;
     background-color: #fff;
     background-size: cover;
@@ -207,11 +207,16 @@
   .concept-body {
     display: flex;
     margin: 90px 0 63px;
+    gap: 60px;
   }
 
   .concept-body-group {
     flex: 1;
     max-width: unset;
+  }
+
+  .concept-body-group-img {
+    position: relative;
   }
 
   .concept-body-group-img--first {
@@ -245,6 +250,12 @@
 
   .concept-btn {
     text-align: right;
+  }
+}
+
+@media (min-width: 1360px) {
+  .concept-body {
+    gap: 0;
   }
 }
 
@@ -381,23 +392,18 @@
     padding: 182px 0 60px;
   }
 
-  .company .section-header {
-    margin-left: auto;
-  }
-
   .company-body {
     margin-top: 90px;
   }
 
   .company-body-list {
     display: flex;
-    flex-direction: row-reverse;
     gap: 14px;
   }
 
   .company-body-list-item {
-    width: 380px;
-    height: 380px;
+    width: 270px;
+    height: 270px;
   }
 
   .company-body-list-item:nth-child(even) {
@@ -414,6 +420,13 @@
 
   .company-body-list-item__txt {
     font-size: 18px;
+  }
+}
+
+@media (min-width: 1360px) {
+  .company-body-list-item {
+    width: 380px;
+    height: 380px;
   }
 }
 

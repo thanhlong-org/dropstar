@@ -225,6 +225,37 @@
     background-color: #fff;
 }
 
+.flow-card {
+  padding: 30px 0;
+  background: transparent;
+  border-radius: 80px 0 0 0;
+  box-shadow: 0 0 0 9999px #fff;
+}
+
+.flow-card-inner {
+  max-width: 250px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.flow-card-head {
+  color: #fff;
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+  gap: 2px;
+  margin-bottom: 20px;
+}
+
+.flow-card-head__ttl {
+  margin-left: 16px;
+}
+
+.flow-card-head__icon img {
+  width: 20px;
+  height: auto;
+}
+
 /* Image + arrows */
 .flow-card-img-wrap {
     position: relative;
@@ -242,8 +273,8 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 50px;
+    width: 30px;
+    height: 40px;
     background: linear-gradient(90deg, rgba(56, 151, 194, 0.5) -7.74%, rgba(255, 255, 255, 0.5) 107.73%);
     border: none;
     cursor: pointer;
@@ -256,12 +287,12 @@
 }
 
 .flow-arrow--prev {
-    left: -30px;
+    left: -50px;
     clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
 }
 
 .flow-arrow--next {
-    right: -30px;
+    right: -50px;
     clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
 }
 

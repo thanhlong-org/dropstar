@@ -888,6 +888,7 @@ footer .container {
 
 /* 2. Định nghĩa kích thước (Sizes) */
 .r-80  { --r-size: 80px; }
+.r-200 { --r-size: 200px; }
 
 /* 3. Option: Nếu màu nền không phải là trắng (Colors) */
 .bg-white::before { --bg-color: #fff; }

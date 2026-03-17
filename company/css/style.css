@@ -1,0 +1,353 @@
+/* banner */
+.banner {
+  padding: 56px 36px 36px;
+}
+
+.banner .section-header {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.section__desc::before,
+.section__desc::after {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 768px) {
+  .banner {
+    padding: 64px 30px;
+  }
+}
+
+/* END: banner */
+
+.company {
+    background-color: transparent;
+    position: relative;
+    overflow: hidden; /* Cắt phần viền siêu to tràn ra ngoài, tránh xuất hiện thanh cuộn ngang */
+    z-index: 2;
+}
+
+.company-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.company-item {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border-bottom: 23px solid #fff; /* Khe hở trắng giữa các khối */
+    border-left: 50vw solid #fff;   /* Kéo viền trắng ra vô tận sang trái */
+    border-right: 50vw solid #fff;  /* Kéo viền trắng ra vô tận sang phải */
+    margin-left: -50vw;             /* Bù lại khoảng lùi để nội dung vẫn nằm đúng 1360px */
+    margin-right: -50vw;            /* Bù lại khoảng lùi */
+    padding: 30px 60px;
+    border-radius: 0;
+    z-index: 1;
+}
+
+/* Thêm viền trắng dày cho khối đầu và cuối để thay thế padding cho toàn section */
+.company-item:first-child {
+    border-top: 100px solid #fff;
+}
+.company-item:last-child {
+    border-bottom: 100px solid #fff;
+}
+
+.company-label {
+    width: 100%;
+    max-width: 260px; /* Độ rộng cột bên trái */
+    font-size: 20px; /* Text trái: 20px */
+    font-weight: 700; /* Bold */
+    color: #fff; /* Trắng */
+    flex-shrink: 0;
+    letter-spacing: 0.1em;
+}
+
+.company-value {
+  position: relative;
+  font-size: 18px; /* Text phải: 18px */
+  color: #fff; /* Trắng */
+  line-height: 1;
+  flex-grow: 1;
+}
+
+.company-value::before {
+  position: absolute;
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 55px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #fff;
+}
+
+.company-value p {
+  margin-left: 60px;
+}
+
+/* Responsive cho Mobile */
+@media (max-width: 767px) {
+    .company-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 30px; /* Giảm padding trên mobile */
+    }
+
+    .company-item:first-child {
+        border-top-width: 30px;
+    }
+
+    .company-item:last-child {
+        border-bottom-width: 30px;
+    }
+
+    .company-label {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .company-value {
+        padding-left: 0;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+        padding-top: 20px;
+        width: 100%;
+    }
+
+    .company-value::before {
+      content: none;
+    }
+
+    .company-value p {
+      margin-left: 0;
+      line-height: 1.2;
+    }
+}
+
+@media (max-width: 1024px) {
+  .company-label {
+    max-width: 200px;
+  }
+}
+
+/* -------------------------------------
+    PHẦN ACCESS VÀ MESSAGE (NỬA DƯỚI)
+------------------------------------- */
+.access {
+    background-color: transparent;
+    position: relative;
+    overflow: hidden; /* Prevent horizontal scrollbars from 50vw borders */
+    z-index: 2;
+    padding: 50px 0;;
+}
+
+/* Hình bo cong hoàn hảo ở góc trên bên phải */
+.company-curve-patch {
+    content: "";
+    position: absolute;
+    top: 0; 
+    right: 0;
+    width: 140px;
+    height: 140px;
+    background-color: #fff;
+    border-bottom-left-radius: 140px;
+    z-index: 0; 
+    pointer-events: none;
+}
+
+
+.access-inner {
+    display: flex;
+    width: 100%;
+    gap: 60px;
+    z-index: 2; /* Nổi lên trên curve-patch */
+}
+
+.access-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.access-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #fff;
+}
+
+.access-head h2 {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    margin: 0;
+}
+
+.access-map {
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.access-txt {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 18px;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+}
+
+.access-link {
+  color: #DBFFF1;
+  font-size: 18px;
+  text-decoration: underline;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.access-right {
+    width: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.company-label {
+    width: 260px; /* Độ rộng cột bên trái */
+    font-size: 20px; /* Text trái: 20px */
+    font-weight: 700; /* Bold */
+    color: #fff; /* Trắng */
+    flex-shrink: 0;
+    letter-spacing: 0.1em;
+}
+
+.company-value {
+    font-size: 18px; /* Text phải: 18px */
+    color: #fff; /* Trắng */
+    flex-grow: 1;
+}
+
+@media (min-width: 1260px) {
+  .access-link {
+    margin: -40px auto 0;
+  }
+}
+
+/* Responsive cho Mobile */
+@media (max-width: 900px) {
+    .company-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 30px; 
+    }
+
+    .company-label {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .company-value {
+        padding-left: 0;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.5);
+        padding-top: 20px;
+        width: 100%;
+    }
+
+    .access {
+        padding-top: 50px;
+        padding-bottom: 60px;
+    }
+
+    .access-inner {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .access-right {
+        width: 100%;
+    }
+
+    .message-circle {
+        width: 320px;
+        height: 320px;
+    }
+}
+
+.vertical-section {
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+  padding: 150px 0 100px;
+}
+
+.bg--03 {
+  --bg-image: url("../../assets/img/company-img03.png");
+}
+
+.company-body-list-item {
+  color: #fff;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+  border: 1px solid #0d488a;
+  box-shadow: 0px 4px 12px 0px rgba(13, 72, 138, 1);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-image:
+    linear-gradient(rgba(13, 72, 138, 0.52), rgba(13, 72, 138, 0.52)),
+    var(--bg-image);
+}
+
+.company-body-list-item__ttl {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-top: 50px;
+}
+
+.company-body-list-item__txt {
+  text-align: center;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.company-body-list-item-btn .section__btn {
+  border-color: #fff;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 20px;
+}
+
+.company-body-list-item-btn .section__btn::before,
+.company-body-list-item-btn .section__btn::after {
+  background-color: #fff;
+}
+
+@media (min-width: 1024px) {
+  .company-body-list-item {
+    width: 380px;
+    height: 380px;
+  }
+
+  .company-body-list-item__ttl {
+    font-size: 30px;
+  }
+
+  .company-body-list-item__txt {
+    font-size: 18px;
+  }
+}

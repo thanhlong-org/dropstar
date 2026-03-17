@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="../" />
+    <title>会社概要/アクセス</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Benne&family=Noto+Serif+JP:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/common.css" />
+    <link rel="stylesheet" href="contact/css/style.css" />
+    <style>
+
+    /* ==============================
+       PAGE WRAPPER
+    ============================== */
+    .contact-page {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ==============================
+       CLOUD SCENE
+    ============================== */
+    .cloud-scene {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /*
+      Each track is 200% wide (= 2 copies side-by-side).
+      Animating translateX(0 → -50%) moves exactly one "page width"
+      then seamlessly wraps back — like a true infinite conveyor.
+    */
+    .cloud-track {
+      position: absolute;
+      display: flex;
+      width: 200%;
+      will-change: transform;
+    }
+
+    /* Layer 1 — large, upper area, drifts LEFT slowly */
+    .cloud-track--1 {
+      top: -6%;
+      height: 54%;
+      opacity: 0.38;
+      filter: saturate(1.1) contrast(1.06);
+      animation: driftLeft 22s linear infinite;
+    }
+
+    /* Layer 2 — medium, slightly lower, drifts RIGHT at different speed */
+    .cloud-track--2 {
+      top: 8%;
+      height: 42%;
+      opacity: 0.20;
+      filter: saturate(1.15) contrast(1.08) hue-rotate(10deg);
+      animation: driftRight 32s linear infinite;
+    }
+
+    /* Layer 3 — thin strip near bottom, drifts LEFT faster */
+    .cloud-track--3 {
+      bottom: -2%;
+      height: 35%;
+      opacity: 0.15;
+      filter: hue-rotate(4deg) blur(1px);
+      animation: driftLeft 18s linear infinite;
+      animation-delay: -8s; /* start mid-cycle so it doesn't sync with track 1 */
+    }
+
+    /* Each half inside the track */
+    .cloud-half {
+      flex: 0 0 50%;
+      height: 100%;
+      background: url("assets/img/concept.png") no-repeat center center;
+      background-size: 105% auto;
+      /* subtle vertical breathing — separate from horizontal drift */
+      animation: breathe 9s ease-in-out infinite alternate;
+    }
+
+    .cloud-track--2 .cloud-half {
+      background-size: 110% auto;
+      animation-duration: 12s;
+    }
+
+    .cloud-track--3 .cloud-half {
+      background-position: center bottom;
+      background-size: 115% auto;
+      animation-duration: 7s;
+    }
+
+    /* Continuous left drift — 50% = one full copy width */
+    @keyframes driftLeft {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* Continuous right drift */
+    @keyframes driftRight {
+      from { transform: translateX(-50%); }
+      to   { transform: translateX(0); }
+    }
+
+    /* Subtle vertical float for depth */
+    @keyframes breathe {
+      from { transform: translateY(0px)   scale(1); }
+      to   { transform: translateY(-10px) scale(1.012); }
+    }
+
+    /* ==============================
+       CONTENT
+    ============================== */
+    .contact-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Breadcrumb */
+    .contact-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(40, 60, 110, 0.6);
+      margin-bottom: 40px;
+    }
+
+    .contact-breadcrumb__icon {
+      display: inline-flex;
+      align-items: center;
+      color: rgba(40, 60, 110, 0.7);
+    }
+
+    .contact-breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .contact-breadcrumb a:hover { text-decoration: underline; }
+
+    .contact-breadcrumb__sep {
+      color: rgba(40, 60, 110, 0.35);
+      font-size: 10px;
+    }
+
+    /* Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #646464;
+      letter-spacing: 0.04em;
+    }
+
+    .form-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+    }
+
+    .form-badge--required {
+      background: #1a3a6a;
+      color: #fff;
+    }
+
+    .form-badge--optional {
+      background: #7E7E7E;
+      color: #fff;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #000;
+      border-radius: 4px;
+      background: rgba(220, 235, 255, 0.08);
+      font-family: "Noto Serif JP", serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: #333;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+      box-sizing: border-box; /* ADDED to fix textarea alignment */
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      font-size: 24px;
+      color: rgba(100, 100, 100, 0.5);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: rgba(60, 120, 200, 0.7);
+      box-shadow: 0 0 0 3px rgba(60, 120, 200, 0.08);
+    }
+
+    /* Placeholder prefix label inside input */
+    .form-input-prefix {
+      display: flex;
+      align-items: center;
+      border: 1px solid #000;
+      border-radius: 4px;
+      background: rgba(220, 235, 255, 0.08);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      overflow: hidden;
+    }
+
+    .form-input-prefix:focus-within {
+      border-color: rgba(60, 120, 200, 0.7);
+      box-shadow: 0 0 0 3px rgba(60, 120, 200, 0.08);
+    }
+
+    .form-input-prefix__label {
+      flex-shrink: 0;
+      padding: 14px 0 14px 16px;
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(100, 120, 160, 0.5);
+      white-space: nowrap;
+    }
+
+    .form-input-prefix__label + .form-input--bare {
+      padding-left: 8px;
+    }
+
+    .form-input--bare {
+      flex: 1;
+      padding: 14px 16px 14px 4px;
+      border: none;
+      background: transparent;
+      font-family: "Noto Serif JP", serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: #333;
+      outline: none;
+    }
+
+    .form-input--bare::placeholder {
+      font-size: 24px;
+      color: rgba(100, 100, 100, 0.5);
+
+    }
+
+    /* Select wrapper */
+    .form-select-wrap {
+      position: relative;
+    }
+
+    .form-select-wrap::after {
+      content: "";
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid rgba(80, 110, 160, 0.55);
+      pointer-events: none;
+    }
+
+    .form-select {
+      cursor: pointer;
+      color: rgba(100, 120, 160, 0.5);
+    }
+
+    .form-select.has-value {
+      color: #333;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 130px;
+      line-height: 1.8;
+    }
+
+    /* Privacy Policy Block */
+    .form-privacy {
+      border: 1px solid #707070;
+      padding: 24px;
+      margin-top: 10px;
+      background: #fff;
+    }
+
+    .privacy-row {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .privacy-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .privacy-checkbox {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: #1a3a6a; /* Matches typical theme color */
+      flex-shrink: 0;
+    }
+
+    .privacy-text {
+      font-size: 20px;
+      color: #646464;
+      font-weight: 400;
+    }
+
+    .privacy-link {
+      display: inline-block;
+      margin-top: 12px;
+      margin-left: 30px; /* Aligns with text */
+      color: #0D488A;
+      text-decoration: underline;
+      font-size: 18px;
+    }
+
+    @media (max-width: 767px) {
+      .privacy-row {
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .privacy-label {
+        align-items: flex-start;
+      }
+      .privacy-checkbox {
+        margin-top: 4px;
+      }
+      .privacy-text {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .privacy-link {
+        margin-left: 0;
+        margin-top: 15px;
+        display: block;
+      }
+      .form-privacy {
+        padding: 16px;
+      }
+    }
+
+    /* Submit button */
+    .form-submit-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 52px;
+      border: 1px solid rgba(60, 80, 130, 0.5);
+      border-radius: 50px;
+      background: transparent;
+      color: #333;
+      font-family: "Noto Serif JP", serif;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+    }
+
+    .form-submit:hover {
+      background: rgba(30, 60, 120, 0.06);
+      border-color: rgba(60, 80, 130, 0.8);
+    }
+
+    .form-submit__arrow {
+      font-size: 16px;
+      line-height: 1;
+      color: rgba(60, 80, 130, 0.6);
+    }
+
+    /* ==============================
+       RESPONSIVE
+    ============================== */
+    @media (min-width: 768px) {
+
+      .cloud-layer {
+        height: 45%;
+      }
+    }
+  </style>
+  </head>
+  <body>
+    <main class="main" id="top">
+      <div id="canvas-container"></div>
+      <div data-include="common/header.html"></div>
+      <div class="banner">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section__ttl">CONTACT</h2>
+            <p class="section__desc">お問い合わせ</p>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumb">
+        <div class="container">
+          <div class="breadcrumb-wrapper">
+            <a class="breadcrumb-link" href="/">
+              <img src="assets/img/star-icon.png" alt="Icon star" width="15" height="15">
+              <span>TOP</span>
+            </a>
+            <span class="breadcrumb-separator">>></span>
+            <span class="breadcrumb-current">お問い合わせ</span>
+          </div>
+        </div>
+      </nav>
+      <section class="contact">
+        <div class="container">
+            <div class="contact-wrap">
+                <!-- Form -->
+                <form class="contact-form" id="contact-form" novalidate>
+        
+                <!-- お名前 -->
+                <div class="form-field">
+                    <label class="form-label" for="field-name">
+                    お名前
+                    <span class="form-badge form-badge--required">必須</span>
+                    </label>
+                    <div class="form-input-prefix">
+                    <span class="form-input-prefix__label">例）</span>
+                    <input class="form-input--bare" id="field-name" type="text"
+                            name="name" placeholder="山田 太郎" required>
+                    </div>
+                </div>
+        
+                <!-- メールアドレス -->
+                <div class="form-field">
+                    <label class="form-label" for="field-email">
+                    メールアドレス
+                    <span class="form-badge form-badge--required">必須</span>
+                    </label>
+                    <div class="form-input-prefix">
+                    <span class="form-input-prefix__label">例）</span>
+                    <input class="form-input--bare" id="field-email" type="email"
+                            name="email" placeholder="exsample@gmail.com" required>
+                    </div>
+                </div>
+        
+                <!-- 電話番号 -->
+                <div class="form-field">
+                    <label class="form-label" for="field-tel">
+                    電話番号
+                    <span class="form-badge form-badge--required">必須</span>
+                    </label>
+                    <div class="form-input-prefix">
+                    <span class="form-input-prefix__label">例）</span>
+                    <input class="form-input--bare" id="field-tel" type="tel"
+                            name="tel" placeholder="090-1234-5678" required>
+                    </div>
+                </div>
+        
+                <!-- お問い合わせ内容 (select) -->
+                <div class="form-field">
+                    <label class="form-label" for="field-category">
+                    お問い合わせ内容
+                    <span class="form-badge form-badge--required">必須</span>
+                    </label>
+                    <div class="form-select-wrap">
+                    <select class="form-select" id="field-category" name="category" required>
+                        <option value="" disabled selected>-- 選択してください --</option>
+                        <option value="01">業務改善 / 効率化支援</option>
+                        <option value="02">資金調達 / 資金繰計画支援</option>
+                        <option value="03">国内・海外不動産購入支援</option>
+                        <option value="04">コスト削減支援</option>
+                        <option value="05">生命・損害保険の最適化</option>
+                        <option value="06">投資 / 資産運用支援</option>
+                        <option value="other">その他</option>
+                    </select>
+                    </div>
+                </div>
+        
+                <!-- ご質問・お問い合わせ内容等 -->
+                <div class="form-field">
+                    <label class="form-label" for="field-message">
+                    ご質問・お問い合わせ内容等
+                    <span class="form-badge form-badge--optional">任意</span>
+                    </label>
+                    <textarea class="form-textarea" id="field-message" name="message"
+                            placeholder="ご質問・お問い合わせ内容はこちらにご記載下さい。"></textarea>
+                </div>
+
+                <!-- 個人情報保護方針の同意 -->
+                <div class="form-privacy">
+                    <div class="privacy-row">
+                        <label class="privacy-label">
+                            <input type="checkbox" name="privacy" class="privacy-checkbox" required>
+                            <span class="privacy-text">個人情報保護方針に記載された、個人情報の取扱いに同意する。</span>
+                        </label>
+                        <span class="form-badge form-badge--required form-badge--privacy">必須</span>
+                    </div>
+                    <a href="#" class="privacy-link">個人情報保護方針を確認する</a>
+                </div>
+
+                <!-- Submit -->
+                <div class="form-submit-wrap">
+                    <button type="submit" class="section__btn">
+                    入力内容を確認する
+                    </button>
+                </div>
+
+                </form>
+                <div class="vertical-section">
+                    <div class="vertical">
+                    <!-- Vertical Text Content -->
+                    <div class="vertical-text-wrapper">
+                        <p class="text-line line-1">経営の夢を</p>
+                        <p class="text-line line-2">最速最短で叶える</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+      <div data-include="common/footer.html"></div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script src="assets/js/include.js" defer></script>
+    <script src="assets/js/background.js" defer></script>
+    <script src="assets/js/script.js" defer></script>
+  </body>
+</html>

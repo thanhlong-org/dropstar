@@ -1,0 +1,39 @@
+/* banner */
+.banner {
+  padding: 56px 36px 36px;
+}
+
+.banner .section-header {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.section__desc::before,
+.section__desc::after {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 768px) {
+  .banner {
+    padding: 64px 30px;
+  }
+}
+
+/* END: banner */
+
+.vertical-section {
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+  padding: 150px 0 100px;
+}
+
+.support .section__btn {
+  border-color: #fff;
+  color: #fff;
+  min-width: 263px;
+}
+
+.support .section__btn::before,
+.support .section__btn::after {
+    background-color: #fff;
+}

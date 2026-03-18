@@ -89,41 +89,9 @@
   position: relative;
   isolation: isolate;
   z-index: 1;
-  overflow: hidden;
+  overflow: visible;
   padding: 65px 0 30px;
   background-color: #fff;
-}
-
-.concept-clouds {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.concept-cloud {
-  position: absolute;
-  left: -14%;
-  width: 128%;
-  height: 100%;
-  background: url('../img/concept.png') no-repeat center center;
-  background-size: 102% auto;
-  opacity: 0.32;
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
-}
-
-.concept-cloud--1 {
-  top: -10%;
-  background-position: 46% 42%;
-  filter: saturate(1.16) contrast(1.1) hue-rotate(6deg);
-}
-
-.concept-cloud--2 {
-  top: 6%;
-  opacity: 0.24;
-  background-position: 54% 58%;
-  filter: saturate(1.18) contrast(1.12) hue-rotate(12deg);
 }
 
 .concept .container {
@@ -196,14 +164,6 @@
     padding: 300px 0 100px;
   }
 
-  .concept-cloud {
-    opacity: 0.36;
-  }
-
-  .concept-cloud--2 {
-    opacity: 0.28;
-  }
-
   .concept-body {
     display: flex;
     margin: 90px 0 63px;
@@ -265,7 +225,8 @@
 .company {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  z-index: 2;
+  overflow: visible;
   padding: 65px 0 30px;
   /* background: radial-gradient(circle at 50% 50%, #002b5c 0%, #001535 60%, #000818 100%); */
   background-size: cover;
@@ -282,38 +243,6 @@
 
 .company-body {
   margin-top: 30px;
-}
-
-.company-clouds {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.company-cloud {
-  position: absolute;
-  width: 125%;
-  height: 100%;
-  left: -8%;
-  background: url('../img/concept.png') no-repeat center center;
-  background-size: 100% auto;
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
-}
-
-.company-cloud--1 {
-  top: -14%;
-  opacity: 0.32;
-  background-position: 58% 34%;
-  filter: saturate(1.12) contrast(1.08) hue-rotate(4deg);
-}
-
-.company-cloud--2 {
-  top: 2%;
-  opacity: 0.22;
-  background-position: 64% 50%;
-  filter: saturate(1.14) contrast(1.1) hue-rotate(8deg);
 }
 
 .company .container {

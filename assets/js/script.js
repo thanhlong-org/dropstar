@@ -85,22 +85,16 @@ function animateCloudBackground() {
     return;
   }
 
-  const loopPairs = [
-    {
-      primary: document.querySelector('.concept-cloud--1'),
-      duplicate: document.querySelector('.concept-cloud--2'),
-      duration: 250,
-      y: 0,
-      directionX: 1
-    },
-    {
-      primary: document.querySelector('.company-cloud--1'),
-      duplicate: document.querySelector('.company-cloud--2'),
-      duration: 250,
-      y: 0,
-      directionX: 1
-    }
-  ];
+  const wrappers = document.querySelectorAll('.clouds');
+  const loopPairs = Array.from(wrappers).map((wrapper) => {
+    return {
+      primary: wrapper.querySelector('.cloud--1'),
+      duplicate: wrapper.querySelector('.cloud--2'),
+      duration: Number(wrapper.dataset.cloudDuration) || 250,
+      y: Number(wrapper.dataset.cloudY) || 0,
+      directionX: Number(wrapper.dataset.cloudDirectionX) || 1
+    };
+  });
 
   const setupCloudLoop = ({ primary, duplicate, duration, y, directionX = 1 }) => {
     if (!primary || !duplicate) {
@@ -172,36 +166,31 @@ function animateScrollSections(businessController) {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const conceptSection = document.querySelector('.concept');
-  const conceptCloudNodes = gsap.utils.toArray('.concept-cloud--1, .concept-cloud--2');
-  if (conceptSection && conceptCloudNodes.length) {
-    gsap.to(conceptCloudNodes, {
-      yPercent: -14,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: conceptSection,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
-  }
+  document.querySelectorAll('.clouds').forEach((wrapper) => {
+    const cloudNodes = wrapper.querySelectorAll('.cloud--1, .cloud--2');
+    const triggerSection = wrapper.closest('section') || wrapper.parentElement;
 
-  const companySection = document.querySelector('.company');
-  const companyCloudNodes = gsap.utils.toArray('.company-cloud--1, .company-cloud--2');
-  if (companySection && companyCloudNodes.length) {
-    gsap.to(companyCloudNodes, {
-      xPercent: -8,
-      yPercent: -10,
+    if (!triggerSection || !cloudNodes.length) {
+      return;
+    }
+
+    const defaultX = 0;
+    const defaultY = -14;
+    const xPercent = wrapper.dataset.cloudScrollX ? Number(wrapper.dataset.cloudScrollX) : defaultX;
+    const yPercent = wrapper.dataset.cloudScrollY ? Number(wrapper.dataset.cloudScrollY) : defaultY;
+
+    gsap.to(cloudNodes, {
+      xPercent,
+      yPercent,
       ease: 'none',
       scrollTrigger: {
-        trigger: companySection,
+        trigger: triggerSection,
         start: 'top bottom',
         end: 'bottom top',
         scrub: true
       }
     });
-  }
+  });
 
   gsap.utils.toArray('section').forEach((section) => {
     const header = section.querySelector('.section-header');

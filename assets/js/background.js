@@ -109,15 +109,28 @@ function animate() {
 animate();
 
 // GSAP Animations
-gsap.registerPlugin(ScrollTrigger);
-gsap.from("#banner-title", { opacity: 0, y: -50, duration: 2, ease: "power4.out" });
-gsap.from("#banner-sub", { opacity: 0, y: -20, duration: 2, delay: 0.5, ease: "power4.out" });
+if (typeof gsap !== 'undefined') {
+    if (typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+    }
 
-// Hiệu ứng Parallax khi cuộn
-gsap.to(stars.scale, {
-    x: 1.2, y: 1.2, z: 1.2,
-    scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 }
-});
+    const bannerTitle = document.getElementById('banner-title');
+    const bannerSub = document.getElementById('banner-sub');
+
+    if (bannerTitle) {
+        gsap.from(bannerTitle, { opacity: 0, y: -50, duration: 2, ease: 'power4.out' });
+    }
+
+    if (bannerSub) {
+        gsap.from(bannerSub, { opacity: 0, y: -20, duration: 2, delay: 0.5, ease: 'power4.out' });
+    }
+
+    // Hiệu ứng Parallax khi cuộn
+    gsap.to(stars.scale, {
+        x: 1.2, y: 1.2, z: 1.2,
+        scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1 }
+    });
+}
 
 // Xử lý Resize
 window.addEventListener('resize', () => {

@@ -107,7 +107,7 @@
 /* Responsive adjustments */
 @media (min-width: 768px) {
   .privacy {
-    border-top: 100px solid #fff;
+    border-top: 60px solid #fff;
   }
 
   .privacy-bg {

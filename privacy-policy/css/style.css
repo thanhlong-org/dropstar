@@ -1,0 +1,138 @@
+/* banner */
+.banner {
+  padding: 56px 30px 36px;
+}
+
+.banner .section-header {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.section__desc::before,
+.section__desc::after {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 768px) {
+  .banner {
+    padding: 64px 30px;
+  }
+}
+
+/* END: banner */
+
+/* privacy  */
+.privacy {
+  color: #fff;
+  border-top: 50px solid #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.privacy-bg {
+  border-top-right-radius: 80px;
+  padding: 30px 0;
+}
+
+
+.privacy__title {
+  font-size: 22px;
+}
+
+.privacy__text {
+  font-size: 16px;
+}
+
+.privacy__subtitle {
+  font-size: 16px;
+}
+
+.privacy__title {
+  font-size: 25px;
+  margin-bottom: 30px;
+}
+
+.privacy-list {
+  counter-reset: privacy-section;
+  margin-top: 30px;
+  display: grid;
+  gap: 30px;
+}
+
+.privacy-item {
+  list-style: none;
+}
+
+.privacy-content h3 {
+  font-size: 16px;
+}
+
+.privacy-content h3::before {
+  counter-increment: privacy-section;
+  content: counter(privacy-section) ".";
+}
+
+.privacy-sublist {
+  margin-top: 10px;
+  display: grid;
+  gap: 4px;
+  padding: 0;
+}
+
+.privacy-sublist li {
+  list-style: none;
+}
+
+.privacy-sublist--bullet li {
+  position: relative;
+  padding-left: 1.1em;
+}
+
+.privacy-sublist--bullet li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.privacy-footer {
+  margin-top: 30px;
+}
+
+.privacy__indent {
+  margin-top: 10px;
+  padding-left: 15px;
+}
+
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .privacy {
+    border-top: 100px solid #fff;
+  }
+
+  .privacy-bg {
+    padding: 50px 0;
+  }
+
+  .privacy-list {
+    margin-top: 50px;
+    gap: 50px;
+  }
+
+  .privacy__title {
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+
+  .privacy__text {
+    font-size: 20px;
+  }
+
+  .privacy-content h3 {
+    padding-left: 0;
+  }
+
+  .privacy__footer {
+    margin-top: 50px;
+  }
+}

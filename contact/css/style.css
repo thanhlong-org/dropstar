@@ -100,7 +100,45 @@
 .contact-form {
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.form-screen {
+  display: flex;
+  flex-direction: column;
   gap: 28px;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease, max-height 0.35s ease;
+}
+
+#contact-thankyou-screen.form-screen {
+  gap: 0;
+}
+
+.form-screen.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  max-height: 2000px;
+  transform: translateY(0);
+}
+
+.vertical-section--aside {
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.contact-wrap.is-thankyou .vertical-section--aside {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  height: 0;
+  padding: 0;
 }
 
 .form-field {
@@ -353,6 +391,88 @@
   font-size: 16px;
   line-height: 1;
   color: rgba(60, 80, 130, 0.6);
+}
+
+/* Confirm Screen */
+.confirm-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.confirm-label {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #646464;
+  letter-spacing: 0.04em;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(40, 60, 110, 0.35);
+  margin-bottom: 24px;
+}
+
+.confirm-value {
+  font-family: "Noto Serif JP", serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #333;
+  padding: 0 40px;
+  line-height: 1.8;
+  word-break: break-word;
+}
+
+/* Thank You Screen */
+.thankyou-title {
+  font-size: 40px;
+  line-height: 1.6;
+  font-weight: 700;
+  color: #646464;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.thankyou-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 0 55px;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 700;
+  color: #646464;
+  margin: 0 auto;
+  max-width: fit-content;
+}
+
+.thankyou-submit-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+@media (max-width: 767px) {
+  .confirm-label {
+    font-size: 16px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+  .confirm-value {
+    font-size: 16px;
+    padding: 0 10px;
+  }
+  .thankyou-title {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+  .thankyou-content {
+    padding: 0 20px;
+    font-size: 14px;
+  }
+  .thankyou-submit-wrap {
+    margin-top: 50px;
+  }
 }
 
 /* END: contact */

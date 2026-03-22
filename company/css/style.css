@@ -1,5 +1,6 @@
 /* banner */
 .banner {
+  position: relative;
   padding: 56px 36px 36px;
 }
 
@@ -24,7 +25,7 @@
     background-color: transparent;
     position: relative;
     overflow: hidden; /* Cắt phần viền siêu to tràn ra ngoài, tránh xuất hiện thanh cuộn ngang */
-    z-index: 2;
+    z-index: 1;
 }
 
 .company-list {

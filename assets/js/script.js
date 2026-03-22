@@ -85,78 +85,66 @@ function animateCloudBackground() {
     return;
   }
 
-  const wrappers = document.querySelectorAll('.clouds');
-  const loopPairs = Array.from(wrappers).map((wrapper) => {
-    return {
-      primary: wrapper.querySelector('.cloud--1'),
-      duplicate: wrapper.querySelector('.cloud--2'),
-      duration: Number(wrapper.dataset.cloudDuration) || 250,
-      y: Number(wrapper.dataset.cloudY) || 0,
-      directionX: Number(wrapper.dataset.cloudDirectionX) || 1
-    };
-  });
+  const cloudLayers = document.querySelectorAll('.clouds .cloud');
 
-  const setupCloudLoop = ({ primary, duplicate, duration, y, directionX = 1 }) => {
-    if (!primary || !duplicate) {
-      return;
-    }
+  cloudLayers.forEach((cloudLayer) => {
+    // Remove duplication logic that forced cloud--2 to merge with cloud--1
+    // By cloning individually, we preserve the unique parallax, top offsets and CSS filters.
+    if (cloudLayer.classList.contains('cloud-clone')) return;
+    if (cloudLayer.dataset.initialized) return;
+    cloudLayer.dataset.initialized = 'true';
 
-    const primaryStyle = window.getComputedStyle(primary);
+    const wrapper = cloudLayer.closest('.clouds');
+    if (!wrapper) return;
 
-    duplicate.style.top = primaryStyle.top;
-    duplicate.style.opacity = primaryStyle.opacity;
-    duplicate.style.filter = primaryStyle.filter;
-    duplicate.style.backgroundPosition = primaryStyle.backgroundPosition;
-    duplicate.style.backgroundSize = primaryStyle.backgroundSize;
+    const duration = Number(wrapper.dataset.cloudDuration) || 250;
+    const y = Number(wrapper.dataset.cloudY) || 0;
+    const directionX = Number(wrapper.dataset.cloudDirectionX) || 1;
+
+    // Create a duplicate for seamless infinite looping
+    const duplicate = cloudLayer.cloneNode(true);
+    duplicate.classList.add('cloud-clone');
+    duplicate.setAttribute('aria-hidden', 'true');
+    wrapper.appendChild(duplicate);
 
     let loopTween;
 
     const refresh = () => {
-      if (loopTween) {
-        loopTween.kill();
-      }
+      if (loopTween) loopTween.kill();
 
-      const travelDistance = primary.offsetWidth;
+      const directionX = Number(wrapper.dataset.cloudDirectionX) || 1; // 1 = right
+      const directionY = Number(wrapper.dataset.cloudDirectionY) || 1; // 1 = down
 
-      if (!travelDistance) {
-        return;
-      }
-
-      const shiftX = travelDistance * (directionX >= 0 ? 1 : -1);
-      const shiftY = primary.offsetHeight;
-      const wrapX = gsap.utils.wrap(-Math.abs(shiftX), Math.abs(shiftX));
-      const minY = y - Math.abs(shiftY);
-      const maxY = y + Math.abs(shiftY);
-      const wrapY = gsap.utils.wrap(minY, maxY);
-
-      gsap.set([primary, duplicate], {
-        xPercent: 0,
-        x: (index) => index * -shiftX,
-        y: (index) => y + index * -shiftY
+      // Tọa độ nối góc hoàn hảo (Corner-to-corner attachment)
+      // Nếu mây kéo từ Trái-Trên xuống Phải-Dưới (+X, +Y), 
+      // mây dự phòng sẽ nấp sẵn ở góc Trái-Trên (-100%, -100%) để nối đuôi.
+      const startOffset = -100;
+      
+      gsap.set(cloudLayer, { xPercent: 0, yPercent: 0 });
+      gsap.set(duplicate, { 
+        xPercent: startOffset * directionX, 
+        yPercent: startOffset * directionY 
       });
 
-      loopTween = gsap.to([primary, duplicate], {
-        x: `+=${shiftX}`,
-        y: shiftY ? `+=${shiftY}` : undefined,
+      const wrapFn = gsap.utils.wrap(-100, 100);
+
+      // Trượt chéo toàn bộ Box: +100% Chiều ngang VÀ +100% Chiều dọc
+      loopTween = gsap.to([cloudLayer, duplicate], {
+        xPercent: `+=${100 * directionX}`,
+        yPercent: `+=${100 * directionY}`,
         duration,
         repeat: -1,
         ease: 'none',
         modifiers: {
-          x: gsap.utils.unitize((value) => {
-            return wrapX(parseFloat(value));
-          }),
-          y: gsap.utils.unitize((value) => {
-            return wrapY(parseFloat(value));
-          })
+          xPercent: (value) => wrapFn(parseFloat(value)),
+          yPercent: (value) => wrapFn(parseFloat(value))
         }
       });
     };
 
     refresh();
     window.addEventListener('resize', refresh);
-  };
-
-  loopPairs.forEach(setupCloudLoop);
+  });
 }
 
 function animateScrollSections(businessController) {
@@ -167,7 +155,7 @@ function animateScrollSections(businessController) {
   gsap.registerPlugin(ScrollTrigger);
 
   document.querySelectorAll('.clouds').forEach((wrapper) => {
-    const cloudNodes = wrapper.querySelectorAll('.cloud--1, .cloud--2');
+    const cloudNodes = wrapper.querySelectorAll('.cloud');
     const triggerSection = wrapper.closest('section') || wrapper.parentElement;
 
     if (!triggerSection || !cloudNodes.length) {
@@ -665,6 +653,27 @@ function initFlowSectionCarousel() {
   }
 }
 
+function initStickyHeader() {
+  const header = document.querySelector('.header');
+  const banner = document.querySelector('.banner');
+
+  if (!header || !banner) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      // Khi người dùng cuộn vượt qua KẼO (ra khỏi vùng nhìn thấy của) toàn bộ banner
+      if (!entry.isIntersecting) {
+        header.classList.add('is-fixed');
+      } else {
+        header.classList.remove('is-fixed');
+      }
+    },
+    { threshold: 0 } // Trigger immediately when banner fully exits or touches viewport
+  );
+
+  observer.observe(banner);
+}
+
 function initPageScripts() {
   if (window.__dropstarScriptsInitialized) {
     return;
@@ -681,6 +690,7 @@ function initPageScripts() {
   addMicroInteractions();
   initPageTopAnimation();
   initMoonAnimation();
+  initStickyHeader();
 }
 
 function bootstrapPageScripts() {

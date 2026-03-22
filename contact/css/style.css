@@ -1,5 +1,6 @@
 /* banner */
 .banner {
+  position: relative;
   padding: 56px 36px 36px;
 }
 
@@ -225,19 +226,6 @@
 .form-input-prefix:focus-within {
   border-color: rgba(60, 120, 200, 0.7);
   box-shadow: 0 0 0 3px rgba(60, 120, 200, 0.08);
-}
-
-.form-input-prefix__label {
-  flex-shrink: 0;
-  padding: 14px 0 14px 16px;
-  font-size: 18px;
-  font-weight: 300;
-  color: rgba(100, 120, 160, 0.5);
-  white-space: nowrap;
-}
-
-.form-input-prefix__label + .form-input--bare {
-  padding-left: 8px;
 }
 
 .form-input--bare {

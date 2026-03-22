@@ -1,5 +1,6 @@
 /* banner */
 .banner {
+  position: relative;
   padding: 56px 36px 36px;
 }
 

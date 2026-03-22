@@ -25,6 +25,7 @@ body {
 
 .main {
   position: relative;
+  overflow-x: hidden;
 }
 
 .container {
@@ -103,6 +104,7 @@ footer .container {
   border-radius: 50px;
   border: 1px solid rgba(0, 0, 0, 1);
   min-width: 160px;
+  cursor: pointer;
 }
 
 .section__btn::before,
@@ -170,22 +172,27 @@ footer .container {
 /* shared cloud block */
 .clouds {
   position: absolute;
-  top: calc(-1 * var(--cloud-overlap-top, 120px));
+  top: 0;
   right: 0;
-  bottom: calc(-1 * var(--cloud-overlap-bottom, 20px));
   left: 0;
   pointer-events: none;
   z-index: 2;
+}
+
+.banner .clouds {
+  top: -25%;
 }
 
 .cloud {
   position: absolute;
   left: -12%;
   width: 124%;
-  height: 100%;
+  /* Khóa cứng tỷ lệ khung hình đúng bằng kích thước ảnh bạn gửi (1551.56 / 659.18) */
+  aspect-ratio: 1551.56 / 659.18;
+  height: auto; 
   background: url('../img/concept.png') no-repeat center center;
-  background-size: 102% auto;
-  opacity: 0.28;
+  background-size: 100% 100%;
+  opacity: 0.8;
   transform: translate3d(0, 0, 0);
   will-change: transform;
 }
@@ -196,20 +203,9 @@ footer .container {
   filter: saturate(1.14) contrast(1.08) hue-rotate(6deg);
 }
 
-.cloud--2 {
-  top: 4%;
-  opacity: 0.2;
-  background-position: 56% 56%;
-  filter: saturate(1.16) contrast(1.1) hue-rotate(10deg);
-}
-
 @media (min-width: 1024px) {
-  .cloud {
-    opacity: 0.36;
-  }
-
-  .cloud--2 {
-    opacity: 0.28;
+  .cloud--1 {
+    opacity: 0.8;
   }
 }
 
@@ -217,7 +213,25 @@ footer .container {
 
 .header {
   position: relative;
-  z-index: 3;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.header.is-fixed {
+  position: fixed;
+  z-index: 999;
+  background-color: rgba(0, 5, 16, 0.85);
+  backdrop-filter: blur(8px);
+  animation: headerSlideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes headerSlideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
 }
 
 .header-wrapper {
@@ -310,7 +324,7 @@ footer .container {
   inset: 0;
   display: flex;
   opacity: 0;
-  z-index: 2;
+  z-index: 3;
 }
 
 .mobile-menu-wrap {
@@ -1032,7 +1046,7 @@ footer .container {
   overflow: visible;
 }
 
-..bf-section-wrap {
+.bf-section-wrap {
   padding: 40px 0 54px;
 }
 

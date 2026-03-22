@@ -342,17 +342,54 @@ function initMoonAnimation() {
   const orbitRadiusY = 20;
   const orbitDuration = 22;
 
+  const escapeOffset = { x: 0, y: 0 };
+  const ESCAPE_RADIUS = 160;
+  const ESCAPE_STRENGTH = 30;
+
+  const applyTransform = () => {
+    gsap.set(moonEl, {
+      x: Math.cos(orbitState.angle) * orbitRadiusX + escapeOffset.x,
+      y: Math.sin(orbitState.angle) * orbitRadiusY + escapeOffset.y
+    });
+  };
+
   gsap.to(orbitState, {
     angle: Math.PI * 2,
     duration: orbitDuration,
     ease: 'none',
     repeat: -1,
-    onUpdate: () => {
-      const angle = orbitState.angle;
+    onUpdate: applyTransform
+  });
 
-      gsap.set(moonEl, {
-        x: Math.cos(angle) * orbitRadiusX,
-        y: Math.sin(angle) * orbitRadiusY
+  let isInsideCircle = false;
+
+  document.addEventListener('mousemove', (e) => {
+    const rect = moonEl.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const dx = e.clientX - centerX;
+    const dy = e.clientY - centerY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist < ESCAPE_RADIUS && dist > 0 && !isInsideCircle) {
+      isInsideCircle = true;
+      gsap.killTweensOf(escapeOffset);
+      gsap.to(escapeOffset, {
+        x: -(dx / dist) * ESCAPE_STRENGTH,
+        y: -(dy / dist) * ESCAPE_STRENGTH,
+        duration: 0.8,
+        ease: 'power3.out',
+        onUpdate: applyTransform
+      });
+    } else if (dist >= ESCAPE_RADIUS && isInsideCircle) {
+      isInsideCircle = false;
+      gsap.killTweensOf(escapeOffset);
+      gsap.to(escapeOffset, {
+        x: 0,
+        y: 0,
+        duration: 1.0,
+        ease: 'power2.inOut',
+        onUpdate: applyTransform
       });
     }
   });

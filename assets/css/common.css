@@ -1181,7 +1181,7 @@ footer .container {
   }
 
 .ver-2 .bf-pc .bf-circle .bf-circle__ttl {
-  color: #DBFFF1;
+  line-height: 1.4;
   font-size: 16px;
 }
 
@@ -1189,6 +1189,7 @@ footer .container {
   font-size: 18px;
   color: #D9D9D9;
   font-weight: bold;
+  line-height: 1.4;
 }
 
 .ver-2 .bf-pc .bf-circle .bf-circle__num {
@@ -1409,6 +1410,7 @@ footer .container {
 }
 
 .text-line {
+  letter-spacing: 20%;
   font-size: 34px;
   color: rgba(22, 111, 151, 0.59);
   font-weight: 600;

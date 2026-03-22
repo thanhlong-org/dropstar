@@ -185,7 +185,7 @@
   border-radius: 4px;
   background: rgba(220, 235, 255, 0.08);
   font-family: "Noto Serif JP", serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 300;
   color: #333;
   outline: none;
@@ -194,9 +194,13 @@
   -webkit-appearance: none;
 }
 
+.form-textarea {
+  width: auto;
+}
+
 .form-input::placeholder,
 .form-textarea::placeholder {
-  font-size: 24px;
+  font-size: 18px;
   color: rgba(100, 100, 100, 0.5);
 }
 
@@ -226,7 +230,7 @@
 .form-input-prefix__label {
   flex-shrink: 0;
   padding: 14px 0 14px 16px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 300;
   color: rgba(100, 120, 160, 0.5);
   white-space: nowrap;
@@ -249,7 +253,7 @@
 }
 
 .form-input--bare::placeholder {
-  font-size: 24px;
+  font-size: 18px;
   color: rgba(100, 100, 100, 0.5);
 
 }

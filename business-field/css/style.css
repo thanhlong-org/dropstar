@@ -159,7 +159,7 @@
   }
 
   .concept-body-group-img--second {
-    top: 200px;
+    top: 230px;
     max-width: 281px;
   }
 
@@ -189,6 +189,7 @@
   }
 
   .concept-btn {
+    margin-top: 50px;
     text-align: right;
   }
 }
@@ -421,7 +422,7 @@ MOBILE BOTTOM NAV
     .flow-pc-layout {
         display: flex;
         align-items: stretch; /* Đảm bảo cả 2 cột dài bằng nhau */
-        margin: 80px auto 100px;
+        margin: 0 auto 100px;
         max-width: 1230px;
     }
 
@@ -486,12 +487,10 @@ MOBILE BOTTOM NAV
     /* PC Card - Đục lỗ */
     .flow-pc-card {
         flex: 1;
-        /* Bỏ màu nền ở đây */
         background: transparent;
-        border-radius: 200px 0 0 0; /* Lỗ có góc bo rất cong */
-
-        /* Bóng trắng khổng lồ */
+        border-radius: 200px 0 0 0;
         box-shadow: 0 0 0 9999px #fff;
+        padding-right: 9999px;
         overflow: hidden;
         color: #fff;
         min-height: 380px;
@@ -508,6 +507,7 @@ MOBILE BOTTOM NAV
         justify-content: center;
         height: 100%;
         box-sizing: border-box;
+        position: absolute;
     }
 
     .flow-pc-card-head {

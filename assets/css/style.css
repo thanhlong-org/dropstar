@@ -1,7 +1,7 @@
 /* banner */
 .banner {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   background-color: #fff;
 }
 
@@ -32,7 +32,6 @@
   font-size: 24px;
   line-height: 40px;
   letter-spacing: 20%;
-  margin: -24px 0 14px;
 }
 
 .banner-body-content__desc {
@@ -48,12 +47,22 @@
     background-color: #fff;
     background-size: cover;
     min-height: 706px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .banner .container {
+    flex: 1;
   }
 
   .banner-body {
-    position: absolute;
-    right: 0;
-    bottom: -40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    max-width: 1180px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .banner-body-img {
@@ -65,9 +74,9 @@
     flex-direction: column;
   }
 
-  .banner-body-content > * {
-    margin: 0 42px 0 auto;
-  }
+  /* .banner-body-content > * {
+    margin: 0 auto;
+  } */
 
   .banner-body-content__ttl {
     margin-bottom: 20px;
@@ -318,7 +327,7 @@
 
 @media (min-width: 1024px) {
   .company {
-    padding: 182px 0 60px;
+    padding: 100px 0;
   }
 
   .company-body {

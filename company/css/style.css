@@ -41,14 +41,15 @@
     border-right: 50vw solid #fff;  /* Kéo viền trắng ra vô tận sang phải */
     margin-left: -50vw;             /* Bù lại khoảng lùi để nội dung vẫn nằm đúng 1360px */
     margin-right: -50vw;            /* Bù lại khoảng lùi */
-    padding: 30px 60px;
+    padding: 0 60px;
+    min-height: 82px;
     border-radius: 0;
     z-index: 1;
 }
 
 /* Thêm viền trắng dày cho khối đầu và cuối để thay thế padding cho toàn section */
 .company-item:first-child {
-    border-top: 100px solid #fff;
+    border-top: 60px solid #fff;
 }
 .company-item:last-child {
     border-bottom: 100px solid #fff;
@@ -85,6 +86,7 @@
 
 .company-value p {
   margin-left: 60px;
+  line-height: 1.2;
 }
 
 /* Responsive cho Mobile */
@@ -92,7 +94,8 @@
     .company-item {
         flex-direction: column;
         align-items: flex-start;
-        padding: 40px 30px; /* Giảm padding trên mobile */
+        padding: 20px;
+        min-height: auto;
     }
 
     .company-item:first-child {
@@ -122,7 +125,6 @@
 
     .company-value p {
       margin-left: 0;
-      line-height: 1.2;
     }
 }
 
@@ -157,11 +159,10 @@
     pointer-events: none;
 }
 
-
 .access-inner {
     display: flex;
     width: 100%;
-    gap: 60px;
+    gap: 30px;
     z-index: 2; /* Nổi lên trên curve-patch */
 }
 
@@ -194,10 +195,14 @@
 }
 
 .access-txt {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 18px;
-    line-height: 1.8;
-    letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  padding-left: 10px;
 }
 
 .access-link {
@@ -205,13 +210,12 @@
   font-size: 18px;
   text-decoration: underline;
   width: fit-content;
-  margin: 0 auto;
 }
 
 .access-right {
     width: 420px;
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
     flex-shrink: 0;
 }
@@ -231,19 +235,8 @@
     flex-grow: 1;
 }
 
-@media (min-width: 1260px) {
-  .access-link {
-    margin: -40px auto 0;
-  }
-}
-
 /* Responsive cho Mobile */
 @media (max-width: 767px) {
-    .company-item {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 40px 30px;
-    }
 
     .company-label {
         width: 100%;

@@ -1153,6 +1153,11 @@ footer .container {
   height: unset;
 }
 
+.ver-2 .section__desc::before,
+.ver-2 .section__desc::after {
+  background-color: rgba(13, 72, 138, 0.2);
+}
+
 .ver-2 .bf-pc .bf-left .bf-center__top {
   flex-direction: column;
   align-items: center;

@@ -102,11 +102,12 @@
 
 @media (min-width: 1024px) {
   .concept {
-    padding: 300px 0 100px;
+    padding: 200px 0 100px;
   }
 
   .concept-body {
     display: flex;
+    gap: 60px;
     margin: 90px 0 150px;
   }
 
@@ -116,16 +117,12 @@
   }
 
   .concept-body-group-img--first {
-    max-width: 290px;
+    max-width: 426px;
   }
 
   .concept-body-group-img--second {
-    top: 230px;
-    max-width: 281px;
-  }
-
-  .concept-body-group img {
-    width: auto;
+    top: 200px;
+    max-width: 333px;
   }
 
   .concept-body-content {
@@ -158,10 +155,39 @@
 /* END: concept */
 
 /* flow */
+
+.flow-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
 .flow-section {
     position: relative;
     z-index: 2;
     overflow: hidden;
+}
+
+.flow-section .clouds {
+    mix-blend-mode: multiply;
+}
+
+.flow-cloud-decor {
+    position: absolute;
+    left: 100px;
+    top: -250px;
+    bottom: -250px;
+    width: 45%;
+    min-width: 300px;
+    max-width: 660px;
+    z-index: 3;
+    background-image: url('../../assets/img/cloud.png');
+    background-repeat: repeat-y;
+    background-position: 0 0;
+    background-size: 100% auto;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    mix-blend-mode: multiply;
 }
 
 .flow-section .section-header {
@@ -397,6 +423,7 @@ MOBILE BOTTOM NAV
         gap: 20px;
         position: relative;
         z-index: 2; /* Để sidebar nằm trên cái bóng của thẻ bên cạnh */
+        margin-left: 20px;
     }
 
     .flow-pc-nav-item {
@@ -461,7 +488,7 @@ MOBILE BOTTOM NAV
     }
 
     .flow-pc-card-inner {
-        padding: 40px 60px 50px 90px;
+        padding: 30px;
         transition: opacity 0.35s ease, transform 0.35s ease;
         display: flex;
         flex-direction: column;
@@ -469,6 +496,8 @@ MOBILE BOTTOM NAV
         height: 100%;
         box-sizing: border-box;
         position: absolute;
+        width: calc(100vw - 320px);
+        max-width: 900px;
     }
 
     .flow-pc-card-head {
@@ -499,18 +528,21 @@ MOBILE BOTTOM NAV
 
     .flow-pc-card-body {
         display: flex;
-        gap: 23px;
+        gap: 10px;
         align-items: flex-end;
     }
 
     .flow-pc-card-img {
-        flex-shrink: 0;
+        flex-shrink: 1;
+        width: 50%;
+        max-width: 400px;
         object-fit: cover;
         border-radius: 4px;
         display: block;
     }
 
     .flow-pc-card-text {
+        width: 50%;
         flex: 1;
     }
 
@@ -536,5 +568,27 @@ MOBILE BOTTOM NAV
 
     .flow-pc-cta:hover {
         background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+@media (min-width: 1260px) {
+    .flow-pc-card-inner {
+      padding: 40px 60px 50px 90px;
+      width: auto;
+      max-width: unset;
+    }
+
+    .flow-pc-card-body {
+      gap: 23px;
+    }
+
+    .flow-pc-card-img {
+      flex-shrink: 0;
+      width: auto;
+      max-width: auto;
+    }
+
+    .flow-pc-card-text {
+        width: auto;
     }
 }

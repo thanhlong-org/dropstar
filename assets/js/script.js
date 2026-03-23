@@ -653,6 +653,25 @@ function initFlowSectionCarousel() {
   }
 }
 
+function initFlowCloudParallax() {
+  if (typeof gsap === 'undefined') {
+    return;
+  }
+
+  const cloudDecor = document.querySelector('.flow-cloud-decor');
+  if (!cloudDecor) {
+    return;
+  }
+
+  // Animation mây rơi liên tục, vô hạn
+  gsap.to(cloudDecor, {
+    backgroundPosition: '0 4000px', // Trôi dần xuống
+    duration: 100,                  // Tốc độ trôi chậm (100s)
+    repeat: -1,                     // Lặp lại vô hạn
+    ease: 'none'                    // Chuyển động đều vô tận
+  });
+}
+
 function initStickyHeader() {
   const header = document.querySelector('.header');
   const banner = document.querySelector('.banner');
@@ -684,6 +703,7 @@ function initPageScripts() {
   const businessController = initBusinessCarousel();
   initBusinessFieldMobileCarousel();
   initFlowSectionCarousel();
+  initFlowCloudParallax();
   initMobileMenu();
   animateCloudBackground();
   animateScrollSections(businessController);

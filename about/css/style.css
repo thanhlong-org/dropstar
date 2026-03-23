@@ -102,13 +102,13 @@
 
 @media (min-width: 1024px) {
   .concept {
-    padding: 300px 0 100px;
+    padding: 200px 0 100px;
   }
 
   .concept-body {
     display: flex;
-    margin: 90px 0 150px;
     gap: 60px;
+    margin: 90px 0 150px;
   }
 
   .concept-body-group {
@@ -151,6 +151,7 @@
   }
 
   .concept-btn {
+    margin-top: 50px;
     text-align: right;
   }
 }

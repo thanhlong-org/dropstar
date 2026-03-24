@@ -1,7 +1,7 @@
 <header class="header">
   <div class="container">
     <div class="header-wrapper">
-      <a href="/">
+      <a href="./">
         <img
           src="assets/img/logo-img.png"
           alt="Dropstar Logo"
@@ -10,10 +10,10 @@
       </a>
       <nav class="nav u-pc">
         <ul>
-          <li><a href="/">drop STARSとは</a></li>
-          <li><a href="#">企業情報</a></li>
-          <li><a href="#">業務分野</a></li>
-          <li><a href="#">お問い合わせ</a></li>
+          <li><a href="./">drop STARSとは</a></li>
+          <li><a href="company/">企業情報</a></li>
+          <li><a href="business-field/">業務分野</a></li>
+          <li><a href="contact/">お問い合わせ</a></li>
         </ul>
       </nav>
       <button id="menu-toggle" class="menu-toggle">
@@ -26,66 +26,143 @@
     </div>
   </div>
 </header>
+
 <!-- Mobile Menu Overlay -->
-<div id="mobile-menu" class="mobile-menu u-sp">
-  <div class="mobile-menu-wrap">
-    <div class="glow-orb glow-orb--blue"></div>
-    <div class="glow-orb glow-orb--purple"></div>
+<div id="mobile-menu" class="mobile-menu">
+  <div class="mmenu-inner">
 
-    <nav class="mobile-menu-nav">
-      <ul class="mobile-menu-list" id="menu-links-container">
-        <li>
-          <a href="#about" class="menu-link">
-            <div class="menu-item-icon menu-item-icon-1">
-              <div class="menu-item-icon-group">
-                <div class="menu-item-icon-group-round">
-                  <div></div>
-                  <div class="orbit-dot"></div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h3 class="menu-item__ttl">drop STARSとは</h3>
-              <p class="menu-item__sub">Về chúng tôi</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="#company" class="menu-link">
-            <div class="menu-item-icon menu-item-icon-2">
-              <div class="menu-item-icon-group">
-                <div class="menu-item-icon-group-round animate-star"></div>
-              </div>
-            </div>
-            <div>
-              <h3 class="menu-item__ttl">企業情報</h3>
-              <p class="menu-item__sub">Thông tin công ty</p>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="#services" class="menu-link">
-            <div class="menu-item-icon menu-item-icon-3">
-              <div class="menu-item-icon-group">
-                <div class="menu-item-icon-group-round animate-diamond"></div>
-              </div>
-            </div>
-            <div>
-              <h3 class="menu-item__ttl">業務分野</h3>
-              <p class="menu-item__sub">Lĩnh vực kinh doanh</p>
-            </div>
-          </a>
-        </li>
-      </ul>
+    <!-- Header row -->
+    <div class="mmenu-header">
+      <a href="./" class="mmenu-logo">
+        <img src="assets/img/logo-img.png" alt="drop STARS" />
+      </a>
+      <button id="mmenu-close" class="mmenu-close" aria-label="閉じる">
+        <span class="mmenu-close-icon"></span>
+      </button>
+    </div>
 
-      <div class="menu-footer" id="menu-footer">
-        <button class="menu-cta-btn">
-          お問い合わせ
-        </button>
-        <button class="menu-secondary-btn">
-          Contact
-        </button>
+    <!-- Scrollable grid -->
+    <div class="mmenu-scroll">
+      <div class="mmenu-grid">
+
+        <!-- TOP ページ -->
+        <a href="./" class="mmenu-tile mmenu-tile--img"
+           style="background-image: url('assets/img/bg-header-img.png')">
+          <div class="mmenu-tile-overlay"></div>
+          <div class="mmenu-tile-content">
+            <span class="mmenu-tile-ttl">TOPページ</span>
+          </div>
+        </a>
+
+        <!-- drop STARSとは -->
+        <a href="about/" class="mmenu-tile mmenu-tile--img"
+           style="background-image: url('assets/img/concept-img01.png')">
+          <div class="mmenu-tile-overlay"></div>
+          <div class="mmenu-tile-content">
+            <span class="mmenu-tile-ttl">drop STARSとは</span>
+          </div>
+        </a>
+
+        <!-- 会社概要 / アクセス -->
+        <a href="company/" class="mmenu-tile mmenu-tile--img"
+           style="background-image: url('assets/img/company-img01.png')">
+          <div class="mmenu-tile-overlay"></div>
+          <div class="mmenu-tile-content">
+            <span class="mmenu-tile-ttl">会社概要 / アクセス</span>
+          </div>
+        </a>
+
+        <!-- 代表メッセージ -->
+        <a href="message/" class="mmenu-tile mmenu-tile--img"
+           style="background-image: url('assets/img/company-img02.png')">
+          <div class="mmenu-tile-overlay"></div>
+          <div class="mmenu-tile-content">
+            <span class="mmenu-tile-ttl">代表メッセージ</span>
+          </div>
+        </a>
+
+        <!-- BUSINESS FIELD featured (tall, left column) -->
+        <a href="business-field/" class="mmenu-tile mmenu-tile--featured">
+          <div class="mmenu-tile-content mmenu-tile-content--featured">
+            <p class="mmenu-featured-label">BUSINESS<br>FIELD</p>
+            <span class="mmenu-featured-num">06</span>
+          </div>
+        </a>
+
+        <!-- business field 01 -->
+        <a href="business-field/" class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
+           style="background-image: url('assets/img/business-img01.png')">
+          <div class="mmenu-tile-overlay"></div>
+          <div class="mmenu-tile-content">
+            <span class="mmenu-bf-label">business field</span>
+            <span class="mmenu-bf-num">01</span>
+            <span class="mmenu-bf-ttl">業務改善 / 効率化支援</span>
+          </div>
+        </a>
+
+        <!-- business field 02 -->
+        <a href="business-field/" class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
+           style="background-image: url('assets/img/business-img02.png')">
+          <div class="mmenu-tile-overlay"></div>
+          <div class="mmenu-tile-content">
+            <span class="mmenu-bf-label">business field</span>
+            <span class="mmenu-bf-num">02</span>
+            <span class="mmenu-bf-ttl">資金調達 /<br>資金繰り計画支援</span>
+          </div>
+        </a>
+
+        <!-- business field 03 -->
+        <a href="business-field/" class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
+           style="background-image: url('assets/img/business-img03.png')">
+          <div class="mmenu-tile-overlay"></div>
+          <div class="mmenu-tile-content">
+            <span class="mmenu-bf-label">business field</span>
+            <span class="mmenu-bf-num">03</span>
+            <span class="mmenu-bf-ttl">国内・海外<br>不動産購入支援</span>
+          </div>
+        </a>
+
+        <!-- business field 04 -->
+        <a href="business-field/" class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
+           style="background-image: url('assets/img/business-img04.png')">
+          <div class="mmenu-tile-overlay"></div>
+          <div class="mmenu-tile-content">
+            <span class="mmenu-bf-label">business field</span>
+            <span class="mmenu-bf-num">04</span>
+            <span class="mmenu-bf-ttl">コスト削減支援</span>
+          </div>
+        </a>
+
+        <!-- business field 05 -->
+        <a href="business-field/" class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
+           style="background-image: url('assets/img/business-img05.png')">
+          <div class="mmenu-tile-overlay"></div>
+          <div class="mmenu-tile-content">
+            <span class="mmenu-bf-label">business field</span>
+            <span class="mmenu-bf-num">05</span>
+            <span class="mmenu-bf-ttl">生命・損害<br>保険の最適化</span>
+          </div>
+        </a>
+
+        <!-- business field 06 -->
+        <a href="business-field/" class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
+           style="background-image: url('assets/img/business-img06.png')">
+          <div class="mmenu-tile-overlay"></div>
+          <div class="mmenu-tile-content">
+            <span class="mmenu-bf-label">business field</span>
+            <span class="mmenu-bf-num">06</span>
+            <span class="mmenu-bf-ttl">投資 /<br>資産運用支援</span>
+          </div>
+        </a>
+
+        <!-- お問い合わせはこちら -->
+        <a href="contact/" class="mmenu-tile mmenu-tile--contact">
+          <div class="mmenu-tile-content mmenu-tile-content--contact">
+            <span class="mmenu-contact-ttl">お問い合わせは<br>こちら</span>
+          </div>
+        </a>
+
       </div>
-    </nav>
+    </div>
   </div>
 </div>

@@ -25,19 +25,20 @@ function initBusinessFieldMobileCarousel() {
   const nextButton = document.getElementById('bf-next');
   const numberElement = document.getElementById('bf-num');
   const titleElement = document.getElementById('bf-ttl');
+  const txtElement = document.getElementById('bf-txt');
   const dots = document.querySelectorAll('.bf-sp-dot');
 
-  if (!circle || !prevButton || !nextButton || !numberElement || !titleElement) {
+  if (!circle || !prevButton || !nextButton || !numberElement || !titleElement || !txtElement) {
     return;
   }
 
   const businessFieldItems = [
-    { num: '01', ttl: '業務改善 / 効率化支援', bg: 'bf-bg--01' },
-    { num: '02', ttl: '資金調達 /資金繰計画支援', bg: 'bf-bg--02' },
-    { num: '03', ttl: '国内・海外 不動産購入支援', bg: 'bf-bg--03' },
-    { num: '04', ttl: 'コスト削減支援', bg: 'bf-bg--04' },
-    { num: '05', ttl: '生命・損害 保険の最適化', bg: 'bf-bg--05' },
-    { num: '06', ttl: '投資 / 資産運用支援', bg: 'bf-bg--06' }
+    { num: '01', ttl: '業務改善 /<br>効率化支援', txt: '無駄を排除し手順を最適化、最小コストで効率を最大化。', bg: 'bf-bg--01' },
+    { num: '02', ttl: '資金調達 /<br>資金繰計画支援', txt: '最適な調達と資金繰り改善で、月次の経営管理を支援。', bg: 'bf-bg--02' },
+    { num: '03', ttl: '国内・海外<br>不動産購入支援', txt: '融資による不動産投資で、安定収入と資産形成を実現。', bg: 'bf-bg--03' },
+    { num: '04', ttl: 'コスト削減支援', txt: '固定費を見直し損益分岐点を下げ、利益を最大化する。', bg: 'bf-bg--04' },
+    { num: '05', ttl: '生命・損害<br>保険の最適化', txt: '決算に基づき保険を厳選、過不足ない設計でリスクを最小化。', bg: 'bf-bg--05' },
+    { num: '06', ttl: '投資 /<br>資産運用支援', txt: '市場動向に合わせ、貯金より増える資産形成を総合支援。', bg: 'bf-bg--06' }
   ];
 
   let currentIndex = 0;
@@ -52,7 +53,8 @@ function initBusinessFieldMobileCarousel() {
 
       const nextItem = businessFieldItems[currentIndex];
       numberElement.textContent = nextItem.num;
-      titleElement.textContent = nextItem.ttl;
+      titleElement.innerHTML = nextItem.ttl;
+      txtElement.innerHTML = nextItem.txt;
       circle.classList.add(nextItem.bg);
       if (dots.length) {
         dots.forEach((dot, index) => {
@@ -119,11 +121,11 @@ function animateCloudBackground() {
       // Nếu mây kéo từ Trái-Trên xuống Phải-Dưới (+X, +Y), 
       // mây dự phòng sẽ nấp sẵn ở góc Trái-Trên (-100%, -100%) để nối đuôi.
       const startOffset = -100;
-      
+
       gsap.set(cloudLayer, { xPercent: 0, yPercent: 0 });
-      gsap.set(duplicate, { 
-        xPercent: startOffset * directionX, 
-        yPercent: startOffset * directionY 
+      gsap.set(duplicate, {
+        xPercent: startOffset * directionX,
+        yPercent: startOffset * directionY
       });
 
       const wrapFn = gsap.utils.wrap(-100, 100);

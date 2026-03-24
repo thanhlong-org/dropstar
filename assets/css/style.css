@@ -9,16 +9,11 @@
   background-color: transparent;
 }
 
-.banner-body-img {
-  height: 277px;
-  overflow: hidden;
-}
-
 .banner-body-img img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: left;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
 }
 
 .banner-body-content {
@@ -43,9 +38,7 @@
 
 @media (min-width: 768px) {
   .banner {
-    background: url('../img/bg-banner-img.png') no-repeat center center;
     background-color: #fff;
-    background-size: cover;
     min-height: 706px;
     display: flex;
     flex-direction: column;
@@ -63,10 +56,6 @@
     max-width: 1180px;
     margin: 0 auto;
     width: 100%;
-  }
-
-  .banner-body-img {
-    display: none;
   }
 
   .banner-body-content {
@@ -164,9 +153,9 @@
   text-align: center;
 }
 
-.concept-btn .section__btn {
+/* .concept-btn .section__btn {
   text-align: left;
-}
+} */
 
 @media (min-width: 1024px) {
   .concept {
@@ -293,7 +282,7 @@
 .company-body-list-item__ttl {
   font-weight: 600;
   font-size: 24px;
-  line-height: 100%;
+  line-height: 150%;
   letter-spacing: 0%;
   margin-top: 50px;
 }
@@ -301,7 +290,7 @@
 .company-body-list-item__txt {
   text-align: center;
   font-size: 14px;
-  line-height: 100%;
+  line-height: 150%;
   letter-spacing: 0%;
 }
 

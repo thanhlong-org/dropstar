@@ -20,63 +20,47 @@ function initBusinessCarousel() {
 }
 
 function initBusinessFieldMobileCarousel() {
-  const circle = document.getElementById('bf-main-circle');
-  const prevButton = document.getElementById('bf-prev');
-  const nextButton = document.getElementById('bf-next');
-  const numberElement = document.getElementById('bf-num');
-  const titleElement = document.getElementById('bf-ttl');
-  const txtElement = document.getElementById('bf-txt');
-  const dots = document.querySelectorAll('.bf-sp-dot');
-
-  if (!circle || !prevButton || !nextButton || !numberElement || !titleElement || !txtElement) {
+  if (typeof Swiper === 'undefined') {
     return;
   }
 
-  const businessFieldItems = [
-    { num: '01', ttl: '業務改善 /<br>効率化支援', txt: '無駄を排除し手順を最適化、最小コストで効率を最大化。', bg: 'bf-bg--01' },
-    { num: '02', ttl: '資金調達 /<br>資金繰計画支援', txt: '最適な調達と資金繰り改善で、月次の経営管理を支援。', bg: 'bf-bg--02' },
-    { num: '03', ttl: '国内・海外<br>不動産購入支援', txt: '融資による不動産投資で、安定収入と資産形成を実現。', bg: 'bf-bg--03' },
-    { num: '04', ttl: 'コスト削減支援', txt: '固定費を見直し損益分岐点を下げ、利益を最大化する。', bg: 'bf-bg--04' },
-    { num: '05', ttl: '生命・損害<br>保険の最適化', txt: '決算に基づき保険を厳選、過不足ない設計でリスクを最小化。', bg: 'bf-bg--05' },
-    { num: '06', ttl: '投資 /<br>資産運用支援', txt: '市場動向に合わせ、貯金より増える資産形成を総合支援。', bg: 'bf-bg--06' }
-  ];
+  const swiperEl = document.querySelector('.bf-swiper');
+  if (!swiperEl) {
+    return;
+  }
 
-  let currentIndex = 0;
-
-  const goToBusinessField = (nextIndex) => {
-    const previousItem = businessFieldItems[currentIndex];
-    circle.classList.add('fade');
-
-    window.setTimeout(() => {
-      circle.classList.remove(previousItem.bg);
-      currentIndex = ((nextIndex % businessFieldItems.length) + businessFieldItems.length) % businessFieldItems.length;
-
-      const nextItem = businessFieldItems[currentIndex];
-      numberElement.textContent = nextItem.num;
-      titleElement.innerHTML = nextItem.ttl;
-      txtElement.innerHTML = nextItem.txt;
-      circle.classList.add(nextItem.bg);
-      if (dots.length) {
-        dots.forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentIndex);
-        });
+  const bfSwiper = new Swiper('.bf-swiper', {
+    loop: true,
+    speed: 1000,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    },
+    navigation: {
+      nextEl: '#bf-next',
+      prevEl: '#bf-prev',
+    },
+    on: {
+      slideChange: function () {
+        const dots = document.querySelectorAll('.bf-sp-dot');
+        if (dots.length) {
+          dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === this.realIndex);
+          });
+        }
       }
-      circle.classList.remove('fade');
-    }, 220);
-  };
-
-  prevButton.addEventListener('click', () => {
-    goToBusinessField(currentIndex - 1);
+    }
   });
 
-  nextButton.addEventListener('click', () => {
-    goToBusinessField(currentIndex + 1);
-  });
-
+  const dots = document.querySelectorAll('.bf-sp-dot');
   if (dots.length) {
     dots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        goToBusinessField(Number(dot.dataset.index));
+      dot.addEventListener('click', function() {
+        if (bfSwiper) {
+          bfSwiper.slideToLoop(Number(this.dataset.index));
+        }
       });
     });
   }
@@ -120,7 +104,8 @@ function animateCloudBackground() {
       // Tọa độ nối góc hoàn hảo (Corner-to-corner attachment)
       // Nếu mây kéo từ Trái-Trên xuống Phải-Dưới (+X, +Y), 
       // mây dự phòng sẽ nấp sẵn ở góc Trái-Trên (-100%, -100%) để nối đuôi.
-      const startOffset = -100;
+      const offsetVal = Number(wrapper.dataset.cloudOffset) || 100;
+      const startOffset = -offsetVal;
 
       gsap.set(cloudLayer, { xPercent: 0, yPercent: 0 });
       gsap.set(duplicate, {
@@ -128,12 +113,11 @@ function animateCloudBackground() {
         yPercent: startOffset * directionY
       });
 
-      const wrapFn = gsap.utils.wrap(-100, 100);
+      const wrapFn = gsap.utils.wrap(-offsetVal, offsetVal);
 
-      // Trượt chéo toàn bộ Box: +100% Chiều ngang VÀ +100% Chiều dọc
       loopTween = gsap.to([cloudLayer, duplicate], {
-        xPercent: `+=${100 * directionX}`,
-        yPercent: `+=${100 * directionY}`,
+        xPercent: `+=${offsetVal * directionX}`,
+        yPercent: `+=${offsetVal * directionY}`,
         duration,
         repeat: -1,
         ease: 'none',

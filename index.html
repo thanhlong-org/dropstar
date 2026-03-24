@@ -14,6 +14,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
     <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -44,7 +45,7 @@
         </div>
       </div>
       <section class="concept">
-        <div class="clouds" aria-hidden="true">
+        <div class="clouds" aria-hidden="true" data-cloud-offset="60">
           <span class="cloud cloud--1"></span>
         </div>
         <div class="container">
@@ -74,7 +75,7 @@
         </div>
       </section>
       <section class="company">
-        <div class="clouds" aria-hidden="true">
+        <div class="clouds" aria-hidden="true" data-cloud-offset="60">
           <span class="cloud cloud--1"></span>
         </div>
         <div class="container">
@@ -112,7 +113,7 @@
         </div>
       </section>
       <section class="bf-section ver-2" id="business-field">
-        <div class="clouds" aria-hidden="true">
+        <div class="clouds" aria-hidden="true" data-cloud-offset="60">
           <span class="cloud cloud--1"></span>
         </div>
         <div class="bf-section-wrap bf-section-wrap-head">
@@ -233,19 +234,97 @@
                     </div>
 
                     <div class="bf-sp-right">
-                      <div>
-                        <button class="bf-sp-arrow bf-sp-arrow--prev" id="bf-prev" aria-label="前へ"></button>
-                        <div class="bf-circle bf-sp-circle bf-bg--01" id="bf-main-circle">
-                            <div>
-                                <div class="bf-circle_sub">
-                                    <p class="bf-circle__label">business field</p>
-                                    <span class="bf-circle__num" id="bf-num">01</span>
-                                </div>
-                                <h3 class="bf-circle_ttl" id="bf-ttl">国内・海外<br>不動産購入支援</h3>
+                      <div class="bf-sp-right-wrap">
+                        <div class="swiper bf-swiper">
+                          <div class="swiper-wrapper">
+                            <!-- 01 -->
+                            <div class="swiper-slide">
+                              <div class="bf-circle bf-sp-circle bf-bg--01">
+                                  <div>
+                                      <div class="bf-circle_sub">
+                                          <p class="bf-circle__label">business field</p>
+                                          <span class="bf-circle__num">01</span>
+                                      </div>
+                                      <h3 class="bf-circle_ttl">業務改善 /<br>効率化支援</h3>
+                                  </div>
+                                  <p class="bf-circle_txt">無駄を排除し手順を最適化、最小コストで効率を最大化。</p>
+                                  <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                              </div>
                             </div>
-                            <p class="bf-circle_txt" id="bf-txt">無駄を排除し手順を最適化、<br>最小コストで効率を最大化。</p>
-                            <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                            <!-- 02 -->
+                            <div class="swiper-slide">
+                              <div class="bf-circle bf-sp-circle bf-bg--02">
+                                  <div>
+                                      <div class="bf-circle_sub">
+                                          <p class="bf-circle__label">business field</p>
+                                          <span class="bf-circle__num">02</span>
+                                      </div>
+                                      <h3 class="bf-circle_ttl">資金調達 /<br>資金繰計画支援</h3>
+                                  </div>
+                                  <p class="bf-circle_txt">最適な調達と資金繰り改善で、月次の経営管理を支援。</p>
+                                  <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                              </div>
+                            </div>
+                            <!-- 03 -->
+                            <div class="swiper-slide">
+                              <div class="bf-circle bf-sp-circle bf-bg--03">
+                                  <div>
+                                      <div class="bf-circle_sub">
+                                          <p class="bf-circle__label">business field</p>
+                                          <span class="bf-circle__num">03</span>
+                                      </div>
+                                      <h3 class="bf-circle_ttl">国内・海外<br>不動産購入支援</h3>
+                                  </div>
+                                  <p class="bf-circle_txt">融資による不動産投資で、安定収入と資産形成を実現。</p>
+                                  <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                              </div>
+                            </div>
+                            <!-- 04 -->
+                            <div class="swiper-slide">
+                              <div class="bf-circle bf-sp-circle bf-bg--04">
+                                  <div>
+                                      <div class="bf-circle_sub">
+                                          <p class="bf-circle__label">business field</p>
+                                          <span class="bf-circle__num">04</span>
+                                      </div>
+                                      <h3 class="bf-circle_ttl">コスト削減支援</h3>
+                                  </div>
+                                  <p class="bf-circle_txt">固定費を見直し損益分岐点を下げ、利益を最大化する。</p>
+                                  <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                              </div>
+                            </div>
+                            <!-- 05 -->
+                            <div class="swiper-slide">
+                              <div class="bf-circle bf-sp-circle bf-bg--05">
+                                  <div>
+                                      <div class="bf-circle_sub">
+                                          <p class="bf-circle__label">business field</p>
+                                          <span class="bf-circle__num">05</span>
+                                      </div>
+                                      <h3 class="bf-circle_ttl">生命・損害<br>保険の最適化</h3>
+                                  </div>
+                                  <p class="bf-circle_txt">決算に基づき保険を厳選、過不足ない設計でリスクを最小化。</p>
+                                  <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                              </div>
+                            </div>
+                            <!-- 06 -->
+                            <div class="swiper-slide">
+                              <div class="bf-circle bf-sp-circle bf-bg--06">
+                                  <div>
+                                      <div class="bf-circle_sub">
+                                          <p class="bf-circle__label">business field</p>
+                                          <span class="bf-circle__num">06</span>
+                                      </div>
+                                      <h3 class="bf-circle_ttl">投資 /<br>資産運用支援</h3>
+                                  </div>
+                                  <p class="bf-circle_txt">市場動向に合わせ、貯金より増える資産形成を総合支援。</p>
+                                  <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                              </div>
+                            </div>
+                          </div>
                         </div>
+
+                        <button class="bf-sp-arrow bf-sp-arrow--prev" id="bf-prev" aria-label="前へ"></button>
                         <button class="bf-sp-arrow bf-sp-arrow--next" id="bf-next" aria-label="次へ"></button>
                       </div>
                     </div>
@@ -258,6 +337,7 @@
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 

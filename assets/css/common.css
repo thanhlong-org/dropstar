@@ -209,6 +209,9 @@ footer .container {
   opacity: 0.8;
   transform: translate3d(0, 0, 0);
   will-change: transform;
+  /* Làm mờ 4 góc để xoá mờ vệt thẳng tắp của chổi cọ bị cắt */
+  -webkit-mask-image: radial-gradient(50% 50% at 50% 50%, #000 65%, transparent 100%);
+  mask-image: radial-gradient(50% 50% at 50% 50%, #000 65%, transparent 100%);
 }
 
 .cloud--1 {
@@ -1059,7 +1062,7 @@ footer .container {
 }
 
 .bf-section-wrap {
-  padding: 40px 0 54px;
+  padding: 40px 0;
 }
 
 .bf-section-wrap-head {
@@ -1230,6 +1233,7 @@ footer .container {
   font-weight: bold;
   line-height: 1.4;
   width: 126px;
+  margin-bottom: 0;
 }
 
 .ver-2 .bf-pc .bf-circle .bf-circle__num {
@@ -1253,10 +1257,13 @@ footer .container {
     display: block;
   }
 
+  .swiper-slider {
+    padding-bottom: 10px;
+  }
+
   .bf-sp-layout {
     display: flex;
     align-items: center;
-    /* min-height: 280px; */
   }
 
   /* Left: title block */
@@ -1295,8 +1302,13 @@ footer .container {
     min-height: 214px;
   }
 
-  .bf-sp-right div {
+  .bf-sp-right-wrap {
     position: relative;
+  }
+
+  .bf-swiper {
+    width: 230px;
+    overflow: visible;
   }
 
   .bf-sp-arrow {

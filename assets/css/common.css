@@ -259,6 +259,10 @@ footer .container {
   padding: 0 10px 0 20px;
 }
 
+.home-link {
+  margin: auto;
+}
+
 .logo {
   max-width: 150px;
   margin: auto;
@@ -285,6 +289,10 @@ footer .container {
     max-width: unset;
     margin: 0;
   }
+
+  .home-link {
+    margin: 0;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -295,6 +303,16 @@ footer .container {
   .nav ul li a {
     padding: 17px 20px;
   }
+}
+
+body.menu-open .header {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body.menu-open #canvas-container {
+  z-index: 1000;
 }
 
 /* END: header */
@@ -332,9 +350,9 @@ footer .container {
   background-color: #fff;
   transition: all 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
-.menu-toggle.is-active .line-1 { transform: translateY(7px) rotate(225deg); background-color: #60a5fa; }
+.menu-toggle.is-active .line-1 { transform: translateY(7px) rotate(225deg); background-color: #fff; }
 .menu-toggle.is-active .line-2 { opacity: 0; transform: scale(0); }
-.menu-toggle.is-active .line-3 { transform: translateY(-5px) rotate(-225deg); background-color: #60a5fa; }
+.menu-toggle.is-active .line-3 { transform: translateY(-5px) rotate(-225deg); background-color: #fff; }
 
 /* Mobile Menu Overlay – Grid Design */
 .mobile-menu {
@@ -358,9 +376,13 @@ footer .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 10px 0 20px;
+  height: 60px;
   flex-shrink: 0;
+}
+
+.mmenu-logo {
+  margin: auto;
 }
 
 .mmenu-logo img {
@@ -421,16 +443,16 @@ footer .container {
 .mmenu-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  background: #111;
-  padding: 2px;
+  /* gap removed */
 }
 
 /* Base tile */
 .mmenu-tile {
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   height: 125px;
   overflow: hidden;
   text-decoration: none;
@@ -442,20 +464,6 @@ footer .container {
 
 .mmenu-tile:active {
   filter: brightness(1.2);
-}
-
-/* Star sky image overlay — sits above photo, below text */
-.mmenu-tile::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background-image: url('assets/img/bg-header-img.png');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.18;
-  mix-blend-mode: screen;
-  pointer-events: none;
 }
 
 /* Dark gradient overlay on image tiles */
@@ -477,41 +485,42 @@ footer .container {
   z-index: 3;
   padding: 10px 12px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 
 .mmenu-tile-ttl {
   display: block;
   color: #fff;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.35;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
   text-shadow: 0 1px 5px rgba(0,0,0,0.8);
 }
 
 /* ── Featured BUSINESS FIELD tile ── */
 .mmenu-tile--featured {
-  align-items: flex-start;
-  background-color: #000514;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 5, 20);
   background-image:
     radial-gradient(ellipse at 70% 30%, rgba(20,60,160,0.7) 0%, transparent 65%),
     radial-gradient(ellipse at 30% 80%, rgba(5,15,40,0.9) 0%, transparent 60%);
 }
 
 .mmenu-tile-content--featured {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 125px;
   padding: 10px 12px;
+  gap: 0;
 }
 
 .mmenu-featured-label {
-  color: rgba(255,255,255,0.9);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  line-height: 1.4;
-  text-transform: uppercase;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
   margin: 0;
 }
 
@@ -522,23 +531,24 @@ footer .container {
 
 .mmenu-featured-num {
   display: block;
-  font-family: Benne, serif;
-  font-size: 46px;
-  color: #fff;
+  font-size: 60px;
+  font-weight: 600;
+  color: #afa9a9;
   line-height: 1;
   letter-spacing: -0.02em;
-  text-shadow: 0 0 30px rgba(80,130,255,0.55);
 }
 
 /* ── Business field tiles ── */
 .mmenu-tile--bf {
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 .mmenu-bf-label {
   display: block;
-  font-size: 9px;
-  color: rgba(255,255,255,0.6);
+  font-size: 10px;
+  font-weight: 400;
+  color: #fff;
   letter-spacing: 0.06em;
   line-height: 1;
   margin-bottom: 2px;
@@ -546,8 +556,8 @@ footer .container {
 
 .mmenu-bf-num {
   display: block;
-  font-family: Benne, serif;
-  font-size: 22px;
+  font-size: 30px;
+  font-weight: bold;
   color: #fff;
   line-height: 1;
   margin-bottom: 2px;
@@ -555,16 +565,16 @@ footer .container {
 
 .mmenu-bf-ttl {
   display: block;
-  font-size: 11px;
+  font-size: 14px;
   color: #fff;
-  font-weight: 600;
-  line-height: 1.35;
+  font-weight: bold;
+  line-height: 1.4;
   text-shadow: 0 1px 5px rgba(0,0,0,0.8);
 }
 
 /* ── Contact tile ── */
 .mmenu-tile--contact {
-  background: #8a9198;
+  background: #E7E4CDA3;
   align-items: center;
   justify-content: center;
 }
@@ -580,10 +590,10 @@ footer .container {
 .mmenu-contact-ttl {
   display: block;
   color: #fff;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: bold;
   text-align: center;
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
 
@@ -1145,7 +1155,8 @@ footer .container {
   font-size: 18px;
   font-weight: 600;
   color: #FFFFFF;
-  line-height: 1.4;
+  line-height: 1.5;
+  letter-spacing: 1px;
 }
 
 /* ver 2 */

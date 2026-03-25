@@ -69,6 +69,7 @@
   text-indent: 20%;
 }
 
+.concept-body-group__txt,
 .concept-body-content__txt {
   text-align: center;
   font-size: 14px;
@@ -78,13 +79,6 @@
 
 .concept-body-content__txt + .concept-body-content__txt {
   margin-top: 20px;
-}
-
-.concept-body-content__name {
-  text-align: right;
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 21px;
 }
 
 .concept-btn {
@@ -137,18 +131,18 @@
     max-width: unset;
   }
 
+  .concept-body-group__txt,
   .concept-body-content__txt {
     font-size: 18px;
     line-height: 40px;
     text-align: left;
   }
 
-  .concept-body-content__txt + .concept-body-content__txt {
-    margin-top: 50px;
+  .concept-body-group__txt {
+    text-align: center;  
   }
 
-  .concept-body-content__name {
-    font-size: 30px;
+  .concept-body-content__txt + .concept-body-content__txt {
     margin-top: 50px;
   }
 

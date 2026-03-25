@@ -63,8 +63,9 @@
   list-style: none;
 }
 
+.privacy-footer h3,
 .privacy-content h3 {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .privacy-content h3::before {
@@ -88,11 +89,19 @@
   padding-left: 1.1em;
 }
 
+.privacy-sublist--bullet li:first-child {
+  padding-left: 0;
+}
+
 .privacy-sublist--bullet li::before {
   content: "•";
   position: absolute;
   left: 0;
   top: 0;
+}
+
+.privacy-sublist--bullet li:first-child::before {
+  content: none;
 }
 
 .privacy-footer {
@@ -126,11 +135,16 @@
   }
 
   .privacy__text {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .privacy-content h3 {
     padding-left: 0;
+  }
+
+  .privacy-footer h3,
+  .privacy-content h3 {
+    font-size: 20px;
   }
 
   .privacy__footer {

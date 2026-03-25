@@ -14,7 +14,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/reset.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css"
+    />
     <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="company/css/style.css" />
   </head>
@@ -23,7 +26,7 @@
       <div id="canvas-container"></div>
       <div data-include="common/header.html"></div>
       <div class="banner">
-        <div class="clouds" aria-hidden="true">
+        <div class="clouds" aria-hidden="true" data-cloud-offset="60">
           <span class="cloud cloud--1"></span>
         </div>
         <div class="container">
@@ -37,7 +40,12 @@
         <div class="container">
           <div class="breadcrumb-wrapper">
             <a class="breadcrumb-link" href="/">
-              <img src="assets/img/star-icon.png" alt="Icon star" width="15" height="15">
+              <img
+                src="assets/img/star-icon.svg"
+                alt="Icon star"
+                width="15"
+                height="21"
+              />
               <span>TOP</span>
             </a>
             <span class="breadcrumb-separator">>></span>
@@ -47,98 +55,106 @@
       </nav>
 
       <section class="company">
-          <div class="container">
-              <div class="company-list">
-                  <!-- Item 1: 会社名 -->
-                  <div class="company-item">
-                      <h3 class="company-label">会社名</h3>
-                      <div class="company-value">
-                        <p>drop STARS</p>
-                      </div>
-                  </div>
-
-                  <!-- Item 2: 本社所在地 -->
-                  <div class="company-item">
-                      <h3 class="company-label">本社所在地</h3>
-                      <div class="company-value">
-                        <p>
-                          〒470-0161<br>愛知県愛知郡東郷町春木台2-14-13
-                        </p>
-                      </div>
-                  </div>
-
-                  <!-- Item 3: 電話番号 -->
-                  <div class="company-item">
-                      <h3 class="company-label">電話番号</h3>
-                      <div class="company-value">
-                        <p>080-7583-1050</p>
-                      </div>
-                  </div>
-
-                  <!-- Item 4: 代表者 -->
-                  <div class="company-item">
-                      <h3 class="company-label">代表者</h3>
-                      <div class="company-value">
-                        <p>
-                          代表取締役<br>榊原 孝幸
-                        </p>
-                      </div>
-                  </div>
-
-                  <!-- Item 5: 設立 -->
-                  <div class="company-item">
-                      <h3 class="company-label">設立</h3>
-                      <div class="company-value">
-                        <p>2025年1月1日</p>
-                      </div>
-                  </div>
-
-                  <!-- Item 6: 事業内容 -->
-                  <div class="company-item">
-                      <h3 class="company-label">事業内容</h3>
-                      <div class="company-value">
-                        <p>
-                          業務改善・効率化支援 / 資金調達・資金繰計画支援 / 国内・海外不動産購入支援<br>
-                          コスト削減支援 / 生命保険・損害保険の最適化 / 投資・資金運用支援
-                        </p>
-                      </div>
-                  </div>
+        <div class="container">
+          <div class="company-list">
+            <!-- Item 1: 会社名 -->
+            <div class="company-item">
+              <h3 class="company-label">会社名</h3>
+              <div class="company-value">
+                <p>drop STARS</p>
               </div>
+            </div>
+
+            <!-- Item 2: 本社所在地 -->
+            <div class="company-item">
+              <h3 class="company-label">本社所在地</h3>
+              <div class="company-value">
+                <p>〒470-0161<br />愛知県愛知郡東郷町春木台2-14-13</p>
+              </div>
+            </div>
+
+            <!-- Item 3: 電話番号 -->
+            <div class="company-item">
+              <h3 class="company-label">電話番号</h3>
+              <div class="company-value">
+                <p>080-7583-1050</p>
+              </div>
+            </div>
+
+            <!-- Item 4: 代表者 -->
+            <div class="company-item">
+              <h3 class="company-label">代表者</h3>
+              <div class="company-value">
+                <p>代表取締役<br />榊原 孝幸</p>
+              </div>
+            </div>
+
+            <!-- Item 5: 設立 -->
+            <div class="company-item">
+              <h3 class="company-label">設立</h3>
+              <div class="company-value">
+                <p>2025年1月1日</p>
+              </div>
+            </div>
+
+            <!-- Item 6: 事業内容 -->
+            <div class="company-item">
+              <h3 class="company-label">事業内容</h3>
+              <div class="company-value">
+                <p>
+                  業務改善・効率化支援 / 資金調達・資金繰計画支援 /
+                  国内・海外不動産購入支援<br />
+                  コスト削減支援 / 生命保険・損害保険の最適化 /
+                  投資・資金運用支援
+                </p>
+              </div>
+            </div>
           </div>
+        </div>
       </section>
 
       <section class="access concave-tr r-200 sp:r-80">
         <div class="container">
           <div class="access-inner">
-              <!-- Cột Trái: Bản đồ -->
-              <div class="access-left">
-                  <div class="access-head">
-                      <img src="company/img/logo-icon.png" alt="">
-                      <h2>交通アクセス</h2>
-                  </div>
-                  <div class="access-map">
-                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1620.6726584283526!2d139.73977531744383!3d35.67056461413867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b8131555555%3A0x60188b8131!2z5p2x5Lqs6YO95riv5Yy6!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp" width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                  </div>
-                  <div class="access-txt">
-                    <p>
-                      テキストが入ります<br>
-                      テキストが入ります<br>
-                      テキストが入ります
-                    </p>
-                    <a class="access-link" href="#">Google MAPで確認する</a>
-                  </div>
+            <!-- Cột Trái: Bản đồ -->
+            <div class="access-left">
+              <div class="access-head">
+                <img src="company/img/logo-icon.png" alt="" />
+                <h2>交通アクセス</h2>
               </div>
+              <div class="access-map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1620.6726584283526!2d139.73977531744383!3d35.67056461413867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b8131555555%3A0x60188b8131!2z5p2x5Lqs6YO95riv5Yy6!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                  width="100%"
+                  height="380"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <div class="access-txt">
+                <p>
+                  テキストが入ります<br />
+                  テキストが入ります<br />
+                  テキストが入ります
+                </p>
+                <a class="access-link" href="#">Google MAPで確認する</a>
+              </div>
+            </div>
 
-              <!-- Cột Phải: Lời chào Đại điện (Hình tròn) -->
-              <div class="access-right">
-                  <div class="company-body-list-item bg--03">
-                    <h3 class="company-body-list-item__ttl">代表メッセージ</h3>
-                    <p class="company-body-list-item__txt">代表からのご挨拶、事業に<br>込めた想いをお伝えします。</p>
-                    <div class="company-body-list-item-btn">
-                      <a href="" class="section__btn">詳細を見る</a>
-                    </div>
-                  </div>
+            <!-- Cột Phải: Lời chào Đại điện (Hình tròn) -->
+            <div class="access-right">
+              <div class="company-body-list-item bg--03">
+                <h3 class="company-body-list-item__ttl">代表メッセージ</h3>
+                <p class="company-body-list-item__txt">
+                  代表からのご挨拶、事業に<br />込めた想いをお伝えします。
+                </p>
+                <div class="company-body-list-item-btn">
+                  <a href="" class="section__btn">詳細を見る</a>
+                </div>
               </div>
+            </div>
           </div>
         </div>
       </section>
@@ -167,12 +183,14 @@
                 <!-- Center text -->
                 <div class="bf-center">
                   <div class="bf-center__top">
-                    <p class="bf-center__en">BUSINESS<br>FIELD</p>
+                    <p class="bf-center__en">BUSINESS<br />FIELD</p>
                     <span class="bf-center__num">06</span>
                   </div>
-                  <p class="bf-center__sub">高い専門性を持った<br>dropSTARSの6つの領域</p>
+                  <p class="bf-center__sub">
+                    高い専門性を持った<br />dropSTARSの6つの領域
+                  </p>
                 </div>
-  
+
                 <!-- 01 top center -->
                 <div class="bf-circle bf-circle--01 bf-bg--01">
                   <p class="bf-circle__label">business field</p>
@@ -180,7 +198,7 @@
                   <h3 class="bf-circle_ttl">業務改善 / 効率化支援</h3>
                   <a href="#" class="bf-circle__btn section__btn">詳細を見る</a>
                 </div>
-  
+
                 <!-- 02 top right -->
                 <div class="bf-circle bf-circle--02 bf-bg--02">
                   <p class="bf-circle__label">business field</p>
@@ -188,7 +206,7 @@
                   <h3 class="bf-circle_ttl">資金調達 / 資金繰計画支援</h3>
                   <a href="#" class="bf-circle__btn section__btn">詳細を見る</a>
                 </div>
-    
+
                 <!-- 03 bottom right -->
                 <div class="bf-circle bf-circle--03 bf-bg--03">
                   <p class="bf-circle__label">business field</p>
@@ -196,7 +214,7 @@
                   <h3 class="bf-circle_ttl">国内・海外不動産購入支援</h3>
                   <a href="#" class="bf-circle__btn section__btn">詳細を見る</a>
                 </div>
-    
+
                 <!-- 04 bottom center -->
                 <div class="bf-circle bf-circle--04 bf-bg--04">
                   <p class="bf-circle__label">business field</p>
@@ -204,7 +222,7 @@
                   <h3 class="bf-circle_ttl">コスト削減支援</h3>
                   <a href="#" class="bf-circle__btn section__btn">詳細を見る</a>
                 </div>
-    
+
                 <!-- 05 bottom left -->
                 <div class="bf-circle bf-circle--05 bf-bg--05">
                   <p class="bf-circle__label">business field</p>
@@ -212,7 +230,7 @@
                   <h3 class="bf-circle_ttl">生命・損害保険の最適化</h3>
                   <a href="#" class="bf-circle__btn section__btn">詳細を見る</a>
                 </div>
-    
+
                 <!-- 06 top left -->
                 <div class="bf-circle bf-circle--06 bf-bg--06">
                   <p class="bf-circle__label">business field</p>
@@ -220,114 +238,157 @@
                   <h3 class="bf-circle_ttl">投資 / 資産運用支援</h3>
                   <a href="#" class="bf-circle__btn section__btn">詳細を見る</a>
                 </div>
-    
               </div>
             </div>
-  
+
             <div class="bf-sp">
               <!-- Top row: left title + right circle -->
               <div class="bf-sp-layout">
-                  <div class="bf-sp-left">
-                      <p class="bf-sp-left__en">BUSINESS<br>FIELD</p>
-                      <span class="bf-sp-left__num">06</span>
-                      <p class="bf-sp-left__sub">高い専門線を持った<br>dropSTARS<br>6つの領域</p>
-                  </div>
+                <div class="bf-sp-left">
+                  <p class="bf-sp-left__en">BUSINESS<br />FIELD</p>
+                  <span class="bf-sp-left__num">06</span>
+                  <p class="bf-sp-left__sub">
+                    高い専門線を持った<br />dropSTARS<br />6つの領域
+                  </p>
+                </div>
 
-                  <div class="bf-sp-right">
-                    <div class="bf-sp-right-wrap">
-                      <div class="swiper bf-swiper">
-                        <div class="swiper-wrapper">
-                          <!-- 01 -->
-                          <div class="swiper-slide">
-                            <div class="bf-circle bf-sp-circle bf-bg--01">
-                                <div>
-                                    <div class="bf-circle_sub">
-                                        <p class="bf-circle__label">business field</p>
-                                        <span class="bf-circle__num">01</span>
-                                    </div>
-                                    <h3 class="bf-circle_ttl">業務改善 /<br>効率化支援</h3>
-                                </div>
-                                <p class="bf-circle_txt">無駄を排除し手順を最適化、最小コストで効率を最大化。</p>
-                                <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                <div class="bf-sp-right">
+                  <div class="bf-sp-right-wrap">
+                    <div class="swiper bf-swiper">
+                      <div class="swiper-wrapper">
+                        <!-- 01 -->
+                        <div class="swiper-slide">
+                          <div class="bf-circle bf-sp-circle bf-bg--01">
+                            <div>
+                              <div class="bf-circle_sub">
+                                <p class="bf-circle__label">business field</p>
+                                <span class="bf-circle__num">01</span>
+                              </div>
+                              <h3 class="bf-circle_ttl">
+                                業務改善 /<br />効率化支援
+                              </h3>
                             </div>
+                            <p class="bf-circle_txt">
+                              無駄を排除し手順を最適化、最小コストで効率を最大化。
+                            </p>
+                            <a href="#" class="bf-circle__btn section__btn"
+                              >詳細を見る
+                            </a>
                           </div>
-                          <!-- 02 -->
-                          <div class="swiper-slide">
-                            <div class="bf-circle bf-sp-circle bf-bg--02">
-                                <div>
-                                    <div class="bf-circle_sub">
-                                        <p class="bf-circle__label">business field</p>
-                                        <span class="bf-circle__num">02</span>
-                                    </div>
-                                    <h3 class="bf-circle_ttl">資金調達 /<br>資金繰計画支援</h3>
-                                </div>
-                                <p class="bf-circle_txt">最適な調達と資金繰り改善で、月次の経営管理を支援。</p>
-                                <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                        </div>
+                        <!-- 02 -->
+                        <div class="swiper-slide">
+                          <div class="bf-circle bf-sp-circle bf-bg--02">
+                            <div>
+                              <div class="bf-circle_sub">
+                                <p class="bf-circle__label">business field</p>
+                                <span class="bf-circle__num">02</span>
+                              </div>
+                              <h3 class="bf-circle_ttl">
+                                資金調達 /<br />資金繰計画支援
+                              </h3>
                             </div>
+                            <p class="bf-circle_txt">
+                              最適な調達と資金繰り改善で、月次の経営管理を支援。
+                            </p>
+                            <a href="#" class="bf-circle__btn section__btn"
+                              >詳細を見る
+                            </a>
                           </div>
-                          <!-- 03 -->
-                          <div class="swiper-slide">
-                            <div class="bf-circle bf-sp-circle bf-bg--03">
-                                <div>
-                                    <div class="bf-circle_sub">
-                                        <p class="bf-circle__label">business field</p>
-                                        <span class="bf-circle__num">03</span>
-                                    </div>
-                                    <h3 class="bf-circle_ttl">国内・海外<br>不動産購入支援</h3>
-                                </div>
-                                <p class="bf-circle_txt">融資による不動産投資で、安定収入と資産形成を実現。</p>
-                                <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                        </div>
+                        <!-- 03 -->
+                        <div class="swiper-slide">
+                          <div class="bf-circle bf-sp-circle bf-bg--03">
+                            <div>
+                              <div class="bf-circle_sub">
+                                <p class="bf-circle__label">business field</p>
+                                <span class="bf-circle__num">03</span>
+                              </div>
+                              <h3 class="bf-circle_ttl">
+                                国内・海外<br />不動産購入支援
+                              </h3>
                             </div>
+                            <p class="bf-circle_txt">
+                              融資による不動産投資で、安定収入と資産形成を実現。
+                            </p>
+                            <a href="#" class="bf-circle__btn section__btn"
+                              >詳細を見る
+                            </a>
                           </div>
-                          <!-- 04 -->
-                          <div class="swiper-slide">
-                            <div class="bf-circle bf-sp-circle bf-bg--04">
-                                <div>
-                                    <div class="bf-circle_sub">
-                                        <p class="bf-circle__label">business field</p>
-                                        <span class="bf-circle__num">04</span>
-                                    </div>
-                                    <h3 class="bf-circle_ttl">コスト削減支援</h3>
-                                </div>
-                                <p class="bf-circle_txt">固定費を見直し損益分岐点を下げ、利益を最大化する。</p>
-                                <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                        </div>
+                        <!-- 04 -->
+                        <div class="swiper-slide">
+                          <div class="bf-circle bf-sp-circle bf-bg--04">
+                            <div>
+                              <div class="bf-circle_sub">
+                                <p class="bf-circle__label">business field</p>
+                                <span class="bf-circle__num">04</span>
+                              </div>
+                              <h3 class="bf-circle_ttl">コスト削減支援</h3>
                             </div>
+                            <p class="bf-circle_txt">
+                              固定費を見直し損益分岐点を下げ、利益を最大化する。
+                            </p>
+                            <a href="#" class="bf-circle__btn section__btn"
+                              >詳細を見る
+                            </a>
                           </div>
-                          <!-- 05 -->
-                          <div class="swiper-slide">
-                            <div class="bf-circle bf-sp-circle bf-bg--05">
-                                <div>
-                                    <div class="bf-circle_sub">
-                                        <p class="bf-circle__label">business field</p>
-                                        <span class="bf-circle__num">05</span>
-                                    </div>
-                                    <h3 class="bf-circle_ttl">生命・損害<br>保険の最適化</h3>
-                                </div>
-                                <p class="bf-circle_txt">決算に基づき保険を厳選、過不足ない設計でリスクを最小化。</p>
-                                <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                        </div>
+                        <!-- 05 -->
+                        <div class="swiper-slide">
+                          <div class="bf-circle bf-sp-circle bf-bg--05">
+                            <div>
+                              <div class="bf-circle_sub">
+                                <p class="bf-circle__label">business field</p>
+                                <span class="bf-circle__num">05</span>
+                              </div>
+                              <h3 class="bf-circle_ttl">
+                                生命・損害<br />保険の最適化
+                              </h3>
                             </div>
+                            <p class="bf-circle_txt">
+                              決算に基づき保険を厳選、過不足ない設計でリスクを最小化。
+                            </p>
+                            <a href="#" class="bf-circle__btn section__btn"
+                              >詳細を見る
+                            </a>
                           </div>
-                          <!-- 06 -->
-                          <div class="swiper-slide">
-                            <div class="bf-circle bf-sp-circle bf-bg--06">
-                                <div>
-                                    <div class="bf-circle_sub">
-                                        <p class="bf-circle__label">business field</p>
-                                        <span class="bf-circle__num">06</span>
-                                    </div>
-                                    <h3 class="bf-circle_ttl">投資 /<br>資産運用支援</h3>
-                                </div>
-                                <p class="bf-circle_txt">市場動向に合わせ、貯金より増える資産形成を総合支援。</p>
-                                <a href="#" class="bf-circle__btn section__btn">詳細を見る </a>
+                        </div>
+                        <!-- 06 -->
+                        <div class="swiper-slide">
+                          <div class="bf-circle bf-sp-circle bf-bg--06">
+                            <div>
+                              <div class="bf-circle_sub">
+                                <p class="bf-circle__label">business field</p>
+                                <span class="bf-circle__num">06</span>
+                              </div>
+                              <h3 class="bf-circle_ttl">
+                                投資 /<br />資産運用支援
+                              </h3>
                             </div>
+                            <p class="bf-circle_txt">
+                              市場動向に合わせ、貯金より増える資産形成を総合支援。
+                            </p>
+                            <a href="#" class="bf-circle__btn section__btn"
+                              >詳細を見る
+                            </a>
                           </div>
                         </div>
                       </div>
-
-                      <button class="bf-sp-arrow bf-sp-arrow--prev" id="bf-prev" aria-label="前へ"></button>
-                      <button class="bf-sp-arrow bf-sp-arrow--next" id="bf-next" aria-label="次へ"></button>
                     </div>
+
+                    <button
+                      class="bf-sp-arrow bf-sp-arrow--prev"
+                      id="bf-prev"
+                      aria-label="前へ"
+                    ></button>
+                    <button
+                      class="bf-sp-arrow bf-sp-arrow--next"
+                      id="bf-next"
+                      aria-label="次へ"
+                    ></button>
                   </div>
+                </div>
               </div>
             </div>
           </div>

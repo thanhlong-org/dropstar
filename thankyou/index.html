@@ -19,7 +19,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css"
     />
     <link rel="stylesheet" href="assets/css/common.css" />
-    <link rel="stylesheet" href="contact/css/style.css" />
+    <link rel="stylesheet" href="thankyou/css/style.css" />
   </head>
   <body>
     <main class="main" id="top">
@@ -55,137 +55,48 @@
       </nav>
       <section class="contact">
         <div class="container">
-          <div class="contact-wrap" id="contact-wrap">
+          <div class="contact-wrap is-thankyou" id="contact-wrap">
             <!-- Form -->
-            <form class="contact-form" id="contact-form" novalidate>
-              <div id="contact-input-screen" class="form-screen is-active">
-                <!-- お名前 -->
-                <div class="form-field">
-                  <label class="form-label" for="field-name">
-                    お名前
-                    <span class="form-badge form-badge--required">必須</span>
-                  </label>
-                  <div class="form-input-prefix">
-                    <input
-                      class="form-input--bare"
-                      id="field-name"
-                      type="text"
-                      name="name"
-                      placeholder="例）山田 太郎"
-                      required
-                    />
+            <div class="contact-form" id="contact-content">
+              <!-- Thank You Screen -->
+              <div id="contact-thankyou-screen" class="form-screen is-active">
+                <div class="thankyou-title">
+                  お問い合わせありがとうございました
+                </div>
+                <div class="thankyou-content">
+                  <div class="thankyou-block">
+                    今後の流れ<br />
+                    ・ご入力いただいたメールアドレス宛に、自動返信メールをお送りしております。<br />
+                    ・内容を確認の上、担当者より2営業日以内にご連絡差し上げます。
+                  </div>
+
+                  <div class="thankyou-block">
+                    しばらく経っても自動返信メールが届かない場合は、お手数ですが<br />
+                    迷惑メールフォルダをご確認いただくか、お電話にてお問い合わせください。
                   </div>
                 </div>
 
-                <!-- メールアドレス -->
-                <div class="form-field">
-                  <label class="form-label" for="field-email">
-                    メールアドレス
-                    <span class="form-badge form-badge--required">必須</span>
-                  </label>
-                  <div class="form-input-prefix">
-                    <input
-                      class="form-input--bare"
-                      id="field-email"
-                      type="email"
-                      name="email"
-                      placeholder="例）exsample@gmail.com"
-                      required
-                    />
+                <div class="thankyou-submit-wrap">
+                  <a href="/" class="section__btn"> TOPへ戻る </a>
+                </div>
+
+                <div class="vertical-section vertical-section--thankyou">
+                  <div class="vertical">
+                    <!-- Vertical Text Content -->
+                    <div class="vertical-text-wrapper">
+                      <p class="text-line line-1">経営の夢を</p>
+                      <p class="text-line line-2">最速最短で叶える</p>
+                    </div>
+
+                    <!-- Next Indicator -->
+                    <div class="next-section">
+                      <span class="next-label">next</span>
+                      <div class="scroll-line"></div>
+                    </div>
                   </div>
-                </div>
-
-                <!-- 電話番号 -->
-                <div class="form-field">
-                  <label class="form-label" for="field-tel">
-                    電話番号
-                    <span class="form-badge form-badge--required">必須</span>
-                  </label>
-                  <div class="form-input-prefix">
-                    <input
-                      class="form-input--bare"
-                      id="field-tel"
-                      type="tel"
-                      name="tel"
-                      placeholder="例）090-1234-5678"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <!-- お問い合わせ内容 (select) -->
-                <div class="form-field">
-                  <label class="form-label" for="field-category">
-                    お問い合わせ内容
-                    <span class="form-badge form-badge--required">必須</span>
-                  </label>
-                  <div class="form-select-wrap">
-                    <select
-                      class="form-select"
-                      id="field-category"
-                      name="category"
-                      required
-                    >
-                      <option value="" disabled selected>
-                        -- 選択してください --
-                      </option>
-                      <option value="01">業務改善 / 効率化支援</option>
-                      <option value="02">資金調達 / 資金繰計画支援</option>
-                      <option value="03">国内・海外不動産購入支援</option>
-                      <option value="04">コスト削減支援</option>
-                      <option value="05">生命・損害保険の最適化</option>
-                      <option value="06">投資 / 資産運用支援</option>
-                      <option value="other">その他</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- ご質問・お問い合わせ内容等 -->
-                <div class="form-field">
-                  <label class="form-label" for="field-message">
-                    ご質問・お問い合わせ内容等
-                    <span class="form-badge form-badge--optional">任意</span>
-                  </label>
-                  <textarea
-                    class="form-textarea"
-                    id="field-message"
-                    name="message"
-                    placeholder="ご質問・お問い合わせ内容はこちらにご記載下さい。"
-                  ></textarea>
-                </div>
-
-                <!-- 個人情報保護方針の同意 -->
-                <div class="form-privacy">
-                  <div class="privacy-row">
-                    <label class="privacy-label">
-                      <input
-                        type="checkbox"
-                        name="privacy"
-                        class="privacy-checkbox"
-                        required
-                      />
-                      <span class="privacy-text"
-                        >個人情報保護方針に記載された、個人情報の取扱いに同意する。</span
-                      >
-                    </label>
-                    <span
-                      class="form-badge form-badge--required form-badge--privacy"
-                      >必須</span
-                    >
-                  </div>
-                  <a href="#" class="privacy-link"
-                    >個人情報保護方針を確認する</a
-                  >
-                </div>
-
-                <!-- Submit -->
-                <div class="form-submit-wrap">
-                  <button type="button" class="section__btn" id="btn-confirm">
-                    入力内容を確認する
-                  </button>
                 </div>
               </div>
-            </form>
+            </div>
             <div class="vertical-section vertical-section--aside">
               <div class="vertical">
                 <!-- Vertical Text Content -->
@@ -430,39 +341,8 @@
     <script src="assets/js/background.js" defer></script>
     <script src="assets/js/script.js" defer></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("contact-form");
-        const btnConfirm = document.getElementById("btn-confirm");
-        const bfSection = document.getElementById("business-field");
-
-        if (bfSection) {
-          bfSection.style.display = "none";
-        }
-
-        if (form && btnConfirm) {
-          btnConfirm.addEventListener("click", function (e) {
-            e.preventDefault();
-            if (form.reportValidity()) {
-              const catSelect = document.getElementById("field-category");
-              const formData = {
-                name: document.getElementById("field-name").value,
-                email: document.getElementById("field-email").value,
-                tel: document.getElementById("field-tel").value,
-                categoryText: catSelect.options[catSelect.selectedIndex].text,
-                message: document.getElementById("field-message").value,
-                privacy: document.querySelector('input[name="privacy"]')
-                  .checked,
-              };
-
-              sessionStorage.setItem(
-                "contactFormData",
-                JSON.stringify(formData),
-              );
-              window.location.href = "../confirm/";
-            }
-          });
-        }
-      });
+      // Xóa cache form của session cũ nếu người dùng tới trang cảm ơn
+      sessionStorage.removeItem("contactFormData");
     </script>
   </body>
 </html>

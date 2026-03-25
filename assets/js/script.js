@@ -29,12 +29,18 @@ function initBusinessFieldMobileCarousel() {
     return;
   }
 
+  const slidesCount = swiperEl.querySelectorAll('.swiper-slide').length;
+  if (slidesCount === 0) {
+    return;
+  }
+
   const bfSwiper = new Swiper('.bf-swiper', {
-    loop: true,
+    loop: slidesCount > 1,
     speed: 1000,
     slidesPerView: 1,
     spaceBetween: 20,
     effect: 'fade',
+    mousewheel: true,
     fadeEffect: {
       crossFade: true
     },
@@ -413,6 +419,7 @@ function initMobileMenu() {
       }, '-=0.1');
 
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('menu-open');
     } else {
       menuToggle.classList.remove('is-active');
 
@@ -432,6 +439,7 @@ function initMobileMenu() {
       });
 
       document.body.style.overflow = '';
+      document.body.classList.remove('menu-open');
     }
   };
 
@@ -457,45 +465,39 @@ function initFlowSectionCarousel() {
     {
       num: '01',
       title: 'お問い合わせ',
-      img: 'business-field/img/img-03.png',
-      desc: 'まずはお気軽にご相談ください\n現状の課題やお悩みをヒアリングし、\n最適な支援方法を検討します。'
+      img: 'business-field/img/flow-img01.jpg',
+      desc: 'まずはお気軽にご相談ください<br>現状の課題やお悩みをヒアリングし、<br>最適な支援方法を検討します。'
     },
     {
       num: '02',
       title: 'お打ち合わせ',
-      img: 'business-field/img/img-03.png',
-      desc: '詳しいヒアリングを行い、\n課題の本質を丁寧に整理します。\n何でもお話しください。'
+      img: 'business-field/img/flow-img02.jpg',
+      desc: '対面・オンラインにて詳細を伺い、<br>課題の背景や目指したい方向性を<br>丁寧に整理します。'
     },
     {
       num: '03',
       title: '経営課題診断',
-      img: 'business-field/img/img-03.png',
-      desc: '現状を分析し、優先すべき課題を\n明確にします。的確な診断で\n本質に迫ります。'
+      img: 'business-field/img/flow-img03.jpg',
+      desc: 'ヒアリング内容を基に、<br>収益構造・業務プロセス・資金状況等<br>を分析し、課題を可視化します。'
     },
     {
       num: '04',
-      title: 'ご提案/お見積り',
-      img: 'business-field/img/img-03.png',
-      desc: '課題解決のための最適なプランを\nご提案いたします。貴社に合わせた\nオーダーメイドの支援策です。'
+      title: 'ご提案 / お見積もり',
+      img: 'business-field/img/flow-img04.jpg',
+      desc: '診断結果を踏まえ、<br>最適な支援プランと具体的な改善施策<br>費用をご提案します。'
     },
     {
       num: '05',
       title: 'ご支援開始',
-      img: 'business-field/img/img-03.png',
-      desc: '提案したプランの実行を\n伴走支援します。\n現場に寄り添い、共に進めます。'
+      img: 'business-field/img/flow-img05.jpg',
+      desc: 'ご契約後、伴走型での支援をスタート。<br class="u-pc">課題解決に向けて<br>実行フェーズへ進みます。'
     }
   ];
 
   const spCard = document.getElementById('flow-sp-card');
-  const spInner = spCard?.querySelector('.flow-card-inner');
-  const spNum = document.getElementById('sp-num');
-  const spTtl = document.getElementById('sp-ttl');
-  const spImg = document.getElementById('sp-img');
-  const spDesc = document.getElementById('sp-desc');
-  const spPrev = document.getElementById('sp-prev');
-  const spNext = document.getElementById('sp-next');
   const spDots = document.querySelectorAll('#sp-nav .flow-sp-dot');
 
+  // PC Elements
   const pcCard = document.getElementById('flow-pc-card');
   const pcInner = pcCard?.querySelector('.flow-pc-card-inner');
   const pcNum = document.getElementById('pc-num');
@@ -504,103 +506,113 @@ function initFlowSectionCarousel() {
   const pcText = document.getElementById('pc-text');
   const pcNavItems = document.querySelectorAll('#pc-sidebar .flow-pc-nav-item');
 
-  const hasSpFlow = spInner && spNum && spTtl && spImg && spDesc && spPrev && spNext && spDots.length;
   const hasPcFlow = pcInner && pcNum && pcTtl && pcImg && pcText && pcNavItems.length;
 
-  if (!hasSpFlow && !hasPcFlow) {
-    return;
-  }
+  // Initialize SP Swiper dynamically using flowData
+  if (spCard && typeof Swiper !== 'undefined') {
+    const slidesHtml = flowData.map(item => `
+      <div class="swiper-slide">
+        <div class="flow-card-inner">
+          <div class="flow-card-head">
+              <span class="flow-card-head__icon">
+                  <img src="business-field/img/logo-icon02.png" alt="" width="61" height="64">
+              </span>
+              <span class="flow-card-head__num">${item.num}</span>
+              <h3 class="flow-card-head__ttl">${item.title}</h3>
+          </div>
+          <div class="flow-card-img-wrap">
+              <img class="flow-card-img" src="${item.img}" alt="${item.title}">
+          </div>
+          <div class="flow-card-desc">
+              ${item.desc.split('\n').map(line => `<p>${line}</p>`).join('')}
+          </div>
+          <a href="#" class="flow-cta section__btn">今すぐ相談する</a>
+        </div>
+      </div>
+    `).join('');
 
-  let spIndex = 0;
-  let pcIndex = 0;
+    spCard.innerHTML = `
+      <div style="position: relative; max-width: 250px; margin: 0 auto;">
+        <div class="swiper flow-swiper">
+          <div class="swiper-wrapper">
+            ${slidesHtml}
+          </div>
+        </div>
+        <button class="flow-arrow flow-arrow--prev" id="sp-prev" aria-label="前へ"></button>
+        <button class="flow-arrow flow-arrow--next" id="sp-next" aria-label="次へ"></button>
+      </div>
+    `;
 
-  const updateSpFlow = (nextIndex) => {
-    if (!hasSpFlow) {
-      return;
-    }
+    const spPrev = document.getElementById('sp-prev');
 
-    spInner.style.opacity = '0';
-    spInner.style.transform = 'translateY(-12px)';
+    const flowSwiper = new Swiper('.flow-swiper', {
+      loop: false,
+      speed: 600,
+      effect: 'fade',
+      fadeEffect: { crossFade: true },
+      mousewheel: {
+        releaseOnEdges: true
+      },
+      navigation: {
+        nextEl: '#sp-next',
+        prevEl: '#sp-prev',
+      },
+      on: {
+        init: function () {
+          if (this.isBeginning && spPrev) spPrev.style.display = 'none';
+        },
+        slideChange: function () {
+          const index = this.activeIndex;
+          spDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
 
-    window.setTimeout(() => {
-      spIndex = ((nextIndex % flowData.length) + flowData.length) % flowData.length;
-      const item = flowData[spIndex];
-
-      spNum.textContent = item.num;
-      spTtl.textContent = item.title;
-      spImg.src = item.img;
-      spImg.alt = item.title;
-      spDesc.innerHTML = item.desc.split('\n').map((line) => `<p>${line}</p>`).join('');
-
-      spDots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === spIndex);
-      });
-
-      spInner.style.transition = 'none';
-      spInner.style.transform = 'translateY(16px)';
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          spInner.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-          spInner.style.opacity = '1';
-          spInner.style.transform = 'translateY(0)';
-        });
-      });
-    }, 280);
-  };
-
-  const updatePcFlow = (nextIndex) => {
-    if (!hasPcFlow) {
-      return;
-    }
-
-    pcInner.style.opacity = '0';
-    pcInner.style.transform = 'translateY(-10px)';
-
-    window.setTimeout(() => {
-      pcIndex = ((nextIndex % flowData.length) + flowData.length) % flowData.length;
-      const item = flowData[pcIndex];
-
-      pcNum.textContent = item.num;
-      pcTtl.textContent = item.title;
-      pcImg.src = item.img;
-      pcImg.alt = item.title;
-      pcText.innerHTML = `<p>${item.desc.replace(/\n/g, '<br>')}</p><a href="#" class="flow-pc-cta section__btn">今すぐ相談する</a>`;
-
-      pcNavItems.forEach((node, index) => {
-        node.classList.toggle('active', index === pcIndex);
-      });
-
-      pcInner.style.transition = 'none';
-      pcInner.style.transform = 'translateY(14px)';
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          pcInner.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-          pcInner.style.opacity = '1';
-          pcInner.style.transform = 'translateY(0)';
-        });
-      });
-    }, 260);
-  };
-
-  if (hasSpFlow) {
-    spPrev.addEventListener('click', () => {
-      updateSpFlow(spIndex - 1);
+          if (spPrev) {
+            spPrev.style.display = this.isBeginning ? 'none' : '';
+          }
+        }
+      }
     });
 
-    spNext.addEventListener('click', () => {
-      updateSpFlow(spIndex + 1);
-    });
-
-    spDots.forEach((dot) => {
+    spDots.forEach((dot, idx) => {
       dot.addEventListener('click', () => {
-        updateSpFlow(Number(dot.dataset.index));
+        flowSwiper.slideTo(idx);
       });
     });
   }
 
+  // Initialize PC Flow
   if (hasPcFlow) {
+    let pcIndex = 0;
+    const updatePcFlow = (nextIndex) => {
+      pcInner.style.opacity = '0';
+      pcInner.style.transform = 'translateY(-10px)';
+
+      window.setTimeout(() => {
+        pcIndex = ((nextIndex % flowData.length) + flowData.length) % flowData.length;
+        const item = flowData[pcIndex];
+
+        pcNum.textContent = item.num;
+        pcTtl.textContent = item.title;
+        pcImg.src = item.img;
+        pcImg.alt = item.title;
+        pcText.innerHTML = `<p>${item.desc.replace(/\n/g, '<br>')}</p><a href="#" class="flow-pc-cta section__btn">今すぐ相談する</a>`;
+
+        pcNavItems.forEach((node, index) => {
+          node.classList.toggle('active', index === pcIndex);
+        });
+
+        pcInner.style.transition = 'none';
+        pcInner.style.transform = 'translateY(14px)';
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            pcInner.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            pcInner.style.opacity = '1';
+            pcInner.style.transform = 'translateY(0)';
+          });
+        });
+      }, 260);
+    };
+
     pcNavItems.forEach((item) => {
       item.addEventListener('click', () => {
         updatePcFlow(Number(item.dataset.index));

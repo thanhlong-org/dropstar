@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="../" />
+    <title>会社概要/アクセス</title>
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Benne&family=Noto+Serif+JP:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/common.css" />
+    <link rel="stylesheet" href="contact/css/style.css" />
+  </head>
+  <body>
+    <main class="main" id="top">
+      <div id="canvas-container"></div>
+      <div data-include="common/header.html"></div>
+      <div class="banner">
+        <div class="clouds" aria-hidden="true" data-cloud-offset="60">
+          <span class="cloud cloud--1"></span>
+        </div>
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section__ttl">CONTACT</h2>
+            <p class="section__desc">お問い合わせ</p>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumb">
+        <div class="container">
+          <div class="breadcrumb-wrapper">
+            <a class="breadcrumb-link" href="/">
+              <img
+                src="assets/img/star-icon.svg"
+                alt="Icon star"
+                width="15"
+                height="21"
+              />
+              <span>TOP</span>
+            </a>
+            <span class="breadcrumb-separator">>></span>
+            <span class="breadcrumb-current">お問い合わせ</span>
+          </div>
+        </div>
+      </nav>
+      <section class="contact">
+        <div class="container">
+          <div class="contact-wrap" id="contact-wrap">
+            <!-- Form -->
+            <form class="contact-form" id="contact-form" novalidate>
+              <!-- Confirm Screen -->
+              <div id="contact-confirm-screen" class="form-screen">
+                <div class="confirm-row">
+                  <div class="confirm-label">
+                    お名前
+                    <span class="form-badge form-badge--required">必須</span>
+                  </div>
+                  <div class="confirm-value" id="confirm-name-val"></div>
+                </div>
+
+                <div class="confirm-row">
+                  <div class="confirm-label">
+                    メールアドレス
+                    <span class="form-badge form-badge--required">必須</span>
+                  </div>
+                  <div class="confirm-value" id="confirm-email-val"></div>
+                </div>
+
+                <div class="confirm-row">
+                  <div class="confirm-label">
+                    電話番号
+                    <span class="form-badge form-badge--required">必須</span>
+                  </div>
+                  <div class="confirm-value" id="confirm-tel-val"></div>
+                </div>
+
+                <div class="confirm-row">
+                  <div class="confirm-label">
+                    お問い合わせ内容
+                    <span class="form-badge form-badge--required">必須</span>
+                  </div>
+                  <div class="confirm-value" id="confirm-category-val"></div>
+                </div>
+
+                <div class="confirm-row">
+                  <div class="confirm-label">
+                    ご質問・お問い合わせ内容等
+                    <span class="form-badge form-badge--optional">任意</span>
+                  </div>
+                  <div class="confirm-value" id="confirm-message-val"></div>
+                </div>
+
+                <div class="confirm-row">
+                  <div class="confirm-label">
+                    個人情報保護方針に記載された、個人情報の取扱いに同意する。
+                    <span
+                      class="form-badge form-badge--required form-badge--privacy"
+                      >必須</span
+                    >
+                  </div>
+                  <div class="confirm-value" id="confirm-privacy-val"></div>
+                </div>
+
+                <div class="form-submit-wrap">
+                  <button type="submit" class="section__btn" id="btn-submit">
+                    送信する
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="vertical-section vertical-section--aside">
+              <div class="vertical">
+                <!-- Vertical Text Content -->
+                <div class="vertical-text-wrapper">
+                  <p class="text-line line-1">経営の夢を</p>
+                  <p class="text-line line-2">最速最短で叶える</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div data-include="common/footer.html"></div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script src="assets/js/include.js" defer></script>
+    <script src="assets/js/background.js" defer></script>
+    <script src="assets/js/script.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const bfSection = document.getElementById("business-field");
+        if (bfSection) {
+          bfSection.style.display = "none";
+        }
+
+        const dataStr = sessionStorage.getItem("contactFormData");
+        if (!dataStr) {
+          // If no data, redirect back to contact form
+          window.location.href = "../contact/";
+          return;
+        }
+
+        try {
+          const data = JSON.parse(dataStr);
+
+          document.getElementById("confirm-name-val").textContent = data.name;
+          document.getElementById("confirm-email-val").textContent = data.email;
+          document.getElementById("confirm-tel-val").textContent = data.tel;
+          document.getElementById("confirm-category-val").textContent =
+            data.categoryText;
+          document.getElementById("confirm-message-val").innerHTML =
+            data.message ? data.message.replace(/\n/g, "<br>") : "なし";
+          document.getElementById("confirm-privacy-val").textContent =
+            data.privacy ? "同意する" : "";
+
+          const confirmScreen = document.getElementById(
+            "contact-confirm-screen",
+          );
+          if (confirmScreen) confirmScreen.classList.add("is-active");
+        } catch (e) {
+          window.location.href = "../contact/";
+        }
+
+        const btnSubmit = document.getElementById("btn-submit");
+        if (btnSubmit) {
+          btnSubmit.addEventListener("click", function (e) {
+            e.preventDefault();
+            // TODO: Optional AJAX submit here before redirecting
+            window.location.href = "../thankyou/";
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

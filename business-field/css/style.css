@@ -27,7 +27,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 56px 0 30px;
+  padding: 0 0 30px;
   background-color: #fff;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .concept-body {
-  margin: 30px 0;
+  margin-bottom: 35px;
 }
 
 .concept-body-group {
@@ -94,10 +94,7 @@
 
 .concept-btn {
   text-align: center;
-}
-
-.concept-btn .section__btn {
-  text-align: left;
+  margin-top: 20px;
 }
 
 @media (min-width: 1024px) {
@@ -293,7 +290,7 @@
     font-size: 14px;
     font-weight: 300;
     line-height: 2.2;
-    color: rgba(255, 255, 255, 0.88);
+    color: #fff;
 }
 
 .flow-cta {
@@ -585,7 +582,7 @@ MOBILE BOTTOM NAV
     .flow-pc-card-img {
       flex-shrink: 0;
       width: auto;
-      max-width: auto;
+      max-width: unset;
     }
 
     .flow-pc-card-text {

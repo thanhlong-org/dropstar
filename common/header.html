@@ -1,11 +1,16 @@
 <header class="header">
   <div class="container">
     <div class="header-wrapper">
-      <a href="./">
+      <a class="home-link" href="./">
         <img
-          src="assets/img/logo-img.png"
+          src="assets/img/logo-img.svg"
           alt="Dropstar Logo"
-          class="logo"
+          class="logo u-pc"
+        />
+        <img
+          src="assets/img/logo-img-sp.svg"
+          alt="Dropstar Logo"
+          class="logo u-sp"
         />
       </a>
       <nav class="nav u-pc">
@@ -30,11 +35,10 @@
 <!-- Mobile Menu Overlay -->
 <div id="mobile-menu" class="mobile-menu">
   <div class="mmenu-inner">
-
     <!-- Header row -->
     <div class="mmenu-header">
       <a href="./" class="mmenu-logo">
-        <img src="assets/img/logo-img.png" alt="drop STARS" />
+        <img src="assets/img/logo-img-sp.svg" alt="drop STARS" />
       </a>
       <button id="mmenu-close" class="mmenu-close" aria-label="閉じる">
         <span class="mmenu-close-icon"></span>
@@ -44,10 +48,12 @@
     <!-- Scrollable grid -->
     <div class="mmenu-scroll">
       <div class="mmenu-grid">
-
         <!-- TOP ページ -->
-        <a href="./" class="mmenu-tile mmenu-tile--img"
-           style="background-image: url('assets/img/bg-header-img.png')">
+        <a
+          href="./"
+          class="mmenu-tile mmenu-tile--img"
+          style="background-image: url(&quot;assets/img/bg-link-sp01.jpg&quot;)"
+        >
           <div class="mmenu-tile-overlay"></div>
           <div class="mmenu-tile-content">
             <span class="mmenu-tile-ttl">TOPページ</span>
@@ -55,8 +61,11 @@
         </a>
 
         <!-- drop STARSとは -->
-        <a href="about/" class="mmenu-tile mmenu-tile--img"
-           style="background-image: url('assets/img/concept-img01.png')">
+        <a
+          href="about/"
+          class="mmenu-tile mmenu-tile--img"
+          style="background-image: url(&quot;assets/img/bg-link-sp02.jpg&quot;)"
+        >
           <div class="mmenu-tile-overlay"></div>
           <div class="mmenu-tile-content">
             <span class="mmenu-tile-ttl">drop STARSとは</span>
@@ -64,8 +73,11 @@
         </a>
 
         <!-- 会社概要 / アクセス -->
-        <a href="company/" class="mmenu-tile mmenu-tile--img"
-           style="background-image: url('assets/img/company-img01.png')">
+        <a
+          href="company/"
+          class="mmenu-tile mmenu-tile--img"
+          style="background-image: url(&quot;assets/img/bg-link-sp03.jpg&quot;)"
+        >
           <div class="mmenu-tile-overlay"></div>
           <div class="mmenu-tile-content">
             <span class="mmenu-tile-ttl">会社概要 / アクセス</span>
@@ -73,8 +85,11 @@
         </a>
 
         <!-- 代表メッセージ -->
-        <a href="message/" class="mmenu-tile mmenu-tile--img"
-           style="background-image: url('assets/img/company-img02.png')">
+        <a
+          href="message/"
+          class="mmenu-tile mmenu-tile--img"
+          style="background-image: url(&quot;assets/img/bg-link-sp04.jpg&quot;)"
+        >
           <div class="mmenu-tile-overlay"></div>
           <div class="mmenu-tile-content">
             <span class="mmenu-tile-ttl">代表メッセージ</span>
@@ -84,14 +99,17 @@
         <!-- BUSINESS FIELD featured (tall, left column) -->
         <a href="business-field/" class="mmenu-tile mmenu-tile--featured">
           <div class="mmenu-tile-content mmenu-tile-content--featured">
-            <p class="mmenu-featured-label">BUSINESS<br>FIELD</p>
+            <p class="mmenu-featured-label">BUSINESS<br />FIELD</p>
             <span class="mmenu-featured-num">06</span>
           </div>
         </a>
 
         <!-- business field 01 -->
-        <a href="business-field/" class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
-           style="background-image: url('assets/img/business-img01.png')">
+        <a
+          href="business-field/"
+          class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
+          style="background-image: url(&quot;assets/img/bg-link-sp05.jpg&quot;)"
+        >
           <div class="mmenu-tile-overlay"></div>
           <div class="mmenu-tile-content">
             <span class="mmenu-bf-label">business field</span>
@@ -101,30 +119,39 @@
         </a>
 
         <!-- business field 02 -->
-        <a href="business-field/" class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
-           style="background-image: url('assets/img/business-img02.png')">
+        <a
+          href="business-field/"
+          class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
+          style="background-image: url(&quot;assets/img/bg-link-sp06.jpg&quot;)"
+        >
           <div class="mmenu-tile-overlay"></div>
           <div class="mmenu-tile-content">
             <span class="mmenu-bf-label">business field</span>
             <span class="mmenu-bf-num">02</span>
-            <span class="mmenu-bf-ttl">資金調達 /<br>資金繰り計画支援</span>
+            <span class="mmenu-bf-ttl">資金調達 /<br />資金繰り計画支援</span>
           </div>
         </a>
 
         <!-- business field 03 -->
-        <a href="business-field/" class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
-           style="background-image: url('assets/img/business-img03.png')">
+        <a
+          href="business-field/"
+          class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
+          style="background-image: url(&quot;assets/img/bg-link-sp07.jpg&quot;)"
+        >
           <div class="mmenu-tile-overlay"></div>
           <div class="mmenu-tile-content">
             <span class="mmenu-bf-label">business field</span>
             <span class="mmenu-bf-num">03</span>
-            <span class="mmenu-bf-ttl">国内・海外<br>不動産購入支援</span>
+            <span class="mmenu-bf-ttl">国内・海外<br />不動産購入支援</span>
           </div>
         </a>
 
         <!-- business field 04 -->
-        <a href="business-field/" class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
-           style="background-image: url('assets/img/business-img04.png')">
+        <a
+          href="business-field/"
+          class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
+          style="background-image: url(&quot;assets/img/bg-link-sp08.jpg&quot;)"
+        >
           <div class="mmenu-tile-overlay"></div>
           <div class="mmenu-tile-content">
             <span class="mmenu-bf-label">business field</span>
@@ -134,34 +161,39 @@
         </a>
 
         <!-- business field 05 -->
-        <a href="business-field/" class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
-           style="background-image: url('assets/img/business-img05.png')">
+        <a
+          href="business-field/"
+          class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
+          style="background-image: url(&quot;assets/img/bg-link-sp09.jpg&quot;)"
+        >
           <div class="mmenu-tile-overlay"></div>
           <div class="mmenu-tile-content">
             <span class="mmenu-bf-label">business field</span>
             <span class="mmenu-bf-num">05</span>
-            <span class="mmenu-bf-ttl">生命・損害<br>保険の最適化</span>
+            <span class="mmenu-bf-ttl">生命・損害<br />保険の最適化</span>
           </div>
         </a>
 
         <!-- business field 06 -->
-        <a href="business-field/" class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
-           style="background-image: url('assets/img/business-img06.png')">
+        <a
+          href="business-field/"
+          class="mmenu-tile mmenu-tile--bf mmenu-tile--img"
+          style="background-image: url(&quot;assets/img/bg-link-sp10.jpg&quot;)"
+        >
           <div class="mmenu-tile-overlay"></div>
           <div class="mmenu-tile-content">
             <span class="mmenu-bf-label">business field</span>
             <span class="mmenu-bf-num">06</span>
-            <span class="mmenu-bf-ttl">投資 /<br>資産運用支援</span>
+            <span class="mmenu-bf-ttl">投資 /<br />資産運用支援</span>
           </div>
         </a>
 
         <!-- お問い合わせはこちら -->
         <a href="contact/" class="mmenu-tile mmenu-tile--contact">
           <div class="mmenu-tile-content mmenu-tile-content--contact">
-            <span class="mmenu-contact-ttl">お問い合わせは<br>こちら</span>
+            <span class="mmenu-contact-ttl">お問い合わせは<br />こちら</span>
           </div>
         </a>
-
       </div>
     </div>
   </div>
